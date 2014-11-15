@@ -1,4 +1,5 @@
 Lab Assignment 1
+==============================
 
 This is a group level assignment.
 
@@ -9,6 +10,7 @@ Run it and collect enough screen captures to prove that it is working. Capture d
 Submit one report per group. Label it appropriately as described in one of tha announcements.
 
 Lab Assignment 2
+==============================
 
 This is group based. Each group will have a different App to focus on. You will 'reverse engineer' a given App and develop a top-down design flow. For the given App: (1) Run the App, and understand all the flows. (2) Use Balsamiq (more on this later) to develop a mockup of this flow - Balsamiq mockup supports Android and you will have an account for its use by Monday (9/22) or earlier. Note that even if there is only one Activity screen, there may be several different activities or changes in the displayed info that may occur in the same Activity screen (such as the appearance of a keypad , an alert dialog, an user entering a number, etc) -- all these should be included as separate mockup screens in Balsamiq (3) Identify changes in various screens that will move you from the previuos mockup screen to this new mockup screen. Identify them under different categories: Java, layout, manifest, MVC (model-view-control) entities, resources, assets, raw data, etc, and include API references (package, class, method, etc., names).
 
@@ -21,10 +23,12 @@ Submit a zipped folder - a Word document with all the Balsamiq mockup screens, t
 Dr. Shankar
 
 Lab Assignment 3
+==============================
 
 On the use of sensors with Processing and integration with Java. Document how you used these aspects in your project. I will cover NFC and Integration of Apps in Processing and Java next week (first week of November). Provide screen captures on how you integrated these aspects (any or all of the sensors) in your project with some explanation. No formal report! This is due at semester end, along with  your prolject. What to submit: Just post this at Github. At Blackboard, submit a link to the posting - no documents need to be submitted at BB.
 
 Lab Assignment 4
+==============================
 
 This is on Google map, BlueTooth, and Google Play. I will cover Google and ESRI map, and Google part during the second week of November. If Alain is ready, he will present more on data analytics' Google APIs. If you like Google resources, you are welcome to try those. However, simple data analysis with parse.com is good for this semester. Ahmed will cover more on parse.com in this Wednesday's class (Class of 10/22).
 
