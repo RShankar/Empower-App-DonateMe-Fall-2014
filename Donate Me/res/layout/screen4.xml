@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="14dp"
+        android:text="Logout" />
+
+    <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button1" >
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="554dp"
+            android:orientation="vertical" >
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@android:id/tabs" >
+
+                <RelativeLayout
+                    android:id="@+id/Browse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <Spinner
+                        android:id="@+id/Spinner01"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@+id/spinner1"
+                        android:layout_marginRight="19dp" />
+
+                    <ScrollView
+                        android:id="@+id/scrollView1"
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
+                        android:layout_alignRight="@+id/Spinner01"
+                        android:layout_below="@+id/spinner1" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1000dp"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </ScrollView>
+
+                    <Spinner
+                        android:id="@+id/spinner1"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/scrollView1"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="37dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/Request"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+                </RelativeLayout>
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@android:id/tabcontent"
+                android:text="Random Act of Kindness"
+                android:layout_marginTop="50dp" />
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="300dp"
+       			android:layout_height="40dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" >
+            </TabWidget>
+
+        </RelativeLayout>
+    </TabHost>
+
+</RelativeLayout>
