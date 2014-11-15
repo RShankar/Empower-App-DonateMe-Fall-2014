@@ -1,11 +1,12 @@
-package com.alexandre.onetraining;
+package edu.fau.group4.donateme;
 
-import myPackage.Car;
+import com.alexandre.onetraining.R;
+
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+//import android.widget.TextView;
 
 
 
@@ -15,26 +16,9 @@ public class MainActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-	    TextView tv =  (TextView) findViewById(R.id.textView1);  
     
-	    String text = Car.getNoOfCars()+ " cars \n\n"; 
-
-		Car myCar = new Car();
-		text = text + myCar.printToString();
-		text = text + Car.getNoOfCars()+ " cars \n\n";	
-					     	
-		Car yourCar = new Car("Porsche", "Cayman", 2007, "Blue", 10000, 2);
-		text = text + yourCar.printToString();
-		text = text + Car.getNoOfCars()+ " cars \n\n";
-
-		Car myNextCar = new Car("Porsche", "Cayman");
-		text = text + myNextCar.printToString();
-		text = text + Car.getNoOfCars()+ " cars \n\n";
-
-		Car.noOfCars = 2;
-		myCar.paint("GREEN");     //will work because method paint is public
+	    
 		
-		tv.setText(text);
 		
     }
 

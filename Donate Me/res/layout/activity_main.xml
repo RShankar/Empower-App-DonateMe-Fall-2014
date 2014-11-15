@@ -1,62 +1,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.alexandre.onetraining.MainActivity" >
-
-    <FrameLayout
-        android:id="@+id/frameLayout1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true" >
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/frameLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button2"
-        android:layout_alignRight="@+id/frameLayout1" >
-    </FrameLayout>
+    tools:context="edu.fau.group4.donateme.MainActivity" >
 
     <TextView
-        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="15dp"
-        android:layout_toLeftOf="@+id/frameLayout2"
-        android:text="Welcome to the Donate Me App!        
- 
-With this app you are able to see who is need of a donation based help around you. You also are able to direct donate money or getting into contact with the organization for other donations.
- 
-If you need help, you are welcome to request donations in the app. You can specify your organization, description, pictures, location, and donation request.
- "
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="17sp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/frameLayout1"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_alignRight="@+id/button1"
-        android:layout_marginLeft="38dp"
-        android:text="Have an account? Sign in!" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button2"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_marginLeft="38dp"
-        android:text="Create an account to get started!" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="161dp"
+        android:rotation="340"
+        android:text="@string/app_name" />
 
 </RelativeLayout>
