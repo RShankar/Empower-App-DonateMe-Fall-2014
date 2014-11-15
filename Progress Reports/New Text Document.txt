@@ -1,0 +1,21 @@
+(1) What will be in Processing (the part that can be customized) and what will be in Java? If you wish, identify this on the mockup screens and indicate here textually which ones will be done in which part of the App.
+Processing
+•	Choose media available to organizational requests
+•	Global background (color gradients, images, solid color)
+•	Global header fonts (color, text size, text style)
+•	Global label fonts  (color, text size, text style)
+•	Button styles
+•	Filters (distance, type, request, goal)
+Java
+	Everything else
+(2) What are the empowerment/customizability aspects that you are providing the middle school students (next summer, when I teach them Processing so they can go and customize the code)? Which member of your team is responsible for this separation? This person will also be responsible for the Processing part of the App.
+The empowerment will be the ability to modify the UI of the app and choose features available. Primarily Chad, but everyone will contribute to different sections of the API for processing 
+
+(3) What assets (graphics, music, animation) are being planned for your App? List them. Who will do them in your group? If you need help from Prof. McAfee or his students, list clearly what you want. I will give them the links to Github so they can see what you are seeking. They will send them to you and you can upload them to the site. Or. They can post them at their Github site and you can 'copy' them over. Which team member is responsible for this communication and buildup of assets? This person also will be responsible for the UI parts built in XML.
+Graphics –We only have one graphic, and that is our app mascot
+Music – Currently we don’t have any audio decided, but we are searching for quiet, ambient and relaxing music
+Animation – Currently researching animations
+Primarily Harold, but everyone will contribute to different sections of the UI (Harold enhanced UI, Alex layout, Chad flow control)
+
+(4) The other member (please identify here) will be responsible for the Java code. This may include sections on parse.com, Wifi, LBS, maps, Bluetooth, data analytics, etc. Some such as LBS, Wifi, and Bluetooth may also be incorporated at the Processing level.
+Primarily Alex, but everyone will contribute to different sections of the code (Alex functionality framework, Chad all data related aka parse.com, Harold maps)
