@@ -1,4 +1,5 @@
 Project Assignment 1
+==============================
 
 This is a group-level project assignment. Decide on the App ASAP, contact Ms Iris Minor to visit the school and talk to the teachers and students (in the middle school afterschool program) - and decide on the content for your App. Develop a storyboard - using Balsamiq (I have given you access to FAU's account - try and let me know if there are any issues) and present it to class on 10/17. Submit your Balsamiq as one file. You also can post the file (not the link) at your Confluence site and just give me the link to your Confluence posting as your submission at Blackboard.  Ask Ahmed if you need to know anything about Confluence. You will be arranging all your submissions just like the high school students did. For a few good examples, see the postings of Groups 8,6, 1, and 7 - they were the top teams this summer.
 
@@ -9,11 +10,8 @@ School Info: 120 SW 4th Ave. Hallandale Beach, Florida 33009 • Office: 754-323
 This is old info: I have contacted Ms. Minor. I would like to propose that we all go to the middle school this Friday afternoon and meet the teachers and students. There will be no class lecture on Friday to facilitate this.
 
 
-
-
-
 Project Assignment 2
-
+==============================
 
 Submit this at Github under 'Progress Report 1'. Submit link to this file at BB (one submission per group).  Update your mockups based on your discussion with middle school students last week. and attach to this file.  Explain in the edit section (the text file) what the mockups do not adequately describe.
 
