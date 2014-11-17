@@ -5,8 +5,9 @@
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="80"
         android:layout_alignStart="@+id/textView1"
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
