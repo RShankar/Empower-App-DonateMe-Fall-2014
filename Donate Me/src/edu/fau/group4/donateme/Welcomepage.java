@@ -1,4 +1,4 @@
-package com.alexandre.onetraining;
+package edu.fau.group4.donateme;
 
 
 import android.app.Activity;
