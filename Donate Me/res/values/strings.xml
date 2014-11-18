@@ -14,6 +14,8 @@
     <string name="organization_name">Name of Organization</string>
     <string name="website">Website</string>
     <string name="how_to_help">How to Help</string>
+    <string name="click_me">Click me to get started!</string>
+    <string name="submit">Submit</string>
     
 
 </resources>
