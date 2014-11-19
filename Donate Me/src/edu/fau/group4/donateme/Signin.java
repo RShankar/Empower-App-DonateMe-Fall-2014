@@ -11,7 +11,7 @@ public class Signin extends Activity implements OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.screen4);
+		setContentView(R.layout.signin);
 		
 		// Set up click listeners for all the buttons
 	    

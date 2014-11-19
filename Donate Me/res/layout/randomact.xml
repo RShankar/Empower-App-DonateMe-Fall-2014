@@ -58,7 +58,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/button2"
         android:layout_alignBottom="@+id/button2"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="36dp"
         android:text="@string/back" />
 
 </RelativeLayout>

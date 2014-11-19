@@ -79,15 +79,6 @@
                 </RelativeLayout>
             </FrameLayout>
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@android:id/tabcontent"
-                android:text="Random Act of Kindness"
-                android:layout_marginTop="50dp" />
-
             <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_width="300dp"
@@ -98,5 +89,14 @@
 
         </RelativeLayout>
     </TabHost>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="249dp"
+        android:text="Random Act of Kindness" />
 
 </RelativeLayout>
