@@ -12,7 +12,7 @@
         android:layout_above="@+id/button1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="35dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="30dp"
         android:text="@string/welcome_donate"
@@ -20,24 +20,25 @@
         android:textSize="35sp" />
 
     <Button
-        android:id="@+id/button1"
-        style="@style/button_text"
-        android:layout_width="500dp"
-        android:layout_height="80dp"
-        android:layout_above="@+id/button2"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_marginBottom="49dp"
-        android:background="@drawable/button_shape"
-        android:text="@string/button1_label" />
-
-    <Button
         android:id="@+id/button2"
-        style="@style/button_text"
         android:layout_width="500dp"
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/button_shape1"
-        android:text="@string/button2_label" />
+        android:layout_marginBottom="27dp"
+        android:background="@drawable/round_corners1"
+        android:text="@string/button2_label"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="500dp"
+        android:layout_height="80dp"
+        android:layout_above="@+id/button2"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_marginBottom="19dp"
+        android:background="@drawable/round_corners"
+        android:text="@string/button1_label"
+        android:textSize="30sp" />
 
 </RelativeLayout>
