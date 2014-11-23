@@ -30,7 +30,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 	      case R.id.button1:
-	    	 Intent i = new Intent(MainActivity.this, Welcomepage.class);	         
+	    	 Intent i = new Intent(MainActivity.this, Tab.class);	         
 			 startActivity(i);
 	         break;	          
 		}

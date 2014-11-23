@@ -23,7 +23,9 @@
 		<activity android:name=".Welcomepage" />  
         <activity android:name=".Login" />
         <activity android:name=".Signin" />
-        
+        <activity android:name=".Tab" />
+        <activity android:name=".Browse" />
+        <activity android:name=".Request" />
     </application>
 
 </manifest>
