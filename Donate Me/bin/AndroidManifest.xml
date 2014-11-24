@@ -26,6 +26,8 @@
         <activity android:name=".Tab" />
         <activity android:name=".Browse" />
         <activity android:name=".Request" />
+        <activity android:name=".Howtohelp" />
+        <activity android:name=".Thanks" />
     </application>
 
 </manifest>

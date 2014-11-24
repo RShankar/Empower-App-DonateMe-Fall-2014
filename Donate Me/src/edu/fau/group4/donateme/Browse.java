@@ -1,16 +1,18 @@
 package edu.fau.group4.donateme;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class Browse extends Activity implements OnItemSelectedListener
+public class Browse extends Activity implements OnItemSelectedListener,OnClickListener
 {
 	 Spinner type;
 	 Spinner distance;
@@ -44,6 +46,10 @@ public class Browse extends Activity implements OnItemSelectedListener
 		  distance.setAdapter(adapter_distance);
 		  distance.setOnItemSelectedListener(this);
 
+		// Set up click listeners for all the buttons
+		    View random_act = findViewById(R.id.button2);
+		    random_act.setOnClickListener(this);
+
 	  }
 
 		@Override
@@ -69,5 +75,16 @@ public class Browse extends Activity implements OnItemSelectedListener
 		public void onNothingSelected(AdapterView<?> parent) {
 			// TODO Auto-generated method stub
 			
-		}	 
-	}
+		}
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			switch (v.getId()) {
+		      case R.id.button2:
+		    	 Intent i = new Intent(Browse.this, Howtohelp.class);	         
+				 startActivity(i);
+		         break;		
+		         }	 	
+		}
+}

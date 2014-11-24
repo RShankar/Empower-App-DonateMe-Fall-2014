@@ -13,13 +13,25 @@ public class Signin extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.signin);
 		
-		// Set up click listeners for all the buttons
-	    
+		// Set up click listeners for all the buttons	    
+		View submit = findViewById(R.id.button1);
+	    submit.setOnClickListener(this);
+	   
+	    View back = findViewById(R.id.button2);
+	    back.setOnClickListener(this);
     }
-
+   
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		
-	}
+		switch (v.getId()) {
+	      case R.id.button2:
+	    	 Intent i = new Intent(Signin.this, Tab.class);	         
+			 startActivity(i);
+	         break;
+	      case R.id.button1:
+		    	 Intent i1 = new Intent(Signin.this, Welcomepage.class);	         
+				 startActivity(i1);
+		         break;
+		}
+}
 }
