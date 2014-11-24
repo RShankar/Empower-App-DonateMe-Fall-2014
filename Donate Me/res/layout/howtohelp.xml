@@ -4,17 +4,9 @@
     android:layout_height="match_parent"
     android:background="#2E8B57" >
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/donate" />
-
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="300dp"
+        android:layout_width="500dp"
         android:layout_height="150dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -22,42 +14,60 @@
         android:src="@drawable/visa_logo" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/button1"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/imageView1"
-        android:layout_marginTop="14dp"
-        android:text="@string/logout" />
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/round_corners1"
+        android:text="@string/logout"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="138dp"
+        android:background="@drawable/round_corners2"
+        android:text="@string/donate"
+        android:textSize="30sp" />
 
     <EditText
         android:id="@+id/editText1"
-        android:layout_width="60dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
         android:layout_alignBottom="@+id/textView1"
-        android:layout_toLeftOf="@+id/button2"
-        android:ems="10" >
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/textView1"
+        android:ems="10"
+        android:inputType="textPersonName" >
 
         <requestFocus />
     </EditText>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/round_corners"
+        android:text="@string/back"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
-        android:layout_marginTop="55dp"
-        android:layout_toLeftOf="@+id/editText1"
-        android:text="@string/random_amount" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button2"
-        android:layout_alignBottom="@+id/button2"
         android:layout_alignLeft="@+id/imageView1"
-        android:text="@string/back" />
+        android:layout_below="@+id/button2"
+        android:layout_marginTop="104dp"
+        android:text="@string/random_amount"
+        android:textSize="30sp" />
 
 </RelativeLayout>

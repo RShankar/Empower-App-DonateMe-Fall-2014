@@ -6,31 +6,26 @@
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button2"
-        android:layout_alignBottom="@+id/button2"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="17dp"
-        android:text="@string/back" />
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/round_corners"
+        android:text="@string/back"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="23dp"
-        android:layout_toRightOf="@+id/textView1"
-        android:text="@string/logout" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="92dp"
-        android:text="@string/organization_name" />
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/round_corners1"
+        android:text="@string/logout"
+        android:textSize="30sp"  />
 
     <ImageView
         android:id="@+id/imageView1"
@@ -39,25 +34,6 @@
         android:layout_alignTop="@+id/button2"
         android:layout_centerHorizontal="true"
         android:src="@drawable/avatar" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView1"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="28dp"
-        android:text="@string/website" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_alignRight="@+id/imageView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="36dp"
-        android:text="TextView" />
 
     <android.widget.ActionMenuView
         android:id="@+id/actionMenuView1"
@@ -75,20 +51,77 @@
         android:layout_alignLeft="@+id/textView2"
         android:layout_marginBottom="78dp" />
 
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="500dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp"
+        android:text="What is your donation for?"
+        android:textSize="30sp" />
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_centerVertical="true"
-        android:text="TextView" />
+        android:layout_below="@+id/editText1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:text="A little about the organization:"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="500dp"
+        android:layout_height="200dp"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_below="@+id/textView3"
+        android:ems="10"
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/editText2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/website" 
+        android:background="@drawable/round_corners2"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp"
+        android:text="@string/organization_name"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button4"
-        android:layout_alignLeft="@+id/textView3"
-        android:text="@string/how_to_help" />
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/button4"
+        android:layout_below="@+id/button4"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/round_corners3"
+        android:text="@string/how_to_help"
+        android:textSize="30sp" />
 
 </RelativeLayout>
