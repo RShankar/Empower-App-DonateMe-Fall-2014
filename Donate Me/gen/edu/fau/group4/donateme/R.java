@@ -1279,8 +1279,9 @@ containing a value of this type.
         public static final int signin=0x7f03001f;
         public static final int support_simple_spinner_dropdown_item=0x7f030020;
         public static final int tab=0x7f030021;
-        public static final int thanks=0x7f030022;
-        public static final int welcome=0x7f030023;
+        public static final int test=0x7f030022;
+        public static final int thanks=0x7f030023;
+        public static final int welcome=0x7f030024;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
