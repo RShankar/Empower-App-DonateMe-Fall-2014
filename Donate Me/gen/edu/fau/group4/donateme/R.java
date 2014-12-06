@@ -1089,7 +1089,8 @@ containing a value of this type.
         public static final int round_corners1=0x7f02005f;
         public static final int round_corners2=0x7f020060;
         public static final int round_corners3=0x7f020061;
-        public static final int visa_logo=0x7f020062;
+        public static final int share_facebook=0x7f020062;
+        public static final int visa_logo=0x7f020063;
     }
     public static final class id {
         public static final int actionMenuView1=0x7f090070;
@@ -1279,9 +1280,10 @@ containing a value of this type.
         public static final int signin=0x7f03001f;
         public static final int support_simple_spinner_dropdown_item=0x7f030020;
         public static final int tab=0x7f030021;
-        public static final int test=0x7f030022;
-        public static final int thanks=0x7f030023;
-        public static final int welcome=0x7f030024;
+        public static final int tabtest=0x7f030022;
+        public static final int test=0x7f030023;
+        public static final int thanks=0x7f030024;
+        public static final int welcome=0x7f030025;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
