@@ -6,10 +6,10 @@
     android:gravity="left" >
 
     <TextView
-        android:id="@+id/usernametxtview"
+        android:id="@+id/textView1"
         android:layout_width="fill_parent"
         android:layout_height="300dp"
-        android:layout_above="@+id/loginbutton"
+        android:layout_above="@+id/button1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="35dp"
@@ -20,7 +20,7 @@
         android:textSize="35sp" />
 
     <Button
-        android:id="@+id/signupsubmit"
+        android:id="@+id/button2"
         android:layout_width="500dp"
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
@@ -31,11 +31,11 @@
         android:textSize="30sp" />
 
     <Button
-        android:id="@+id/loginbutton"
+        android:id="@+id/button1"
         android:layout_width="500dp"
         android:layout_height="80dp"
-        android:layout_above="@+id/signupsubmit"
-        android:layout_alignLeft="@+id/signupsubmit"
+        android:layout_above="@+id/button2"
+        android:layout_alignLeft="@+id/button2"
         android:layout_marginBottom="19dp"
         android:background="@drawable/round_corners"
         android:text="@string/button1_label"

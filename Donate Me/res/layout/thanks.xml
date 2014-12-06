@@ -5,7 +5,7 @@
     android:background="#00FF7F" >
 
     <TextView
-        android:id="@+id/usernametxtview"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -15,7 +15,7 @@
         android:textSize="40sp" />
 
     <Button
-        android:id="@+id/loginbutton"
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

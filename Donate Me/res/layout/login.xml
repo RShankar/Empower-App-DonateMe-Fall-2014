@@ -14,7 +14,7 @@
         android:src="@drawable/bug" />
 
     <TextView
-        android:id="@+id/orgnametxtview"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/imageView1"
@@ -24,11 +24,11 @@
     	android:textSize="30sp" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/passwordtxtview"
-        android:layout_alignLeft="@+id/username"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignLeft="@+id/editText1"
         android:ems="10"
         android:inputType="textPersonName" >
 
@@ -36,22 +36,22 @@
     </EditText>
 
     <TextView
-        android:id="@+id/usernametxtview"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/password"
-        android:layout_alignLeft="@+id/passwordtxtview"
+        android:layout_above="@+id/editText2"
+        android:layout_alignLeft="@+id/textView2"
         android:layout_marginBottom="43dp"
         android:text="Username:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/passwordtxtview"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/loginbutton"
-        android:layout_alignLeft="@+id/orgnametxtview"
+        android:layout_above="@+id/button1"
+        android:layout_alignLeft="@+id/textView3"
         android:layout_marginBottom="115dp"
         android:layout_marginLeft="11dp"
         android:text="Password: "
@@ -59,10 +59,10 @@
         android:textSize="30sp" />
 
     <Button
-        android:id="@+id/loginbutton"
+        android:id="@+id/button1"
         android:layout_width="150dp"
         android:layout_height="80dp"
-        android:layout_above="@+id/orgnametxtview"
+        android:layout_above="@+id/textView3"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="152dp"
         android:background="@drawable/round_corners1"
@@ -70,7 +70,7 @@
         android:textSize="30sp" />
 
     <Button
-        android:id="@+id/signupsubmit"
+        android:id="@+id/button2"
         android:layout_width="120dp"
         android:layout_height="80dp"
         android:layout_marginLeft="19dp"
@@ -80,11 +80,11 @@
         android:textSize="30sp" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/usernametxtview"
-        android:layout_alignRight="@+id/orgnametxtview"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignRight="@+id/textView3"
         android:layout_marginRight="14dp"
         android:ems="10"
         android:inputType="textPersonName" >
