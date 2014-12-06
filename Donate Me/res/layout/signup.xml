@@ -87,17 +87,6 @@
 	    android:visibility="invisible" />
 
 	<TextView
-	    android:id="@+id/usernametxtview"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_below="@+id/logoutbutton"
-	    android:layout_marginTop="60dp"
-	    android:layout_toRightOf="@+id/logoutbutton"
-	    android:text="Username:"
-	    android:textAppearance="?android:attr/textAppearanceSmall"
-	    android:textSize="30sp" />
-
-	<TextView
 	    android:id="@+id/passwordtxtview"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
@@ -116,6 +105,17 @@
 	    android:layout_centerHorizontal="true"
 	    android:layout_marginTop="19dp"
 	    android:text="This is an organization"
+	    android:textSize="30sp" />
+
+	<TextView
+	    android:id="@+id/usernametxtview"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/loginbutton"
+	    android:layout_below="@+id/loginbutton"
+	    android:layout_marginTop="44dp"
+	    android:text="Username:"
+	    android:textAppearance="?android:attr/textAppearanceSmall"
 	    android:textSize="30sp" />
 
 </RelativeLayout>

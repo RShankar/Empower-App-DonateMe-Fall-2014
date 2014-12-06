@@ -35,7 +35,7 @@ public class Tab extends TabActivity
                     spec = tabHost.newTabSpec("Second").setIndicator("Request")
                                   .setContent(intent);
                     tabHost.addTab(spec);
-                    View logout = findViewById(R.id.loginbutton);
+                    View logout = findViewById(R.id.logoutbutton);
         		    logout.setOnClickListener(new OnClickListener()
         		    {
         		    	public void onClick(View arg0)

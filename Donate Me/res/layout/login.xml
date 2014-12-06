@@ -46,18 +46,6 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/logoutbutton"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_marginBottom="115dp"
-        android:layout_marginLeft="11dp"
-        android:text="Password: "
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="30sp" />
-
     <Button
         android:id="@+id/loginbutton"
         android:layout_width="150dp"
@@ -91,5 +79,16 @@
 
         <requestFocus />
     </EditText>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/loginbutton"
+        android:layout_marginBottom="142dp"
+        android:layout_toLeftOf="@+id/password"
+        android:text="Password: "
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="30sp" />
 
 </RelativeLayout>
