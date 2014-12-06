@@ -1,6 +1,9 @@
 package edu.fau.group4.donateme;
 
 
+import com.parse.ParseAnonymousUtils;
+import com.parse.ParseUser;
+
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.content.Intent;
@@ -20,7 +23,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);	
 		// Set up click listeners for all the buttons
-	    View button1 = findViewById(R.id.button1);
+	    View button1 = findViewById(R.id.loginbutton);
 	    button1.setOnClickListener(this);
 	   
     }
@@ -28,10 +31,36 @@ public class MainActivity extends Activity implements OnClickListener{
    
 	@Override
 	public void onClick(View v) {
+		
+		
+		
 		switch (v.getId()) {
-	      case R.id.button1:
-	    	 Intent i = new Intent(MainActivity.this, Welcomepage.class);	         
-			 startActivity(i);
+	      case R.id.loginbutton:
+	    	 	         
+	    	  Intent intent;
+	  		if (ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
+	  			// If user is anonymous, send the user to LoginSignupActivity.class
+	  			intent = new Intent(MainActivity.this,
+	  					Welcomepage.class);
+	  			startActivity(intent);
+	  			finish();
+	  		} else {
+	  			// If current user is NOT anonymous user
+	  			// Get current user data from Parse.com
+	  			ParseUser currentUser = ParseUser.getCurrentUser();
+	  			if (currentUser != null) {
+	  				// Send logged in users to Welcome.class
+	  				intent = new Intent(MainActivity.this, Tab.class);
+	  				startActivity(intent);
+	  				finish();
+	  			} else {
+	  				// Send user to LoginSignupActivity.class
+	  				intent = new Intent(MainActivity.this,
+	  						Welcomepage.class);
+	  				startActivity(intent);
+	  				finish();
+	  			}
+	  		}
 	         break;	          
 		}
 	}   
