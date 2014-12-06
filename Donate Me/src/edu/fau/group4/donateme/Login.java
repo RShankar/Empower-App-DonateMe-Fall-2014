@@ -23,7 +23,7 @@ public class Login extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 	      case R.id.button1:
-	    	 Intent i = new Intent(Login.this, Tab.class);	         
+	    	 Intent i = new Intent(Login.this, AndroidTabLayoutActivity.class);	         
 			 startActivity(i);
 	         break;	    
 	      case R.id.button2:
