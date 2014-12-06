@@ -31,7 +31,7 @@
         android:id="@+id/textView1"
         android:layout_width="500dp"
         android:layout_height="400dp"
-        android:layout_below="@+id/loginbutton"
+        android:layout_below="@+id/logoutbutton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="88dp"
         android:text="@string/non_monetary"

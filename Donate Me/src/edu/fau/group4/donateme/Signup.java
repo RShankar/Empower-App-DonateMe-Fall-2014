@@ -73,7 +73,7 @@ public class Signup extends Activity{
 		    }
 		});
 		
-		 View back = findViewById(R.id.signupsubmit);
+		 View back = findViewById(R.id.loginbutton);
 		    back.setOnClickListener(new OnClickListener()
 		    {
 		    	public void onClick(View arg0)
@@ -131,7 +131,7 @@ public class Signup extends Activity{
 									Toast.LENGTH_LONG).show();
 							Intent intent = new Intent(
 									Signup.this,
-									Browse.class);
+									Tab.class);
 							startActivity(intent);
 						} else {
 							Toast.makeText(getApplicationContext(),

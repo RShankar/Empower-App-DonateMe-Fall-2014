@@ -131,7 +131,7 @@
         android:id="@+id/signupsubmit"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/loginbutton"
+        android:layout_below="@+id/logoutbutton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/round_corners1"
