@@ -14,7 +14,7 @@
         android:src="@drawable/visa_logo" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/loginbutton"
         android:layout_width="120dp"
         android:layout_height="80dp"
         android:layout_alignParentEnd="true"
@@ -38,7 +38,7 @@
         android:textSize="30sp" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView1"
@@ -51,7 +51,7 @@
     </EditText>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/signupsubmit"
         android:layout_width="120dp"
         android:layout_height="80dp"
         android:layout_marginLeft="19dp"
@@ -65,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageView1"
-        android:layout_below="@+id/button2"
+        android:layout_below="@+id/signupsubmit"
         android:layout_marginTop="104dp"
         android:text="@string/random_amount"
         android:textSize="30sp" />

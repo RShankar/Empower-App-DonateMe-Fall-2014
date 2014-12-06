@@ -36,19 +36,19 @@ public class Request extends Activity implements OnItemSelectedListener,OnClickL
 		  type.setAdapter(adapter_type);
 		  type.setOnItemSelectedListener(this);
 		  
-		  System.out.println(state_distance.length);
+		 // System.out.println(state_distance.length);
 		//  text_distance = (TextView) findViewById(R.id.textView2);
 		  
-		  distance = (Spinner) findViewById(R.id.spinner2);
-		  ArrayAdapter<String> adapter_distance = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, state_distance);
-		  adapter_distance.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		  distance.setAdapter(adapter_distance);
-		  distance.setOnItemSelectedListener(this);
+		//  distance = (Spinner) findViewById(R.id.spinner2);
+		//  ArrayAdapter<String> adapter_distance = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, state_distance);
+		//  adapter_distance.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		//  distance.setAdapter(adapter_distance);
+		//  distance.setOnItemSelectedListener(this);
 
 		// Set up click listeners for all the buttons
-		    View add_media = findViewById(R.id.button1);
+		    View add_media = findViewById(R.id.loginbutton);
 		    add_media.setOnClickListener(this);
-		    View submit = findViewById(R.id.button2);
+		    View submit = findViewById(R.id.signupsubmit);
 		    submit.setOnClickListener(this);
 
 	  }
@@ -67,7 +67,7 @@ public class Request extends Activity implements OnItemSelectedListener,OnClickL
 	        {
 	        	distance.setSelection(position);
 	        	String distance_state = (String) distance.getSelectedItem();
-	        	text_distance.setText("Spinner2:  " + distance_state);        
+	        //	text_distance.setText("Spinner2:  " + distance_state);        
 	        }
 	        
 			// TODO Auto-generated method stub			
@@ -82,8 +82,8 @@ public class Request extends Activity implements OnItemSelectedListener,OnClickL
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			switch (v.getId()) {
-		      case R.id.button2:
-		    	 Intent i = new Intent(Browse.this, Howtohelp.class);	         
+		      case R.id.signupsubmit:
+		    	 Intent i = new Intent(Request.this, Howtohelp.class);	         
 				 startActivity(i);
 		         break;		
 		         }	 	

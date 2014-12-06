@@ -10,7 +10,7 @@
     tools:context="edu.fau.group4.donateme.MainActivity" >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/loginbutton"
         android:layout_width="500dp"
         android:layout_height="80dp"
         android:background="@drawable/round_corners"

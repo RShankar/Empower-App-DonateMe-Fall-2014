@@ -47,7 +47,7 @@ public class Browse extends Activity implements OnItemSelectedListener,OnClickLi
 		  distance.setOnItemSelectedListener(this);
 
 		// Set up click listeners for all the buttons
-		    View random_act = findViewById(R.id.button2);
+		    View random_act = findViewById(R.id.signupsubmit);
 		    random_act.setOnClickListener(this);
 
 	  }
@@ -81,7 +81,7 @@ public class Browse extends Activity implements OnItemSelectedListener,OnClickLi
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			switch (v.getId()) {
-		      case R.id.button2:
+		      case R.id.signupsubmit:
 		    	 Intent i = new Intent(Browse.this, Howtohelp.class);	         
 				 startActivity(i);
 		         break;		
