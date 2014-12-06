@@ -8,7 +8,7 @@
         android:id="@+id/scrollView1"
         android:layout_width="500dp"
         android:layout_height="200dp"
-        android:layout_below="@+id/spinner1"
+        android:layout_below="@+id/orgtypespinner"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="30dp"
         android:layout_marginTop="20dp" >
@@ -373,21 +373,21 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_alignRight="@+id/scrollView1"
-        android:layout_alignTop="@+id/spinner1"
+        android:layout_alignTop="@+id/orgtypespinner"
         android:layout_marginRight="19dp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/passwordtxtview"
         android:layout_width="200dp"
         android:layout_height="80dp"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_alignRight="@+id/button2"
+        android:layout_alignBaseline="@+id/usernametxtview"
+        android:layout_alignBottom="@+id/usernametxtview"
+        android:layout_alignRight="@+id/signupsubmit"
         android:text="TextView"
         android:textSize="20sp" />
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/orgtypespinner"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_alignLeft="@+id/scrollView1"
@@ -395,7 +395,7 @@
         android:layout_marginTop="175dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/signupsubmit"
         android:layout_width="500dp"
         android:layout_height="80dp"
         android:layout_alignLeft="@+id/scrollView1"
@@ -406,11 +406,11 @@
         android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/usernametxtview"
         android:layout_width="200dp"
         android:layout_height="80dp"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_below="@+id/button2"
+        android:layout_alignLeft="@+id/signupsubmit"
+        android:layout_below="@+id/signupsubmit"
         android:layout_marginTop="27dp"
         android:text="TextView"
         android:textSize="20sp" />

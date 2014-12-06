@@ -5,7 +5,7 @@
     android:background="#2E8B57" >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/loginbutton"
         android:layout_width="120dp"
         android:layout_height="80dp"
         android:layout_marginLeft="19dp"
@@ -15,7 +15,7 @@
         android:textSize="30sp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/signupsubmit"
         android:layout_width="120dp"
         android:layout_height="80dp"
         android:layout_alignParentEnd="true"
@@ -31,7 +31,7 @@
         android:id="@+id/imageView1"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_alignTop="@+id/button2"
+        android:layout_alignTop="@+id/signupsubmit"
         android:layout_centerHorizontal="true"
         android:src="@drawable/avatar" />
 
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button3"
-        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignLeft="@+id/passwordtxtview"
         android:layout_marginBottom="90dp" />
 
     <android.widget.ActionMenuView
@@ -48,44 +48,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button3"
-        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignLeft="@+id/passwordtxtview"
         android:layout_marginBottom="78dp" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/username"
         android:layout_width="500dp"
         android:layout_height="200dp"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/passwordtxtview"
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="textMultiLine" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/passwordtxtview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/usernametxtview"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="54dp"
         android:text="What is your donation for?"
         android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/orgnametxtview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText1"
+        android:layout_below="@+id/username"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
         android:text="A little about the organization:"
         android:textSize="30sp" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/password"
         android:layout_width="500dp"
         android:layout_height="200dp"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/username"
+        android:layout_below="@+id/orgnametxtview"
         android:ems="10"
         android:inputType="textMultiLine" >
 
@@ -96,7 +96,7 @@
         android:id="@+id/button4"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="@string/website" 
@@ -104,7 +104,7 @@
         android:textSize="30sp"/>
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/usernametxtview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView1"

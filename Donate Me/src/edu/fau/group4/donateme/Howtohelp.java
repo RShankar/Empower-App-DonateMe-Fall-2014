@@ -14,10 +14,10 @@ public class Howtohelp extends Activity implements OnClickListener{
 		setContentView(R.layout.howtohelp);
 		
 		// Set up click listeners for all the buttons	    
-		View logout = findViewById(R.id.button1);
+		View logout = findViewById(R.id.loginbutton);
 	    logout.setOnClickListener(this);
 	   
-	    View back = findViewById(R.id.button2);
+	    View back = findViewById(R.id.signupsubmit);
 	    back.setOnClickListener(this);
 	    
 	    View donate = findViewById(R.id.button3);
@@ -27,11 +27,11 @@ public class Howtohelp extends Activity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-	      case R.id.button1:
+	      case R.id.loginbutton:
 	    	 Intent i = new Intent(Howtohelp.this, Welcomepage.class);	         
 			 startActivity(i);
 	         break;
-	      case R.id.button2:
+	      case R.id.signupsubmit:
 		    	 Intent i1 = new Intent(Howtohelp.this, Tab.class);	         
 				 startActivity(i1);
 		         break;

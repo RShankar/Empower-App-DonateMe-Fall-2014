@@ -5,7 +5,7 @@
     android:background="@color/back_green" >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/loginbutton"
         android:layout_width="120dp"
         android:layout_height="80dp"
         android:layout_marginLeft="19dp"
@@ -15,7 +15,7 @@
         android:textSize="30sp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/signupsubmit"
         android:layout_width="120dp"
         android:layout_height="80dp"
         android:layout_alignParentEnd="true"
@@ -28,10 +28,10 @@
         android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/usernametxtview"
         android:layout_width="500dp"
         android:layout_height="400dp"
-        android:layout_below="@+id/button1"
+        android:layout_below="@+id/loginbutton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="88dp"
         android:text="@string/non_monetary"

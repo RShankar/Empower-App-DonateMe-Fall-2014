@@ -29,16 +29,15 @@ public class Browse extends Activity implements OnItemSelectedListener,OnClickLi
 		  super.onCreate(savedInstanceState);
 		  setContentView(R.layout.browse);
 		  System.out.println(state_type.length);
-		  text_type = (TextView) findViewById(R.id.textView1);
+		 
 		  
-		  type = (Spinner) findViewById(R.id.spinner1);
+		  type = (Spinner) findViewById(R.id.orgtypespinner);
 		  ArrayAdapter<String> adapter_type = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, state_type);
 		  adapter_type.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		  type.setAdapter(adapter_type);
 		  type.setOnItemSelectedListener(this);
 		  
 		  System.out.println(state_distance.length);
-		  text_distance = (TextView) findViewById(R.id.textView2);
 		  
 		  distance = (Spinner) findViewById(R.id.spinner2);
 		  ArrayAdapter<String> adapter_distance = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, state_distance);
@@ -47,7 +46,7 @@ public class Browse extends Activity implements OnItemSelectedListener,OnClickLi
 		  distance.setOnItemSelectedListener(this);
 
 		// Set up click listeners for all the buttons
-		    View random_act = findViewById(R.id.button2);
+		    View random_act = findViewById(R.id.signupsubmit);
 		    random_act.setOnClickListener(this);
 
 	  }
@@ -56,17 +55,15 @@ public class Browse extends Activity implements OnItemSelectedListener,OnClickLi
 		public void onItemSelected(AdapterView<?> parent, View view,int position, long id) {
 			Spinner type = (Spinner)parent;
 	        Spinner distance = (Spinner)parent;
-	        if(type.getId() == R.id.spinner1)
+	        if(type.getId() == R.id.orgtypespinner)
 	        {
 	        	type.setSelection(position);
 	  		  	String type_state = (String) type.getSelectedItem();
-	  		  	text_type.setText("Spinner1:  " + type_state);    
 	  		}
 	        if(distance.getId() == R.id.spinner2)
 	        {
 	        	distance.setSelection(position);
-	        	String distance_state = (String) distance.getSelectedItem();
-	        	text_distance.setText("Spinner2:  " + distance_state);        
+	        	String distance_state = (String) distance.getSelectedItem();   
 	        }
 	        
 			// TODO Auto-generated method stub			
@@ -81,7 +78,7 @@ public class Browse extends Activity implements OnItemSelectedListener,OnClickLi
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			switch (v.getId()) {
-		      case R.id.button2:
+		      case R.id.signupsubmit:
 		    	 Intent i = new Intent(Browse.this, Howtohelp.class);	         
 				 startActivity(i);
 		         break;		
