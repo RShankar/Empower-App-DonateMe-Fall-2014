@@ -61,7 +61,7 @@ public class Login extends Activity{
 								} else {
 									Toast.makeText(
 											getApplicationContext(),
-											"No such user exist, please signup",
+											"You have entered an invalid username or password",
 											Toast.LENGTH_LONG).show();
 								}
 							}
