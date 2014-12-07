@@ -24,6 +24,14 @@ public class Signup extends Activity{
 
 	EditText username;
 	EditText password;
+	EditText firstname;
+	EditText lastname;
+	EditText paypal;
+	EditText email;
+	String emailtxt;
+	String paypaltxt;
+	String firstnametxt;
+	String lastnametxt;
 	String usernametxt;
 	String passwordtxt;
 	CheckBox repeatChkBx;
@@ -36,7 +44,11 @@ public class Signup extends Activity{
 		setContentView(R.layout.signup);
 		username = (EditText) findViewById(R.id.username);
 		password = (EditText) findViewById(R.id.password);
-
+		email = (EditText) findViewById(R.id.emailedit);
+		firstname = (EditText) findViewById(R.id.firstedit);
+		lastname = (EditText) findViewById(R.id.lastedit);
+		paypal = (EditText) findViewById(R.id.paypaledit);
+		
 		// Set up click listeners for all the buttons	    
 		Button submit = (Button) findViewById(R.id.signupsubmit);
     
@@ -55,6 +67,10 @@ public class Signup extends Activity{
 		            orgnameedit.setVisibility(View.VISIBLE);
 		            orgtypespinner = (Spinner) findViewById(R.id.orgtypespinner);
 		            orgtypespinner.setVisibility(View.VISIBLE);
+		            TextView paypallabel =(TextView) findViewById(R.id.paypaltxtview);
+		            paypallabel.setVisibility(View.VISIBLE);
+		            paypal = (EditText) findViewById(R.id.paypaledit);
+		            paypal.setVisibility(View.VISIBLE);
 
 		        }
 		        else
@@ -67,6 +83,10 @@ public class Signup extends Activity{
 		            orgnameedit.setVisibility(View.INVISIBLE);
 		            orgtypespinner = (Spinner) findViewById(R.id.orgtypespinner);
 		            orgtypespinner.setVisibility(View.INVISIBLE);
+		            TextView paypallabel =(TextView) findViewById(R.id.paypaltxtview);
+		            paypallabel.setVisibility(View.INVISIBLE);
+		            paypal = (EditText) findViewById(R.id.paypaledit);
+		            paypal.setVisibility(View.INVISIBLE);
 
 		        }
 
@@ -99,9 +119,12 @@ public class Signup extends Activity{
 			// Retrieve the text entered from the EditText
 			usernametxt = username.getText().toString();
 			passwordtxt = password.getText().toString();
-
+			emailtxt = email.getText().toString();
+			firstnametxt = firstname.getText().toString();
+			lastnametxt = lastname.getText().toString();
+			paypaltxt = paypal.getText().toString();
 			// Force user to fill up the form
-			if (usernametxt.equals("") && passwordtxt.equals("")) {
+			if (usernametxt.equals("") && passwordtxt.equals("") && emailtxt.equals("") && firstnametxt.equals("") && lastnametxt.equals("")) {
 				Toast.makeText(getApplicationContext(),
 						"Please complete the sign up form",
 						Toast.LENGTH_LONG).show();
@@ -111,12 +134,15 @@ public class Signup extends Activity{
 				ParseUser user = new ParseUser();
 				user.setUsername(usernametxt);
 				user.setPassword(passwordtxt);
-				
+				user.setEmail(emailtxt); 
+				user.put("firstName", firstnametxt);
+				user.put("lastName", lastnametxt);
 				if(repeatChkBx.isChecked())
 				{
 					user.put("isOrg", "true");
 					user.put("orgName", orgnameedit.getText().toString());
 					user.put("orgType", orgtypespinner.getSelectedItem().toString());
+					user.put("paypalEmail", paypaltxt);
 				}
 				else
 				{

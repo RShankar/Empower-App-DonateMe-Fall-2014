@@ -38,7 +38,7 @@ public class Browse extends Activity implements OnItemSelectedListener,OnClickLi
 		  type.setOnItemSelectedListener(this);
 		  
 		  System.out.println(state_distance.length);
-		  text_distance = (TextView) findViewById(R.id.textView2);
+		  text_distance = (TextView) findViewById(R.id.lasttxtview);
 		  
 		  distance = (Spinner) findViewById(R.id.spinner2);
 		  ArrayAdapter<String> adapter_distance = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, state_distance);

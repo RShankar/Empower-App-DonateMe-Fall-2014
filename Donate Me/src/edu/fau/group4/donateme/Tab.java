@@ -20,7 +20,7 @@ public class Tab extends TabActivity
             
             ParseUser currentUser;
        	 String isOrg;
-            
+         String welcomeName;
 			@Override
             public void onCreate(Bundle savedInstanceState)
             {
@@ -45,6 +45,11 @@ public class Tab extends TabActivity
                     	spec = tabHost.newTabSpec("Second").setIndicator("Request")
                     		.setContent(intent);
                     	tabHost.addTab(spec);
+                    	welcomeName = currentUser.get("orgName").toString();
+                    }
+                    else
+                    {
+                    	welcomeName = currentUser.get("firstName").toString()+" "+currentUser.get("lastName").toString();
                     }
                     View logout = findViewById(R.id.logoutbutton);
         		    logout.setOnClickListener(new OnClickListener()

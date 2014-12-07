@@ -14,37 +14,6 @@
         android:text="@string/back"
         android:textSize="30sp" />
 
-    <Spinner
-        android:id="@+id/orgtypespinner"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="17dp"
-        android:layout_toRightOf="@+id/orgtypetxtview"
-        android:visibility="invisible" />
-
-     <TextView
-         android:id="@+id/orgtypetxtview"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignBottom="@+id/orgtypespinner"
-         android:layout_alignLeft="@+id/logoutbutton"
-         android:layout_marginLeft="27dp"
-         android:text="Organization Type:"
-         android:textSize="30sp"
-         android:visibility="invisible" />
-
-	<Button
-	    android:id="@+id/signupsubmit"
-	    android:layout_width="150dp"
-	    android:layout_height="80dp"
-	    android:layout_below="@+id/orgtypespinner"
-	    android:layout_centerHorizontal="true"
-	    android:layout_marginTop="120dp"
-	    android:background="@drawable/round_corners1"
-	    android:text="@string/submit"
-	    android:textSize="30sp" />
-
 	<EditText
 	    android:id="@+id/username"
 	    android:layout_width="wrap_content"
@@ -66,47 +35,6 @@
 	    android:ems="10"
 	    android:inputType="textPassword" />
 
-	<EditText
-	    android:id="@+id/orgname"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignBottom="@+id/orgnametxtview"
-	    android:layout_alignLeft="@+id/orgtypespinner"
-	    android:ems="10"
-	    android:inputType="textPersonName"
-	    android:visibility="invisible" />
-
-	<TextView
-	    android:id="@+id/orgnametxtview"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_above="@+id/orgtypespinner"
-	    android:layout_toLeftOf="@+id/orgtypespinner"
-	    android:text="Organization Name:"
-	    android:textSize="30sp"
-	    android:visibility="invisible" />
-
-	<TextView
-	    android:id="@+id/passwordtxtview"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignLeft="@+id/usernametxtview"
-	    android:layout_below="@+id/usernametxtview"
-	    android:layout_marginTop="34dp"
-	    android:text="Password: "
-	    android:textAppearance="?android:attr/textAppearanceSmall"
-	    android:textSize="30sp" />
-
-	<CheckBox
-	    android:id="@+id/isorgcheckbox"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_below="@+id/password"
-	    android:layout_centerHorizontal="true"
-	    android:layout_marginTop="19dp"
-	    android:text="This is an organization"
-	    android:textSize="30sp" />
-
 	<TextView
 	    android:id="@+id/usernametxtview"
 	    android:layout_width="wrap_content"
@@ -117,5 +45,157 @@
 	    android:text="Username:"
 	    android:textAppearance="?android:attr/textAppearanceSmall"
 	    android:textSize="30sp" />
+
+	<Button
+	    android:id="@+id/signupsubmit"
+	    android:layout_width="150dp"
+	    android:layout_height="80dp"
+	    android:layout_alignParentBottom="true"
+	    android:layout_marginBottom="24dp"
+	    android:layout_marginLeft="46dp"
+	    android:layout_toRightOf="@+id/passwordtxtview"
+	    android:background="@drawable/round_corners1"
+	    android:text="@string/submit"
+	    android:textSize="30sp" />
+
+	<TextView
+	    android:id="@+id/passwordtxtview"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/usernametxtview"
+	    android:layout_below="@+id/usernametxtview"
+	    android:layout_marginTop="37dp"
+	    android:text="Password: "
+	    android:textAppearance="?android:attr/textAppearanceSmall"
+	    android:textSize="30sp" />
+
+	<TextView
+	    android:id="@+id/firsttxtview"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/passwordtxtview"
+	    android:layout_marginTop="24dp"
+	    android:layout_toLeftOf="@+id/signupsubmit"
+	    android:text="First Name:"
+	    android:textSize="30sp" />
+
+	<EditText
+	    android:id="@+id/orgname"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_above="@+id/signupsubmit"
+	    android:layout_marginBottom="44dp"
+	    android:layout_toRightOf="@+id/signupsubmit"
+	    android:ems="10"
+	    android:inputType="textPersonName"
+	    android:visibility="invisible" />
+
+	<TextView
+	    android:id="@+id/orgnametxtview"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@+id/orgname"
+	    android:layout_alignLeft="@+id/orgtypetxtview"
+	    android:text="Organization Name:"
+	    android:textSize="30sp"
+	    android:visibility="invisible" />
+
+	<TextView
+	    android:id="@+id/lasttxtview"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/firsttxtview"
+	    android:layout_below="@+id/firsttxtview"
+	    android:layout_marginTop="19dp"
+	    android:text="Last Name:"
+	    android:textSize="30sp" />
+
+	<EditText
+	    android:id="@+id/firstedit"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@+id/firsttxtview"
+	    android:layout_alignLeft="@+id/password"
+	    android:ems="10" />
+
+	<EditText
+	    android:id="@+id/lastedit"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@+id/lasttxtview"
+	    android:layout_alignLeft="@+id/firstedit"
+	    android:ems="10" />
+
+	<TextView
+	    android:id="@+id/emailtxtview"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/lasttxtview"
+	    android:layout_below="@+id/lasttxtview"
+	    android:layout_marginTop="18dp"
+	    android:text="Email Address:"
+	    android:textSize="30sp" />
+
+	<TextView
+	    android:id="@+id/orgtypetxtview"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_above="@+id/orgname"
+	    android:layout_alignLeft="@+id/passwordtxtview"
+	    android:layout_marginBottom="14dp"
+	    android:text="Organization Type:"
+	    android:textSize="30sp"
+	    android:visibility="invisible" />
+
+	<Spinner
+	    android:id="@+id/orgtypespinner"
+	    android:layout_width="220dp"
+	    android:layout_height="50dp"
+	    android:layout_alignParentRight="true"
+	    android:layout_below="@+id/isorgcheckbox"
+	    android:visibility="invisible" />
+
+	<CheckBox
+	    android:id="@+id/isorgcheckbox"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_above="@+id/orgtypetxtview"
+	    android:layout_alignParentLeft="true"
+	    android:layout_marginBottom="62dp"
+	    android:text="This is an organization"
+	    android:textSize="30sp" />
+
+	<TextView
+	    android:id="@+id/paypaltxtview"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_above="@+id/orgtypetxtview"
+	    android:layout_alignLeft="@+id/orgtypetxtview"
+	    android:layout_marginBottom="15dp"
+	    android:text="Paypal Email:"
+	    android:visibility="invisible"
+	    android:textSize="30sp" />
+	
+
+	<EditText
+	    android:id="@+id/emailedit"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBaseline="@+id/emailtxtview"
+	    android:layout_alignBottom="@+id/emailtxtview"
+	    android:layout_alignLeft="@+id/lastedit"
+	    android:ems="10"
+	    android:inputType="textEmailAddress" />
+
+	<EditText
+	    android:id="@+id/paypaledit"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBaseline="@+id/paypaltxtview"
+	    android:layout_alignBottom="@+id/paypaltxtview"
+	    android:layout_toRightOf="@+id/signupsubmit"
+	    android:ems="10"
+	    android:visibility="invisible"
+	    android:inputType="textEmailAddress" />
 
 </RelativeLayout>
