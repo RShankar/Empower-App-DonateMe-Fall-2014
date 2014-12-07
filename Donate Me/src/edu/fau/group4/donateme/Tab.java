@@ -34,14 +34,14 @@ public class Tab extends TabActivity
                     TabHost.TabSpec spec;
                     Intent intent;
 
-                    intent = new Intent().setClass(this, Browse.class);
+                    intent = new Intent(this, Browse.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     spec = tabHost.newTabSpec("First").setIndicator("Browse")
                                   .setContent(intent);
                     tabHost.addTab(spec);
                     
                     if(isOrg.equals("true"))
                     {
-                    	intent = new Intent().setClass(this, Request.class);
+                    	intent = new Intent(this, Request.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     	spec = tabHost.newTabSpec("Second").setIndicator("Request")
                     		.setContent(intent);
                     	tabHost.addTab(spec);

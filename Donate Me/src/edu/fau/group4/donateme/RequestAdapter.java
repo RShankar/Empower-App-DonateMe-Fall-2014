@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 
@@ -19,6 +23,7 @@ public class RequestAdapter extends ArrayAdapter<RequestObject> {
 	Context context;
     int layoutResourceId;
     LinearLayout linearMain;
+    RequestObject request;
     ArrayList<RequestObject> data = new ArrayList<RequestObject>();
     
     public RequestAdapter(Context context, int layoutResourceId, ArrayList<RequestObject> data){
@@ -27,23 +32,29 @@ public class RequestAdapter extends ArrayAdapter<RequestObject> {
     	this.context = context;
     	this.data = data;
     }
-    String orgName;
-	String orgType;
-	String requestType;
-	String whatFor;
-	String description;
-	String website;
-	String goal;
-	String objectId;
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
     	View row = convertView;
     	if (row == null) {
     		LayoutInflater inflater = ((Activity) context).getLayoutInflater();
     		row = inflater.inflate(layoutResourceId,parent,false);
-    		
+    		request = data.get(position);
+    		final String requestString = request.requestType;
     		linearMain = (LinearLayout) row.findViewById(R.id.linearMain);
-    		RequestObject request = data.get(position);
+    		linearMain.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					Toast.makeText(context,
+							"This organization requests "+ requestString,
+							Toast.LENGTH_LONG).show();
+					
+				}
+    		
+				
+
+			});
+    		
     		TextView label1 = new TextView(context);
     		TextView label2 = new TextView(context);
     		TextView label3 = new TextView(context);
