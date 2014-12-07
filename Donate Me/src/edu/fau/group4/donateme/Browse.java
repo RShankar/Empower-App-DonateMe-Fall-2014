@@ -22,10 +22,12 @@ import android.widget.TextView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 public class Browse extends Activity implements
@@ -38,6 +40,7 @@ GooglePlayServicesClient.OnConnectionFailedListener
 	 Context thisContext;
 	 Location mCurrentLocation;
 	 ParseGeoPoint currentGeo;
+	 LocationClient mLocationClient;
 	 ArrayList<RequestObject> requestArray = new ArrayList<RequestObject>();
 	 ArrayAdapter<RequestObject> adapter;
 	 
@@ -52,19 +55,42 @@ GooglePlayServicesClient.OnConnectionFailedListener
 	  {
 		  super.onCreate(savedInstanceState);
 		  setContentView(R.layout.browse);
-		  LocationClient mLocationClient = new LocationClient(this,this,this);
+		  mLocationClient = new LocationClient(this,this,this);
 		   mLocationClient.connect();
-		   mCurrentLocation = mLocationClient.getLastLocation();
-		   currentGeo = new ParseGeoPoint(mCurrentLocation.getLatitude(),mCurrentLocation.getLongitude());
+		 
 		   distance = (Spinner) findViewById(R.id.spinner1);
 	        ArrayAdapter distanceadapter = new ArrayAdapter(this,
 	            android.R.layout.simple_spinner_dropdown_item, state_distance);
 	        distance.setAdapter(distanceadapter);
-	        distance = (Spinner) findViewById(R.id.spinner2);
+	        distance.setOnItemSelectedListener(new OnItemSelectedListener(){
+	        	@Override
+				public void onItemSelected(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+	        		updateRequestList();
+				}
+				@Override
+				public void onNothingSelected(AdapterView<?> arg0) {
+					// TODO Auto-generated method stub
+					
+				}	
+			 });
+        
+	        type = (Spinner) findViewById(R.id.spinner2);
 	        ArrayAdapter typeadapter = new ArrayAdapter(this,
-	            android.R.layout.simple_spinner_dropdown_item, state_distance);
-	        distance.setAdapter(typeadapter);
-		   getRequests();
+	            android.R.layout.simple_spinner_dropdown_item, state_type);
+	        type.setAdapter(typeadapter);
+	        type.setOnItemSelectedListener(new OnItemSelectedListener(){
+	        	@Override
+				public void onItemSelected(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+	        		updateRequestList();
+				}
+				@Override
+				public void onNothingSelected(AdapterView<?> arg0) {
+					// TODO Auto-generated method stub
+					
+				}	
+			 });
 		   lv = (ListView) findViewById(R.id.listView1);
 		   thisContext = this;
 		   
@@ -84,7 +110,7 @@ GooglePlayServicesClient.OnConnectionFailedListener
 			                for (ParseObject requestsObject : objects) {
 			                	ParseGeoPoint geo = (ParseGeoPoint)requestsObject.get("geoPoint");			                	
 			                	double distance = currentGeo.distanceInMilesTo(geo);
-			                	
+			                	distance = Math.round(distance*100.0)/100.0;
 			                   requestArray.add(new RequestObject( requestsObject.get("orgName").toString(),
 			                		   requestsObject.get("orgType").toString(),
 			                		   requestsObject.get("requestType").toString(),
@@ -95,52 +121,7 @@ GooglePlayServicesClient.OnConnectionFailedListener
 			                		   requestsObject.getObjectId(),geo,distance));
 			                		
 			                }
-			                String typefilter = type.getSelectedItem().toString();
-				            String distancefilter = distance.getSelectedItem().toString();
-				            ArrayList<RequestObject> updatedArray = new ArrayList<RequestObject>();
-				            for(RequestObject req : requestArray)
-				            {
-				            	double orgdistance = req.distance;
-			                	String orgtype = req.orgType; 
-				            if(typefilter.contains(orgtype)||typefilter.contains("All Types")){
-		                		if(distancefilter.contains("Any Distance")){
-		                			updatedArray.add(req);
-		                		}
-		                		else if(distancefilter.contains("5 Miles"))
-		                		{
-		                			if(orgdistance < 5)
-		                			{
-		                				updatedArray.add(req);
-		                			}
-		                		}
-		                		else if(distancefilter.contains("15 Miles"))
-		                		{
-		                			if(orgdistance < 15)
-		                			{
-		                				updatedArray.add(req);
-		                			}
-		                		}
-		                		else if(distancefilter.contains("50 Miles"))
-		                		{
-		                			if(orgdistance < 50)
-		                			{
-		                				updatedArray.add(req);
-		                			}
-		                		}
-		                		else if(distancefilter.contains("100 Miles"))
-		                		{
-		                			if(orgdistance < 100)
-		                			{
-		                				updatedArray.add(req);
-		                			}
-		                		}
-		                		}
-				            }
-			                
-			                Collections.sort(updatedArray, new CustomComparator());
-			                adapter = new RequestAdapter(thisContext,R.layout.list,updatedArray);
-			                
-					 		lv.setAdapter(adapter); 
+			               updateRequestList();
 			            } else {
 			            	ArrayList<String> strArr = new ArrayList<String>();
 			            	strArr.add("There was an error retrieving requests.\r\nPlease try again");
@@ -151,17 +132,69 @@ GooglePlayServicesClient.OnConnectionFailedListener
 			        }
 			    });
 	  }
+	 public void updateRequestList()
+	 {
+		 String typefilter = type.getSelectedItem().toString();
+         String distancefilter = distance.getSelectedItem().toString();
+         ArrayList<RequestObject> updatedArray = new ArrayList<RequestObject>();
+         for(RequestObject req : requestArray)
+         {
+         	double orgdistance = req.distance;
+         	String orgtype = req.orgType; 
+         if(typefilter.contains(orgtype)||typefilter.contains("All Types")){
+     		if(distancefilter.contains("Any Distance")){
+     			updatedArray.add(req);
+     		}
+     		else if(distancefilter.contains("5 Miles"))
+     		{
+     			if(orgdistance < 5)
+     			{
+     				updatedArray.add(req);
+     			}
+     		}
+     		else if(distancefilter.contains("15 Miles"))
+     		{
+     			if(orgdistance < 15)
+     			{
+     				updatedArray.add(req);
+     			}
+     		}
+     		else if(distancefilter.contains("50 Miles"))
+     		{
+     			if(orgdistance < 50)
+     			{
+     				updatedArray.add(req);
+     			}
+     		}
+     		else if(distancefilter.contains("100 Miles"))
+     		{
+     			if(orgdistance < 100)
+     			{
+     				updatedArray.add(req);
+     			}
+     		}
+     		}
+         }
+         
+         Collections.sort(updatedArray, new CustomComparator());
+         adapter = new RequestAdapter(thisContext,R.layout.list,updatedArray);			                
+	 	lv.setAdapter(adapter);
+	 	adapter.notifyDataSetChanged();
+	 }
+	  
 
 	@Override
 	public void onConnectionFailed(ConnectionResult result) {
 		// TODO Auto-generated method stub
-		
+		Toast.makeText(this, "Unable to get GPS location. Please enable your GPS and try again.", Toast.LENGTH_LONG).show();
 	}
 
 	@Override
 	public void onConnected(Bundle connectionHint) {
 		// TODO Auto-generated method stub
-		
+		  mCurrentLocation = mLocationClient.getLastLocation();
+		   currentGeo = new ParseGeoPoint(mCurrentLocation.getLatitude(),mCurrentLocation.getLongitude());
+		   getRequests();
 	}
 
 	@Override
