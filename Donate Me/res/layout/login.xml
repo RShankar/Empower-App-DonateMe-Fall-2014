@@ -30,7 +30,7 @@
         android:layout_alignBottom="@+id/lasttxtview"
         android:layout_alignLeft="@+id/username"
         android:ems="10"
-        android:inputType="textPersonName" >
+        android:inputType="textPassword" >
 
         
     </EditText>

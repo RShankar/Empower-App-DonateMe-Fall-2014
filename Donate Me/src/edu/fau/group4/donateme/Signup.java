@@ -124,7 +124,7 @@ public class Signup extends Activity{
 			lastnametxt = lastname.getText().toString();
 			paypaltxt = paypal.getText().toString();
 			// Force user to fill up the form
-			if (usernametxt.equals("") && passwordtxt.equals("") && emailtxt.equals("") && firstnametxt.equals("") && lastnametxt.equals("")) {
+			if (usernametxt.equals("") || passwordtxt.equals("") || emailtxt.equals("") || firstnametxt.equals("") || lastnametxt.equals("")) {
 				Toast.makeText(getApplicationContext(),
 						"Please complete the sign up form",
 						Toast.LENGTH_LONG).show();
