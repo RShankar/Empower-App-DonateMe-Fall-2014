@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/settingstxtview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Settings"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/settingsback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Back" />
+
+    <TextView
+        android:id="@+id/addresstxtview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/settingsback"
+        android:layout_marginTop="132dp"
+        android:text="Address:"
+        android:textSize="26sp"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/addressedit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/addresstxtview"
+        android:layout_alignBottom="@+id/addresstxtview"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:inputType="textPostalAddress|textCapWords|textNoSuggestions"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/cityedit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/addressedit"
+        android:layout_below="@+id/addressedit"
+        android:ems="10"
+        android:inputType="textPostalAddress|textCapWords|textNoSuggestions"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/stateedit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cityedit"
+        android:layout_below="@+id/cityedit"
+        android:ems="10"
+        android:inputType="textPostalAddress|textCapWords|textNoSuggestions"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/citytxtview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/cityedit"
+        android:text="City:"
+        android:textSize="26sp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/statetxtview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/stateedit"
+        android:layout_alignBottom="@+id/stateedit"
+        android:layout_alignParentLeft="true"
+        android:text="State:"
+        android:textSize="26sp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/settingsave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/stateedit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="Save"
+        android:visibility="invisible" />
+
+</RelativeLayout>

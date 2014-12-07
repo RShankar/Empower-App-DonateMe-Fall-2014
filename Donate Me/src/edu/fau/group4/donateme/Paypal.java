@@ -33,7 +33,7 @@ public class Paypal extends Activity implements OnClickListener {
 	launchPayPalButton.setLayoutParams(params);
 	launchPayPalButton.setOnClickListener(this);
 
-	((RelativeLayout) findViewById(R.id.button1)).addView(launchPayPalButton);
+	((RelativeLayout) findViewById(R.id.settingsback)).addView(launchPayPalButton);
 	    }
 
 	@Override

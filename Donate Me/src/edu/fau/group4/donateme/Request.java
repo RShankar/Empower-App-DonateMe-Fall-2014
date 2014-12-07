@@ -44,7 +44,7 @@ public class Request extends Activity
 		  super.onCreate(savedInstanceState);
 		  setContentView(R.layout.request);
 		  username = (EditText) findViewById(R.id.username);
-		  whatfor = (EditText) findViewById(R.id.editText3);
+		  whatfor = (EditText) findViewById(R.id.stateedit);
 		  description = (EditText) findViewById(R.id.editText4);
 		  website = (EditText) findViewById(R.id.editText5);
 		    View add_media = findViewById(R.id.loginbutton);		    
@@ -85,6 +85,15 @@ public class Request extends Activity
 		    });
 		    
 		    currentUser = ParseUser.getCurrentUser();
+		    Boolean hasAddress = currentUser.has("geoPoint");
+		    if(!hasAddress)
+		    {
+		    	Toast.makeText(getApplicationContext(),
+						"Before you can make a request, you must add an address.",
+						Toast.LENGTH_LONG).show();
+		    	Intent i = new Intent(Request.this,Settings.class);
+		    	startActivity(i);
+		    }
 		    username.setText(currentUser.get("orgName").toString());
 		    submit.setOnClickListener(new OnClickListener(){
 		    	public void onClick(View arg0)
@@ -103,6 +112,7 @@ public class Request extends Activity
 						requestData.put("whatFor", whatfor.getText().toString());
 						requestData.put("description", description.getText().toString());
 						requestData.put("website", website.getText().toString());
+						requestData.put("geoPoint",currentUser.get("geoPoint"));
 						requestData.saveInBackground( new SaveCallback(){
 							public void done(ParseException e) {
 								if (e == null) {

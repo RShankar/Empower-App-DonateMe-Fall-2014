@@ -14,7 +14,7 @@
         android:layout_marginRight="19dp"
         android:layout_marginTop="19dp"
         android:background="@drawable/round_corners1"
-        android:text="@string/logout"
+        android:text="Settings"
         android:textSize="30sp" />
 
     <TabHost

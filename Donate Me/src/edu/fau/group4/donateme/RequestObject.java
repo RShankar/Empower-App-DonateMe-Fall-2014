@@ -1,5 +1,7 @@
 package edu.fau.group4.donateme;
 
+import com.parse.ParseGeoPoint;
+
 public class RequestObject {
 
 	String orgName;
@@ -10,7 +12,9 @@ public class RequestObject {
 	String website;
 	String goal;
 	String objectId;
-	public RequestObject(String orgName, String orgType, String requestType, String whatFor, String description, String website, String goal, String objectId){
+	ParseGeoPoint geo;
+	double distance;
+	public RequestObject(String orgName, String orgType, String requestType, String whatFor, String description, String website, String goal, String objectId, ParseGeoPoint geo,double distance){
 		super();
 		this.orgName = orgName;
 		this.orgType = orgType;
@@ -20,7 +24,8 @@ public class RequestObject {
 		this.website = website;
 		this.goal = goal;
 		this.objectId = objectId;
-		
+		this.geo = geo;
+		this.distance = distance;
 	}
 	public String getOrgName(){
 		return orgName;
@@ -46,7 +51,12 @@ public class RequestObject {
 	public String getObjectId(){
 		return objectId;
 	}
-	
+	public ParseGeoPoint getGeo(){
+		return geo;
+	}
+	public double getDistance(){
+		return distance;
+	}
 	public void setOrgName(String orgName){
 		this.orgName = orgName;
 	}
@@ -71,5 +81,10 @@ public class RequestObject {
 	public void setObjectId(String objectId){
 		this.objectId = objectId;
 	}
-	
+	public void setGeo(ParseGeoPoint geo){
+		this.geo = geo;
+	}
+	public void setDistance(double distance){
+		this.distance = distance;
+	}
 }

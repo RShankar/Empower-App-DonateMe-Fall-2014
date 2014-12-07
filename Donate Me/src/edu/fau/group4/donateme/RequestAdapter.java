@@ -59,6 +59,7 @@ public class RequestAdapter extends ArrayAdapter<RequestObject> {
     		TextView label2 = new TextView(context);
     		TextView label3 = new TextView(context);
     		TextView label4 = new TextView(context);
+    		TextView label5 = new TextView(context);
     		
     		label1.setText("Organization Name: "+request.orgName);
     		linearMain.addView(label1);
@@ -74,7 +75,8 @@ public class RequestAdapter extends ArrayAdapter<RequestObject> {
     		}
     		label4.setText("Description: "+request.description);
     		linearMain.addView(label4);
-    		
+    		label5.setText("Distance: "+request.distance);
+    		linearMain.addView(label5);
     	}
     	return row;
     }

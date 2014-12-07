@@ -57,9 +57,8 @@ public class Tab extends TabActivity
         		    {
         		    	public void onClick(View arg0)
         		    	{	
-        		    		ParseUser.logOut();
-        		    		finish();
-        		    		 Intent i1 = new Intent(Tab.this, MainActivity.class);	         
+        		    		
+        		    		 Intent i1 = new Intent(Tab.this, Settings.class);	         
         					 startActivity(i1);
         		    		
         		    	}
