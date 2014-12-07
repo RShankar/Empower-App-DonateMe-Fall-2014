@@ -8,9 +8,9 @@
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignBottom="@+id/welcometxtview"
         android:layout_marginLeft="16dp"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_toRightOf="@+id/welcometxtview"
         android:ems="10"
         android:inputType="textPersonName" >
 
@@ -21,8 +21,8 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_below="@+id/textView1"
+        android:layout_alignRight="@+id/welcometxtview"
+        android:layout_below="@+id/welcometxtview"
         android:layout_marginTop="41dp"
         android:text="Type:"
         android:textSize="30sp" />
@@ -139,7 +139,7 @@
         android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/welcometxtview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView5"

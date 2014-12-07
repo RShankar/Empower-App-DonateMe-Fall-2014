@@ -11,17 +11,25 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
+import android.widget.TextView;
 
 public class Tab extends TabActivity
 {
             /** Called when the activity is first created. */
             @SuppressWarnings("deprecation")
+            
+            ParseUser currentUser;
+       	 String isOrg;
+            
 			@Override
             public void onCreate(Bundle savedInstanceState)
             {
                     super.onCreate(savedInstanceState);
                     setContentView(R.layout.tab);
-
+                    TextView welcome = (TextView) findViewById(R.id.welcometxtview);
+                    currentUser = ParseUser.getCurrentUser();
+        		    isOrg = currentUser.get("isOrg").toString();
+        		    
                     TabHost tabHost = getTabHost();
                     TabHost.TabSpec spec;
                     Intent intent;
@@ -30,11 +38,14 @@ public class Tab extends TabActivity
                     spec = tabHost.newTabSpec("First").setIndicator("Browse")
                                   .setContent(intent);
                     tabHost.addTab(spec);
-
-                    intent = new Intent().setClass(this, Request.class);
-                    spec = tabHost.newTabSpec("Second").setIndicator("Request")
-                                  .setContent(intent);
-                    tabHost.addTab(spec);
+                    
+                    if(isOrg == "true")
+                    {
+                    	intent = new Intent().setClass(this, Request.class);
+                    	spec = tabHost.newTabSpec("Second").setIndicator("Request")
+                    		.setContent(intent);
+                    	tabHost.addTab(spec);
+                    }
                     View logout = findViewById(R.id.logoutbutton);
         		    logout.setOnClickListener(new OnClickListener()
         		    {

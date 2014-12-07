@@ -5,7 +5,7 @@
     android:background="#00FF7F" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/welcometxtview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -18,7 +18,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/welcometxtview"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp"
         android:text="Thank you for your donation!"

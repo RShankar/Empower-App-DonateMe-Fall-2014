@@ -44,7 +44,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/welcometxtview"
         android:layout_centerHorizontal="true"
         android:text="What is your donation for?"
         android:textSize="20sp" />
@@ -59,7 +59,7 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/welcometxtview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView1"

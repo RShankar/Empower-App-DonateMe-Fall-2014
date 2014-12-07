@@ -1,5 +1,7 @@
 package edu.fau.group4.donateme;
 
+import com.parse.ParseUser;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +23,8 @@ public class Request extends Activity implements OnItemSelectedListener,OnClickL
 	 
 	 TextView text_type;
 	 TextView text_request;
-
+	 ParseUser currentUser;
+	 String isOrg;
 	  @Override
 	 public void onCreate(Bundle savedInstanceState)
 	  {
@@ -50,7 +53,8 @@ public class Request extends Activity implements OnItemSelectedListener,OnClickL
 		    add_media.setOnClickListener(this);
 		    View submit = findViewById(R.id.signupsubmit);
 		    submit.setOnClickListener(this);
-
+		    currentUser = ParseUser.getCurrentUser();
+		    isOrg = currentUser.get("isOrg").toString();
 	  }
 
 		@Override

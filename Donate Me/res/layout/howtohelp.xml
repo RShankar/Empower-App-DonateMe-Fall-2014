@@ -30,7 +30,7 @@
         android:id="@+id/button3"
         android:layout_width="200dp"
         android:layout_height="150dp"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/welcometxtview"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="138dp"
         android:background="@drawable/round_corners2"
@@ -41,9 +41,9 @@
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignBottom="@+id/welcometxtview"
         android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_toRightOf="@+id/welcometxtview"
         android:ems="10"
         android:inputType="textPersonName" >
 
@@ -61,7 +61,7 @@
         android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/welcometxtview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageView1"

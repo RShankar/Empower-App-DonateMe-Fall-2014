@@ -29,7 +29,7 @@ public class Browse extends Activity implements OnItemSelectedListener,OnClickLi
 		  super.onCreate(savedInstanceState);
 		  setContentView(R.layout.browse);
 		  System.out.println(state_type.length);
-		  text_type = (TextView) findViewById(R.id.textView1);
+		  text_type = (TextView) findViewById(R.id.welcometxtview);
 		  
 		  type = (Spinner) findViewById(R.id.spinner1);
 		  ArrayAdapter<String> adapter_type = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, state_type);
