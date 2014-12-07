@@ -23,7 +23,7 @@ public class Welcomepage extends Activity implements OnClickListener{
 	    button2.setOnClickListener(this);
     }
 
-   
+   //comment
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
