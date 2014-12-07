@@ -71,6 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/logoutbutton"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="30sp" />
 
 </RelativeLayout>

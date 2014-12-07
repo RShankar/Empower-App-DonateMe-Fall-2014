@@ -11,16 +11,17 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 public class Request extends Activity implements OnItemSelectedListener,OnClickListener
 {
 	 Spinner type;
 	 Spinner request;
-	 
-	 private String[] state_type = { "Community Service", "Financial", "Goods", "Goodwill", "Services"};
-	 private String[] state_request = { "Money","Clothes"};
-	 
+     	 
+	 private String[] state_type = { "Research", "For Profit", "Not For Profit"};
+	 private String[] state_request = { "Money","Clothes","Food"};
+	 EditText username;
 	 TextView text_type;
 	 TextView text_request;
 	 ParseUser currentUser;
@@ -32,13 +33,12 @@ public class Request extends Activity implements OnItemSelectedListener,OnClickL
 		  setContentView(R.layout.request);
 		  System.out.println(state_type.length);
 		//  text_type = (TextView) findViewById(R.id.textView1);
-		  
 		  type = (Spinner) findViewById(R.id.spinner1);
 		  ArrayAdapter<String> adapter_type = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, state_type);
 		  adapter_type.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		  type.setAdapter(adapter_type);
 		  type.setOnItemSelectedListener(this);
-		  
+		  username = (EditText) findViewById(R.id.username);
 		 // System.out.println(state_distance.length);
 		//  text_distance = (TextView) findViewById(R.id.textView2);
 		  
@@ -54,7 +54,7 @@ public class Request extends Activity implements OnItemSelectedListener,OnClickL
 		    View submit = findViewById(R.id.signupsubmit);
 		    submit.setOnClickListener(this);
 		    currentUser = ParseUser.getCurrentUser();
-		    isOrg = currentUser.get("isOrg").toString();
+		    username.setText(currentUser.get("orgName").toString());
 	  }
 
 		@Override
