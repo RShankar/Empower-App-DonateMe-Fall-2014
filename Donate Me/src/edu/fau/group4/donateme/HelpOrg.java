@@ -24,17 +24,19 @@ public class HelpOrg extends Activity implements OnClickListener
 	public void onClick(View v) 
 	{
     	Intent i;
+    	String name = "org name";
 		switch (v.getId()) 
 		{
 			case R.id.BTN_howToHelp:
 				i = new Intent(v.getContext(), Howtohelp.class);
 
 				boolean gpsProvided = true;
-				LatLng ll = new LatLng(26.37376,-80.1061); //organization's gps if provided
+				LatLng ll = new LatLng(26.37376,-80.1361); //organization's gps if provided
 				
 				i.putExtra("gpsProvided", gpsProvided);
 				i.putExtra("longitude", ll.longitude);
 				i.putExtra("latitude", ll.latitude);
+				i.putExtra("name", name);
 			    startActivity(i);
 				break;
 		}
