@@ -118,14 +118,14 @@ public class Howtohelp extends Activity
 	double getDistance(LatLng gps1, LatLng gps2)
 	{
 		double R = 6371; // radius of Earth (km)
-		double φ1 = gps1.latitude * Math.PI/180.0;
-		double φ2 = gps2.latitude * Math.PI/180.0;
-		double λ1 = gps1.longitude * Math.PI/180.0;
-		double λ2 = gps2.longitude * Math.PI/180.0;
-		double Δφ = φ2-φ1;
-		double Δλ = λ2-λ1;
+		double x1 = gps1.latitude * Math.PI/180.0;
+		double x2 = gps2.latitude * Math.PI/180.0;
+		double y1 = gps1.longitude * Math.PI/180.0;
+		double y2 = gps2.longitude * Math.PI/180.0;
+		double z1 = x2-x1;
+		double z2 = y2-y1;
 
-		double a = Math.sin(Δφ/2) * Math.sin(Δφ/2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ/2) * Math.sin(Δλ/2);
+		double a = Math.sin(z1/2) * Math.sin(z1/2) + Math.cos(x1) * Math.cos(x2) * Math.sin(z2/2) * Math.sin(z2/2);
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 		
 		return R * c;
