@@ -7,6 +7,7 @@ import java.util.List;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.maps.model.LatLng;
 import com.parse.FindCallback;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
@@ -97,7 +98,21 @@ GooglePlayServicesClient.OnConnectionFailedListener
 		   
 		   
 	  }
+	  double getDistance(ParseGeoPoint currentGeo2, ParseGeoPoint geo)
+		{
+			double R = 6371; // radius of Earth (km)
+			double x1 = currentGeo2.getLatitude() * Math.PI/180.0;
+			double x2 = geo.getLatitude() * Math.PI/180.0;
+			double y1 = currentGeo2.getLongitude() * Math.PI/180.0;
+			double y2 = geo.getLongitude() * Math.PI/180.0;
+			double z1 = x2-x1;
+			double z2 = y2-y1;
 
+			double a = Math.sin(z1/2) * Math.sin(z1/2) + Math.cos(x1) * Math.cos(x2) * Math.sin(z2/2) * Math.sin(z2/2);
+			double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+			
+			return R * c;
+		}
 	  private void getRequests()
 	  {
 		  ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("request");
@@ -108,8 +123,9 @@ GooglePlayServicesClient.OnConnectionFailedListener
 			            if (e == null) {
 			             
 			                for (ParseObject requestsObject : objects) {
-			                	ParseGeoPoint geo = (ParseGeoPoint)requestsObject.get("geoPoint");			                	
-			                	double distance = currentGeo.distanceInMilesTo(geo);
+			                	ParseGeoPoint geo = (ParseGeoPoint)requestsObject.get("geoPoint");
+			                	
+			                	double distance = getDistance(currentGeo,geo);
 			                	distance = Math.round(distance*100.0)/100.0;
 			                   requestArray.add(new RequestObject( requestsObject.get("orgName").toString(),
 			                		   requestsObject.get("orgType").toString(),
@@ -177,7 +193,7 @@ GooglePlayServicesClient.OnConnectionFailedListener
          }
          
          Collections.sort(updatedArray, new CustomComparator());
-         adapter = new RequestAdapter(thisContext,R.layout.list,updatedArray);			                
+         adapter = new RequestAdapter(thisContext,R.layout.list,updatedArray,currentGeo);			                
 	 	lv.setAdapter(adapter);
 	 	adapter.notifyDataSetChanged();
 	 }

@@ -124,6 +124,17 @@ public class Settings extends Activity{
 				 startActivity(i);
 			 }
 		  });
+		  Button logout = (Button) findViewById(R.id.logoutButton);
+		  logout.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				ParseUser.logOut();
+	    		finish();
+	    		 Intent i1 = new Intent(Settings.this, MainActivity.class);	         
+				 startActivity(i1);
+			}
+		});
 		  
 	  }
 	

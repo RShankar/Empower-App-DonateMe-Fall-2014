@@ -10,6 +10,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.parse.ParseGeoPoint;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,13 +25,27 @@ import android.widget.Toast;
 public class Howtohelp extends Activity
 {
 	private GoogleMap googleMap;
+	double clat;
+	double clong;
+	double longitude;
+	double latitude;
+	Boolean gpsProvided;
+	String name;
+	Bundle b;
     @Override
     public void onCreate(Bundle savedInstanceState) 
     {
 		super.onCreate(savedInstanceState);
 		
 	    boolean isMonetary = false;
-	    
+	    b = getIntent().getExtras();
+	    gpsProvided = b.getBoolean("gpsProvided");
+		longitude = b.getDouble("longitude");
+		latitude = b.getDouble("latitude");
+		name = b.getString("name");
+		clat = b.getDouble("currentLat");
+		clong = b.getDouble("currentLong");		
+		
 	    if(isMonetary)
 	    {
 	    	setContentView(R.layout.howtohelp);
@@ -39,13 +54,12 @@ public class Howtohelp extends Activity
 	    }
 	    else
 	    {
-	    	Intent i = getIntent();
+	    
 	    	setContentView(R.layout.non_monetary);
-	    	boolean gpsProvided = i.getBooleanExtra("gpsProvided", false);
-	    	if(true)
+	    	
+	    	if(gpsProvided)
 	    	{
-		    	LatLng ll = new LatLng(i.getDoubleExtra("latitude", 0.0),i.getDoubleExtra("longitude", 0.0));
-		    	String name = i.getStringExtra("name");
+		    	LatLng ll = new LatLng(latitude,longitude);		    	
 		    	drawMap(ll,name);
 	    	}
 	    }
@@ -54,7 +68,8 @@ public class Howtohelp extends Activity
 	public void onBack(View v) 
 	{
 
-		Intent i = new Intent(v.getContext(), HelpOrg.class);	         
+		Intent i = new Intent(v.getContext(), HelpOrg.class);
+		i.putExtras(b);
 		startActivity(i);
 		
 	}
@@ -92,13 +107,11 @@ public class Howtohelp extends Activity
 			            //update map here
 			        }
 			    });
-				LatLng gps = getGPS();
-				CameraUpdate center = CameraUpdateFactory.newLatLng(gps);
+								
+				LatLng gps = new LatLng(clat,clong);
 				float distance = (float) getDistance(gps, loc);
-				CameraUpdate zoom = CameraUpdateFactory.zoomTo(13.8f);
-
-				googleMap.moveCamera(center);
-				googleMap.animateCamera(zoom);
+								
+				googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 13.8f));
 				googleMap.addMarker(new MarkerOptions()
 		        	.position(loc)
 		        	.title(name + "\nDistance: " + String.format("%.2f", distance) + " km"));

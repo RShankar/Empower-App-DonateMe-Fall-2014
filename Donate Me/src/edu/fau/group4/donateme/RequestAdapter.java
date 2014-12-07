@@ -1,8 +1,12 @@
 package edu.fau.group4.donateme;
 import java.util.ArrayList;
 
+import com.parse.ParseGeoPoint;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,13 +28,15 @@ public class RequestAdapter extends ArrayAdapter<RequestObject> {
     int layoutResourceId;
     LinearLayout linearMain;
     RequestObject request;
+    ParseGeoPoint geo;
     ArrayList<RequestObject> data = new ArrayList<RequestObject>();
     
-    public RequestAdapter(Context context, int layoutResourceId, ArrayList<RequestObject> data){
+    public RequestAdapter(Context context, int layoutResourceId, ArrayList<RequestObject> data,ParseGeoPoint geo){
     	super(context, layoutResourceId, data);
     	this.layoutResourceId = layoutResourceId;
     	this.context = context;
     	this.data = data;
+    	this.geo = geo;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
@@ -45,9 +51,18 @@ public class RequestAdapter extends ArrayAdapter<RequestObject> {
 
 				@Override
 				public void onClick(View v) {
-					Toast.makeText(context,
-							"This organization requests "+ requestString,
-							Toast.LENGTH_LONG).show();
+					Intent i = new Intent(context,HelpOrg.class);
+					Bundle b = new Bundle();
+					b.putString("orgName",request.orgName);
+					b.putString("whatFor", request.whatFor);
+					b.putString("description", request.description);
+					b.putString("website", request.website);
+					b.putDouble("dlat", request.geo.getLatitude());
+					b.putDouble("dlong", request.geo.getLongitude());
+					b.putDouble("clat", geo.getLatitude());
+					b.putDouble("clong", geo.getLongitude());
+					i.putExtras(b);
+					context.startActivity(i);
 					
 				}
     		

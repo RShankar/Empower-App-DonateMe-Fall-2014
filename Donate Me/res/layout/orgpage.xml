@@ -27,9 +27,10 @@
         android:layout_marginRight="19dp"
         android:layout_marginTop="19dp"
         android:background="@drawable/round_corners1"
-        android:text="@string/logout"
         android:onClick="onLogout"
-        android:textSize="20sp" />
+        android:text="@string/logout"
+        android:textSize="20sp"
+        android:visibility="invisible" />
 
     <ImageView
         android:id="@+id/imageView1"
