@@ -45,6 +45,7 @@ public class AddMedia extends Activity {
 			Intent i = new Intent(AddMedia.this,Request.class);			
 				b.putByteArray("imageData", imageData);			
 			i.putExtras(b);
+			finish();
 			startActivity(i);
 			}
 		});
@@ -53,11 +54,8 @@ public class AddMedia extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent();
-				i.setType("image/*");
-				i.setAction(Intent.ACTION_GET_CONTENT);
-				startActivityForResult(Intent.createChooser(i,
-                        "Select Picture"), SELECT_PICTURE);
+				Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+				startActivityForResult(i, SELECT_PICTURE);
 			}
 		});
 	  }
@@ -70,10 +68,10 @@ public class AddMedia extends Activity {
 	                Bitmap bitmap = BitmapFactory.decodeFile(selectedImagePath);
 	              bitmap.compress(Bitmap.CompressFormat.PNG, 100, imageStream);
 	              imageData = imageStream.toByteArray();
-	              if(imageData.length > 10000000)
+	              if(imageData.length > 1000000)
 	              {
 	            	  Toast.makeText(getApplicationContext(),
-	  						"Image must be smaller than 10mb",
+	  						"Image must be smaller than 1mb",
 	  						Toast.LENGTH_LONG).show();
 	            	  Arrays.fill(imageData, (byte)0);
 	              }
@@ -87,10 +85,10 @@ public class AddMedia extends Activity {
 	                    parcelFileDescriptor.close();
 	                    image.compress(Bitmap.CompressFormat.PNG, 100, imageStream);
 	  	              imageData = imageStream.toByteArray();
-	  	            if(imageData.length > 10000000)
+	  	            if(imageData.length > 1000000)
 		              {
 		            	  Toast.makeText(getApplicationContext(),
-		  						"Image must be smaller than 10mb",
+		  						"Image must be smaller than 1mb",
 		  						Toast.LENGTH_LONG).show();
 		            	  Arrays.fill(imageData, (byte)0);
 		              }

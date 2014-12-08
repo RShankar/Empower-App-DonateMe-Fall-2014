@@ -1,5 +1,7 @@
 package edu.fau.group4.donateme;
 
+import org.apache.commons.validator.UrlValidator;
+
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -124,20 +126,26 @@ public class Request extends Activity
 		    submit.setOnClickListener(new OnClickListener(){
 		    	public void onClick(View arg0)
 		    	{
-		    		if (username.equals("") || whatfor.equals("") || description.equals("") || website.equals("")) {
+		    		String usernametxt = username.getText().toString();
+		    		String whatfortxt = whatfor.getText().toString();
+		    		String descriptiontxt = description.getText().toString();
+		    		String websitetxt = website.getText().toString();
+		    		if (usernametxt.equals("") || whatfortxt.equals("") || descriptiontxt.equals("") || websitetxt.equals("")) {
 						Toast.makeText(getApplicationContext(),
 								"Please complete the request form",
 								Toast.LENGTH_LONG).show();
 
 					} else {
+						UrlValidator urlValid = new UrlValidator();
+						if(urlValid.isValid(websitetxt)){
 						ParseObject requestData = new ParseObject("request");
-						requestData.put("orgName",username.getText().toString());
+						requestData.put("orgName",usernametxt);
 						requestData.put("orgType",orgtypespinner.getSelectedItem());
 						requestData.put("requestType",requesttypespinner.getSelectedItem());
 						requestData.put("goal",goal.getText().toString());
-						requestData.put("whatFor", whatfor.getText().toString());
-						requestData.put("description", description.getText().toString());
-						requestData.put("website", website.getText().toString());
+						requestData.put("whatFor", whatfortxt);
+						requestData.put("description", descriptiontxt);
+						requestData.put("website", websitetxt);
 						requestData.put("geoPoint",currentUser.get("geoPoint"));
 						byte[] imageBytes = (byte[]) b.get("imageData");
 						if(imageBytes.length > 0)
@@ -166,7 +174,14 @@ public class Request extends Activity
 							}
 						});
 					}
-		    	}
+					
+		    		else
+		    		{
+		    			Toast.makeText(getApplicationContext(),
+								"Please submit a valid url.", Toast.LENGTH_LONG)
+								.show();
+		    		}
+		    	}}
 		    });
 		    if(b != null)
 			  {
