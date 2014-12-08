@@ -2,6 +2,13 @@ package edu.fau.group4.donateme;
 
 import java.util.List;
 
+import java.math.BigDecimal;
+
+import com.paypal.android.MEP.CheckoutButton;
+import com.paypal.android.MEP.PayPal;
+import com.paypal.android.MEP.PayPalActivity;
+import com.paypal.android.MEP.PayPalPayment;
+
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,6 +19,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.parse.ParseGeoPoint;
 
+import android.widget.RelativeLayout;
+import android.content.DialogInterface;
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,9 +30,10 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Toast;
 
-public class Howtohelp extends Activity
+public class Howtohelp extends Activity implements OnClickListener
 {
 	private GoogleMap googleMap;
 	double clat;
@@ -37,7 +48,7 @@ public class Howtohelp extends Activity
     {
 		super.onCreate(savedInstanceState);
 		
-	    boolean isMonetary = false;
+	    boolean isMonetary = true;
 	    b = getIntent().getExtras();
 	    gpsProvided = b.getBoolean("gpsProvided");
 		longitude = b.getDouble("longitude");
@@ -49,6 +60,19 @@ public class Howtohelp extends Activity
 	    if(isMonetary)
 	    {
 	    	setContentView(R.layout.howtohelp);
+	    	PayPal ppObj = PayPal.initWithAppID(this.getBaseContext(), "APP-80W284485P519543T", PayPal.ENV_NONE);
+
+	    	CheckoutButton launchPayPalButton = ppObj.getCheckoutButton(this, PayPal.BUTTON_278x43, CheckoutButton.TEXT_PAY);
+	    	RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+
+	    	//params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+	        params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+	    	params.addRule(RelativeLayout.CENTER_VERTICAL);
+
+	    	launchPayPalButton.setLayoutParams(params);
+	    	launchPayPalButton.setOnClickListener(this);
+
+	    	((RelativeLayout) findViewById(R.id.mRlayout1)).addView(launchPayPalButton);
 			
 			// Set up click listeners for all the buttons	
 	    }
@@ -186,6 +210,49 @@ public class Howtohelp extends Activity
 		 {
 			 return new LatLng(0,0);
 		 }	 
+	}
+
+	@Override
+	public void onClick(View v) {
+	// TODO Auto-generated method stub
+	PayPalPayment newPayment = new PayPalPayment();
+	char val[] = { '5', '0' };
+	BigDecimal obj_0 = new BigDecimal(val);
+	newPayment.setSubtotal(obj_0);
+	newPayment.setCurrencyType("USD");
+	newPayment.setRecipient("my@email.com");
+	newPayment.setMerchantName("My Company");
+	Intent paypalIntent = PayPal.getInstance().checkout(newPayment, this);
+	this.startActivityForResult(paypalIntent, 1);
+	}
+
+	@SuppressWarnings("unused")
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	switch (resultCode) {
+	case Activity.RESULT_OK:
+	// The payment succeeded
+	String payKey = data.getStringExtra(PayPalActivity.EXTRA_PAY_KEY);
+	
+	// Tell the user their payment succeeded
+	break;
+	case Activity.RESULT_CANCELED:
+	// The payment was canceled
+	// Tell the user their payment was canceled
+	break;
+	case PayPalActivity.RESULT_FAILURE:
+	// The payment failed -- we get the error from the EXTRA_ERROR_ID
+	// and EXTRA_ERROR_MESSAGE
+	String errorID = data.getStringExtra(PayPalActivity.EXTRA_ERROR_ID);
+	String errorMessage = data.getStringExtra(PayPalActivity.EXTRA_ERROR_MESSAGE);
+	// Tell the user their payment was failed.
+	               break;
+	       }
+	   }
+
+	public void onClick(DialogInterface dialog, int which) {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
