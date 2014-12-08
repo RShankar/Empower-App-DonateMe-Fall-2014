@@ -139,8 +139,12 @@ public class Request extends Activity
 						requestData.put("description", description.getText().toString());
 						requestData.put("website", website.getText().toString());
 						requestData.put("geoPoint",currentUser.get("geoPoint"));
-						ParseFile imageFile = new ParseFile("image.png",(byte[]) b.get("imageData"));
+						byte[] imageBytes = (byte[]) b.get("imageData");
+						if(imageBytes.length > 0)
+						{
+						ParseFile imageFile = new ParseFile("image.png",imageBytes);
 						requestData.put("orgImage",imageFile);
+						}
 						requestData.saveInBackground( new SaveCallback(){
 							public void done(ParseException e) {
 								if (e == null) {

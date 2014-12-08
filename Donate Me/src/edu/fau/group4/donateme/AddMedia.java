@@ -42,11 +42,8 @@ public class AddMedia extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-			Intent i = new Intent(AddMedia.this,Request.class);
-			if(imageData.length > 0)
-			{
-				b.putByteArray("imageData", imageData);
-			}
+			Intent i = new Intent(AddMedia.this,Request.class);			
+				b.putByteArray("imageData", imageData);			
 			i.putExtras(b);
 			startActivity(i);
 			}
