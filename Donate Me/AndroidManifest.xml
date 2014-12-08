@@ -64,7 +64,7 @@
 		 android:screenOrientation="portrait"
    		 android:name="com.paypal.android.MEP.PayPalActivity"
    		 android:configChanges="keyboardHidden|orientation"
-    	 android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    	 android:theme="@android:style/Theme.Translucent.NoTitleBar" />		
     </application>
 
 </manifest>

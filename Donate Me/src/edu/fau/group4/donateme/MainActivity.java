@@ -6,8 +6,14 @@ import com.parse.ParseUser;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,22 +23,20 @@ import android.widget.TextView;
 
 
 public class MainActivity extends Activity implements OnClickListener{
-
+	 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);	
-		// Set up click listeners for all the buttons
+		
 	    View button1 = findViewById(R.id.loginbutton);
-	    button1.setOnClickListener(this);
-	   
-    }
+	    button1.setOnClickListener(this);   
+	     
+    }  
 
    
 	@Override
-	public void onClick(View v) {
-		
-		
+	public void onClick(View v) {	
 		
 		switch (v.getId()) {
 	      case R.id.loginbutton:
@@ -63,7 +67,8 @@ public class MainActivity extends Activity implements OnClickListener{
 	  		}
 	         break;	          
 		}
-	}   
+	}
+	  
    
 }
 
