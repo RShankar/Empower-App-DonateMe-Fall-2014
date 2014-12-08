@@ -1,6 +1,7 @@
 package edu.fau.group4.donateme;
 
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -37,17 +38,40 @@ public class Request extends Activity
 	 String isOrg;
 	 Spinner orgtypespinner;
 	 Spinner requesttypespinner;
+	 Bundle b;
 	  @SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	 public void onCreate(Bundle savedInstanceState)
 	  {
 		  super.onCreate(savedInstanceState);
 		  setContentView(R.layout.request);
+		  currentUser = ParseUser.getCurrentUser();
 		  username = (EditText) findViewById(R.id.username);
 		  whatfor = (EditText) findViewById(R.id.stateedit);
 		  description = (EditText) findViewById(R.id.editText4);
 		  website = (EditText) findViewById(R.id.editText5);
-		    View add_media = findViewById(R.id.loginbutton);		    
+		  b = getIntent().getExtras();
+		  
+		    View add_media = findViewById(R.id.loginbutton);
+		    add_media.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+				Intent i = new Intent(Request.this,AddMedia.class);
+				Bundle b = new Bundle();
+				b.putString("orgName",username.getText().toString());
+				b.putString("orgType",(String) orgtypespinner.getSelectedItem());
+				b.putString("requestType",(String) requesttypespinner.getSelectedItem());
+				b.putString("goal",goal.getText().toString());
+				b.putString("whatFor", whatfor.getText().toString());
+				b.putString("description", description.getText().toString());
+				b.putString("website", website.getText().toString());
+				i.putExtras(b);
+				finish();
+				startActivity(i);
+					
+				}
+			});
 		    View submit = findViewById(R.id.signupsubmit);
 		    //submit.setOnClickListener(this);
 		    goallabel = (TextView) findViewById(R.id.textView4);
@@ -57,7 +81,9 @@ public class Request extends Activity
 		        ArrayAdapter adapter = new ArrayAdapter(this,
 		            android.R.layout.simple_spinner_dropdown_item, state_type);
 		        orgtypespinner.setAdapter(adapter);
-		        
+		        int orgpos = adapter.getPosition(currentUser.get("orgType")); 
+		      orgtypespinner.setSelection(orgpos);
+		      
 		    requesttypespinner = (Spinner) findViewById(R.id.spinner2);
 		        ArrayAdapter adapter1 = new ArrayAdapter(this,
 		            android.R.layout.simple_spinner_dropdown_item, state_request);
@@ -84,7 +110,7 @@ public class Request extends Activity
 
 		    });
 		    
-		    currentUser = ParseUser.getCurrentUser();
+		    
 		    Boolean hasAddress = currentUser.has("geoPoint");
 		    if(!hasAddress)
 		    {
@@ -113,6 +139,8 @@ public class Request extends Activity
 						requestData.put("description", description.getText().toString());
 						requestData.put("website", website.getText().toString());
 						requestData.put("geoPoint",currentUser.get("geoPoint"));
+						ParseFile imageFile = new ParseFile("image.png",(byte[]) b.get("imageData"));
+						requestData.put("orgImage",imageFile);
 						requestData.saveInBackground( new SaveCallback(){
 							public void done(ParseException e) {
 								if (e == null) {
@@ -136,6 +164,16 @@ public class Request extends Activity
 					}
 		    	}
 		    });
+		    if(b != null)
+			  {
+		    	username.setText(b.getString("orgName"));
+				orgtypespinner.setSelection(adapter.getPosition(b.getString("orgType")));
+				requesttypespinner.setSelection(adapter.getPosition(b.getString("requestType")));
+				goal.setText(b.getString("goal"));
+				whatfor.setText(b.getString("whatFor"));
+				description.setText(b.getString("description"));
+				website.setText(b.getString("website"));
+			  }
 	  }
 
 		

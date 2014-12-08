@@ -56,7 +56,7 @@ public class RequestObject {
 	}
 	public double getDistance(){
 		return distance;
-	}
+	}	
 	public void setOrgName(String orgName){
 		this.orgName = orgName;
 	}

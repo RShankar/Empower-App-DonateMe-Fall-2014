@@ -61,6 +61,7 @@ public class RequestAdapter extends ArrayAdapter<RequestObject> {
 					b.putDouble("dlong", request.geo.getLongitude());
 					b.putDouble("clat", geo.getLatitude());
 					b.putDouble("clong", geo.getLongitude());
+					b.putString("orgId", request.objectId);
 					i.putExtras(b);
 					context.startActivity(i);
 					

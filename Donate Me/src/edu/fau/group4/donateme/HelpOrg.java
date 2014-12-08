@@ -1,21 +1,34 @@
 package edu.fau.group4.donateme;
 
+import java.util.List;
+
 import com.google.android.gms.maps.model.LatLng;
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.GetDataCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class HelpOrg extends Activity implements OnClickListener
 {
 
 	ParseUser currentUser;
+	ImageView profile;
 	String orgName;
 	String whatFor;
 	String description;
@@ -27,6 +40,7 @@ public class HelpOrg extends Activity implements OnClickListener
 	TextView welcome;
 	TextView whatview;
 	TextView descview;
+	String orgId;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,13 +60,37 @@ public class HelpOrg extends Activity implements OnClickListener
 		whatview.setText(whatFor);		
 		descview = (TextView) findViewById(R.id.textView3);
 		descview.setText(description);
-		
+		profile = (ImageView) findViewById(R.id.imageView1);
+		orgId = b.getString("orgId");
 		 View help = findViewById(R.id.BTN_howToHelp);
 		 help.setOnClickListener(this);
 		 View websiteButton = findViewById(R.id.button4);
 		 websiteButton.setOnClickListener(this);
 		 View back = findViewById(R.id.settingsback);
 		 back.setOnClickListener(this);
+		 ParseQuery<ParseObject> imageQuery = ParseQuery.getQuery("request");
+		 imageQuery.whereEqualTo("objectId", orgId);
+		 imageQuery.getFirstInBackground(new GetCallback<ParseObject>() {
+			
+			
+			public void done(ParseObject image, ParseException arg1) {
+		if(image != null)
+		{		 ParseFile imageFile = (ParseFile)image.get("orgImage");
+		imageFile.getDataInBackground(new GetDataCallback() {
+			
+			@Override
+			public void done(byte[] imageData, ParseException arg1) {
+				// TODO Auto-generated method stub
+				if(arg1 == null){
+					Bitmap imageBitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+					profile.setImageBitmap(imageBitmap);
+				}
+			}
+		});
+		}
+		}
+		});
+		
     }
     
     @Override
@@ -75,6 +113,7 @@ public class HelpOrg extends Activity implements OnClickListener
 				b.putString("name", orgName);
 				b.putDouble("currentLat", clat);
 				b.putDouble("currentLong", clong);
+				b.putString("orgId", orgId);
 				i.putExtras(b);
 			    startActivity(i);
 				break;
