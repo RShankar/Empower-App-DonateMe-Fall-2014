@@ -9,6 +9,9 @@ import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.model.LatLng;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.GetDataCallback;
+import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -17,6 +20,8 @@ import com.parse.ParseException;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -37,6 +42,7 @@ GooglePlayServicesClient.OnConnectionFailedListener
 {
 	 Spinner type;
 	 Spinner distance;
+	 Spinner request;
 	 ListView lv;
 	 Context thisContext;
 	 Location mCurrentLocation;
@@ -44,9 +50,10 @@ GooglePlayServicesClient.OnConnectionFailedListener
 	 LocationClient mLocationClient;
 	 ArrayList<RequestObject> requestArray = new ArrayList<RequestObject>();
 	 ArrayAdapter<RequestObject> adapter;
-	 
+	 byte[] imageArray;
 	
 	 private String[] state_type = { "All Types", "Research", "For Profit", "Not For Profit"};
+	 private String[] state_request = { "All Requests", "Money","Clothes","Food"};
 	 private String[] state_distance = {"Any Distance", "5 Miles", "15 Miles", "50 Miles", "100 Miles"};
 	 
 	 TextView text_type;
@@ -92,6 +99,22 @@ GooglePlayServicesClient.OnConnectionFailedListener
 					
 				}	
 			 });
+	        request = (Spinner) findViewById(R.id.spinner3);
+	        ArrayAdapter requestadapter = new ArrayAdapter(this,
+	            android.R.layout.simple_spinner_dropdown_item, state_request);
+	        request.setAdapter(requestadapter);
+	        request.setOnItemSelectedListener(new OnItemSelectedListener(){
+	        	@Override
+				public void onItemSelected(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+	        		updateRequestList();
+				}
+				@Override
+				public void onNothingSelected(AdapterView<?> arg0) {
+					// TODO Auto-generated method stub
+					
+				}	
+			 });
 		   lv = (ListView) findViewById(R.id.listView1);
 		   thisContext = this;
 		   
@@ -115,30 +138,43 @@ GooglePlayServicesClient.OnConnectionFailedListener
 		}
 	  private void getRequests()
 	  {
-		  ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("request");
+		 ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("request");
 		  query.findInBackground(new FindCallback<ParseObject>() {
 
 			        
 			        public void done(List<ParseObject> objects, ParseException e) {
 			            if (e == null) {
 			             
-			                for (ParseObject requestsObject : objects) {
-			                	ParseGeoPoint geo = (ParseGeoPoint)requestsObject.get("geoPoint");
+			                for (final ParseObject requestsObject : objects) {
+			                	final ParseGeoPoint geo = (ParseGeoPoint)requestsObject.get("geoPoint");
+			                	{
+			                	ParseFile imageFile = (ParseFile)requestsObject.get("orgImage");
+			            		imageFile.getDataInBackground(new GetDataCallback() {
+			            			
+			            			@Override
+			            			public void done(byte[] imageData, ParseException arg1) {
+			            				// TODO Auto-generated method stub
+			            				if(arg1 == null){
+			            					imageArray = imageData;
+			            				}
+			            				double distance = getDistance(currentGeo,geo);
+					                	distance = Math.round(distance*100.0)/100.0;
+					                   requestArray.add(new RequestObject( requestsObject.get("orgName").toString(),
+					                		   requestsObject.get("orgType").toString(),
+					                		   requestsObject.get("requestType").toString(),
+					                		   requestsObject.get("whatFor").toString(),
+					                		   requestsObject.get("description").toString(),
+					                		   requestsObject.get("website").toString(),
+					                		   requestsObject.get("goal").toString(),requestsObject.getObjectId(),
+					                		   geo,distance,requestsObject.get("howToHelp").toString(),imageArray));
+					                   updateRequestList();
+			            			}
+			            		});
 			                	
-			                	double distance = getDistance(currentGeo,geo);
-			                	distance = Math.round(distance*100.0)/100.0;
-			                   requestArray.add(new RequestObject( requestsObject.get("orgName").toString(),
-			                		   requestsObject.get("orgType").toString(),
-			                		   requestsObject.get("requestType").toString(),
-			                		   requestsObject.get("whatFor").toString(),
-			                		   requestsObject.get("description").toString(),
-			                		   requestsObject.get("website").toString(),
-			                		   requestsObject.get("goal").toString(),requestsObject.getObjectId(),
-			                		   geo,distance,requestsObject.get("howToHelp").toString()));
 			                		
 			                }
-			               updateRequestList();
-			            } else {
+			              
+			            }} else {
 			            	ArrayList<String> strArr = new ArrayList<String>();
 			            	strArr.add("There was an error retrieving requests.\r\nPlease try again");
 			            	ArrayAdapter<String> stringAdapter = new ArrayAdapter<String>(thisContext, android.R.layout.simple_list_item_2,strArr);
@@ -146,18 +182,22 @@ GooglePlayServicesClient.OnConnectionFailedListener
 			            }
 			            
 			        }
-			    });
+		  });
 	  }
 	 public void updateRequestList()
 	 {
 		 String typefilter = type.getSelectedItem().toString();
          String distancefilter = distance.getSelectedItem().toString();
+         String requestfilter = request.getSelectedItem().toString();
          ArrayList<RequestObject> updatedArray = new ArrayList<RequestObject>();
          for(RequestObject req : requestArray)
          {
          	double orgdistance = req.distance;
-         	String orgtype = req.orgType; 
-         if(typefilter.contains(orgtype)||typefilter.contains("All Types")){
+         	String orgtype = req.orgType;
+         	String orgrequest = req.requestType;
+         if(typefilter.contains(orgtype)||typefilter.contains("All Types"))
+         {if(requestfilter.contains(orgrequest)|| requestfilter.contains("All Requests"))
+         {
      		if(distancefilter.contains("Any Distance")){
      			updatedArray.add(req);
      		}
@@ -191,7 +231,7 @@ GooglePlayServicesClient.OnConnectionFailedListener
      		}
      		}
          }
-         
+         }
          Collections.sort(updatedArray, new CustomComparator());
          adapter = new RequestAdapter(thisContext,R.layout.list,updatedArray,currentGeo);			                
 	 	lv.setAdapter(adapter);

@@ -41,6 +41,10 @@ public class HelpOrg extends Activity implements OnClickListener
 	TextView whatview;
 	TextView descview;
 	String orgId;
+	String howtohelptxt;
+	String orgType;
+	String requestType;
+	byte[] imageData;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,6 +58,10 @@ public class HelpOrg extends Activity implements OnClickListener
 		dlong = b.getDouble("dlong");
 		clat = b.getDouble("clat");
 		clong = b.getDouble("clong");
+		howtohelptxt = b.getString("howToHelp");
+		orgType = b.getString("orgType");
+		requestType = b.getString("requestType");
+		imageData = b.getByteArray("imageData");
 		welcome = (TextView) findViewById(R.id.welcometxtview);
 		welcome.setText(orgName);		
 		whatview = (TextView) findViewById(R.id.lasttxtview);
@@ -61,35 +69,16 @@ public class HelpOrg extends Activity implements OnClickListener
 		descview = (TextView) findViewById(R.id.textView3);
 		descview.setText(description);
 		profile = (ImageView) findViewById(R.id.imageView1);
-		orgId = b.getString("orgId");
+		orgId = b.getString("orgId");		
 		 View help = findViewById(R.id.BTN_howToHelp);
 		 help.setOnClickListener(this);
 		 View websiteButton = findViewById(R.id.button4);
 		 websiteButton.setOnClickListener(this);
 		 View back = findViewById(R.id.settingsback);
 		 back.setOnClickListener(this);
-		 ParseQuery<ParseObject> imageQuery = ParseQuery.getQuery("request");
-		 imageQuery.whereEqualTo("objectId", orgId);
-		 imageQuery.getFirstInBackground(new GetCallback<ParseObject>() {
+		 Bitmap imageBitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+		 profile.setImageBitmap(imageBitmap);
 			
-			
-			public void done(ParseObject image, ParseException arg1) {
-		if(image != null)
-		{		 ParseFile imageFile = (ParseFile)image.get("orgImage");
-		imageFile.getDataInBackground(new GetDataCallback() {
-			
-			@Override
-			public void done(byte[] imageData, ParseException arg1) {
-				// TODO Auto-generated method stub
-				if(arg1 == null){
-					Bitmap imageBitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
-					profile.setImageBitmap(imageBitmap);
-				}
-			}
-		});
-		}
-		}
-		});
 		
     }
     
@@ -107,6 +96,12 @@ public class HelpOrg extends Activity implements OnClickListener
 				boolean gpsProvided = true;
 				LatLng ll = new LatLng(dlat,dlong); //organization's gps if provided
 				Bundle b = new Bundle();
+				boolean isMonetary = false;
+				if(requestType.equals("Money"))
+				{
+					isMonetary = true;
+				}
+				b.putBoolean("isMonetary",isMonetary);
 				b.putBoolean("gpsProvided", gpsProvided);
 				b.putDouble("longitude", ll.longitude);
 				b.putDouble("latitude", ll.latitude);
@@ -114,6 +109,8 @@ public class HelpOrg extends Activity implements OnClickListener
 				b.putDouble("currentLat", clat);
 				b.putDouble("currentLong", clong);
 				b.putString("orgId", orgId);
+				b.putString("howToHelp", howtohelptxt);
+				b.putByteArray("imageArray", imageData);
 				i.putExtras(b);
 			    startActivity(i);
 				break;
@@ -124,8 +121,7 @@ public class HelpOrg extends Activity implements OnClickListener
 				startActivity(i);
 				break;
 			case R.id.settingsback:
-				i = new Intent(v.getContext(),Tab.class);
-				startActivity(i);
+				finish();
 				break;
 		}
 	}

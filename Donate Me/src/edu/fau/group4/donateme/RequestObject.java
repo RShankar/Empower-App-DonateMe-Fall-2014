@@ -15,7 +15,8 @@ public class RequestObject {
 	ParseGeoPoint geo;
 	double distance;
 	String howToHelp;
-	public RequestObject(String orgName, String orgType, String requestType, String whatFor, String description, String website, String goal, String objectId, ParseGeoPoint geo,double distance,String howToHelp){
+	byte[] imageArray;
+	public RequestObject(String orgName, String orgType, String requestType, String whatFor, String description, String website, String goal, String objectId, ParseGeoPoint geo,double distance,String howToHelp, byte[] imageArray){
 		super();
 		this.orgName = orgName;
 		this.orgType = orgType;
@@ -28,6 +29,7 @@ public class RequestObject {
 		this.geo = geo;
 		this.distance = distance;
 		this.howToHelp = howToHelp;
+		this.imageArray = imageArray;
 	}
 	public String getOrgName(){
 		return orgName;
@@ -62,6 +64,9 @@ public class RequestObject {
 	public String getHowToHelp(){
 		return howToHelp;
 	}
+	public byte[] getImageArray(){
+		return imageArray;
+	}
 	public void setOrgName(String orgName){
 		this.orgName = orgName;
 	}
@@ -94,5 +99,8 @@ public class RequestObject {
 	}
 	public void setHowToHelp(String howToHelp){
 		this.howToHelp = howToHelp;
+	}
+	public void setImageArray(byte[] imageArray){
+		this.imageArray = imageArray;
 	}
 }

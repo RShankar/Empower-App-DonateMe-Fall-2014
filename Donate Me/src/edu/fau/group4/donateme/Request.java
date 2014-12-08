@@ -41,6 +41,7 @@ public class Request extends Activity
 	 Spinner orgtypespinner;
 	 Spinner requesttypespinner;
 	 Bundle b;
+	 TextView howtohelptxtview;
 	 EditText howtohelpedit;
 	 String howtohelptxt;
 	  @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -55,6 +56,7 @@ public class Request extends Activity
 		  description = (EditText) findViewById(R.id.editText4);
 		  website = (EditText) findViewById(R.id.editText5);
 		  howtohelpedit = (EditText) findViewById(R.id.howtohelpedit);
+		  howtohelptxtview = (TextView) findViewById(R.id.howtohelptxtview);
 		  b = getIntent().getExtras();
 		  
 		    View add_media = findViewById(R.id.loginbutton);
@@ -102,11 +104,15 @@ public class Request extends Activity
 		    		{
 		    			goallabel.setVisibility(View.VISIBLE);
 		    			goal.setVisibility(View.VISIBLE);
+		    			howtohelpedit.setVisibility(View.INVISIBLE);
+		    			howtohelptxtview.setVisibility(View.INVISIBLE);
 		    		}
 		    		else
 		    		{
 		    			goallabel.setVisibility(View.INVISIBLE);
 		    			goal.setVisibility(View.INVISIBLE);
+		    			howtohelpedit.setVisibility(View.VISIBLE);
+		    			howtohelptxtview.setVisibility(View.VISIBLE);
 		    		}
 		    	}
 		    	@Override

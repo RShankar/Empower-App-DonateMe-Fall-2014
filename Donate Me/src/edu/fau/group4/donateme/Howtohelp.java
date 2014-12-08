@@ -20,6 +20,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.parse.ParseGeoPoint;
 
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.content.DialogInterface;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
@@ -42,21 +43,23 @@ public class Howtohelp extends Activity implements OnClickListener
 	double latitude;
 	Boolean gpsProvided;
 	String name;
+	String howtohelptxt;
 	Bundle b;
     @Override
     public void onCreate(Bundle savedInstanceState) 
     {
 		super.onCreate(savedInstanceState);
 		
-	    boolean isMonetary = true;
+	    
 	    b = getIntent().getExtras();
+	    boolean isMonetary = b.getBoolean("isMonetary");
 	    gpsProvided = b.getBoolean("gpsProvided");
 		longitude = b.getDouble("longitude");
 		latitude = b.getDouble("latitude");
 		name = b.getString("name");
 		clat = b.getDouble("currentLat");
 		clong = b.getDouble("currentLong");		
-		
+		howtohelptxt = b.getString("howToHelp");
 	    if(isMonetary)
 	    {
 	    	setContentView(R.layout.howtohelp);
@@ -72,7 +75,7 @@ public class Howtohelp extends Activity implements OnClickListener
 	    	launchPayPalButton.setLayoutParams(params);
 	    	launchPayPalButton.setOnClickListener(this);
 
-	    	((RelativeLayout) findViewById(R.id.mRlayout1)).addView(launchPayPalButton);
+	    	//((RelativeLayout) findViewById(R.id.mRlayout1)).addView(launchPayPalButton);
 			
 			// Set up click listeners for all the buttons	
 	    }
@@ -80,7 +83,8 @@ public class Howtohelp extends Activity implements OnClickListener
 	    {
 	    
 	    	setContentView(R.layout.non_monetary);
-	    	
+	    	TextView welcome = (TextView) findViewById(R.id.welcometxtview);
+	    	welcome.setText(howtohelptxt);
 	    	if(gpsProvided)
 	    	{
 		    	LatLng ll = new LatLng(latitude,longitude);		    	
@@ -92,9 +96,7 @@ public class Howtohelp extends Activity implements OnClickListener
 	public void onBack(View v) 
 	{
 
-		Intent i = new Intent(v.getContext(), HelpOrg.class);
-		i.putExtras(b);
-		startActivity(i);
+		finish();
 		
 	}
 	
