@@ -39,7 +39,8 @@
         android:layout_marginTop="19dp"
         android:background="@drawable/round_corners"
         android:text="@string/back"
-        android:textSize="30sp" />
+        android:textSize="30sp" 
+        android:onClick="onBack"/>
 
     <TextView
         android:id="@+id/welcometxtview"
