@@ -25,10 +25,16 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity implements OnClickListener{
 	 
+	
+	
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);	
+		MediaPlayer mPlayer = MediaPlayer.create(MainActivity.this, R.raw.metalica);
+		mPlayer.setLooping(true);
+		mPlayer.start();
 		
 	    View button1 = findViewById(R.id.loginbutton);
 	    button1.setOnClickListener(this); 
@@ -67,7 +73,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	  			intent = new Intent(MainActivity.this,
 	  					Welcomepage.class);
 	  			startActivity(intent);
-	  			finish();
+	  			//finish();
 	  		} else {
 	  			// If current user is NOT anonymous user
 	  			// Get current user data from Parse.com
@@ -76,13 +82,13 @@ public class MainActivity extends Activity implements OnClickListener{
 	  				// Send logged in users to Welcome.class
 	  				intent = new Intent(MainActivity.this, Tab.class);
 	  				startActivity(intent);
-	  				finish();
+	  				//finish();
 	  			} else {
 	  				// Send user to LoginSignupActivity.class
 	  				intent = new Intent(MainActivity.this,
 	  						Welcomepage.class);
 	  				startActivity(intent);
-	  				finish();
+	  				//finish();
 	  			}
 	  		}
 	         break;	          
