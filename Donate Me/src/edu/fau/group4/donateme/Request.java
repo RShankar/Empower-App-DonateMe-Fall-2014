@@ -49,6 +49,8 @@ public class Request extends Activity
 	 public void onCreate(Bundle savedInstanceState)
 	  {
 		  super.onCreate(savedInstanceState);
+		    View v = this.getWindow().getDecorView();
+		    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		  setContentView(R.layout.request);
 		  currentUser = ParseUser.getCurrentUser();
 		  username = (EditText) findViewById(R.id.username);

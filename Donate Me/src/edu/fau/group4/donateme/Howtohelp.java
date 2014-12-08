@@ -51,6 +51,8 @@ public class Howtohelp extends Activity implements OnClickListener
     public void onCreate(Bundle savedInstanceState) 
     {
 		super.onCreate(savedInstanceState);
+	    View v = this.getWindow().getDecorView();
+	    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		
 	    
 		 b = getIntent().getExtras();

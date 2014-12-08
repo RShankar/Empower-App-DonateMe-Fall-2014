@@ -11,6 +11,8 @@ public class Thanks extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+	    View v = this.getWindow().getDecorView();
+	    v.setBackgroundColor(GlobalLayout.backgroundColor);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.thanks);
     }

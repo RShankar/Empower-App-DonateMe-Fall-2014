@@ -48,6 +48,8 @@ public class HelpOrg extends Activity implements OnClickListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+	    View v = this.getWindow().getDecorView();
+	    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		setContentView(R.layout.orgpage);
 		Bundle b = getIntent().getExtras();
 		orgName = b.getString("orgName");

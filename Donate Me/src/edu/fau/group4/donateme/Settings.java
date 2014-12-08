@@ -30,6 +30,8 @@ public class Settings extends Activity{
 	 public void onCreate(Bundle savedInstanceState)
 	  {
 		  super.onCreate(savedInstanceState);
+		    View v = this.getWindow().getDecorView();
+		    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		  setContentView(R.layout.settings);
 		  
 		  currentUser = ParseUser.getCurrentUser();

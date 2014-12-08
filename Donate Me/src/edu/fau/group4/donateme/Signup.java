@@ -41,6 +41,8 @@ public class Signup extends Activity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+	    View v = this.getWindow().getDecorView();
+	    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		setContentView(R.layout.signup);
 		username = (EditText) findViewById(R.id.username);
 		password = (EditText) findViewById(R.id.password);

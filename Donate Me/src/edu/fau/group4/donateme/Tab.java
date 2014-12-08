@@ -25,6 +25,8 @@ public class Tab extends TabActivity
             public void onCreate(Bundle savedInstanceState)
             {
                     super.onCreate(savedInstanceState);
+            	    View v = this.getWindow().getDecorView();
+            	    v.setBackgroundColor(GlobalLayout.backgroundColor);
                     setContentView(R.layout.tab);
                     TextView welcome = (TextView) findViewById(R.id.welcometxtview);
                     currentUser = ParseUser.getCurrentUser();

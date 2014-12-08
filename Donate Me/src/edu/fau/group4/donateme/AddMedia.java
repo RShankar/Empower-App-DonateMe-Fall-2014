@@ -35,6 +35,8 @@ public class AddMedia extends Activity {
 	public void onCreate(Bundle savedInstanceState)
 	  {
 		  super.onCreate(savedInstanceState);
+		    View v = this.getWindow().getDecorView();
+		    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		  setContentView(R.layout.addmedia);
 		  b = getIntent().getExtras();
 		  savebtn = (Button) findViewById(R.id.savemedia);

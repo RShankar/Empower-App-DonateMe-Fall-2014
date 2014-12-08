@@ -62,6 +62,8 @@ GooglePlayServicesClient.OnConnectionFailedListener
 	 public void onCreate(Bundle savedInstanceState)
 	  {
 		  super.onCreate(savedInstanceState);
+		    View v = this.getWindow().getDecorView();
+		    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		  setContentView(R.layout.browse);
 		  mLocationClient = new LocationClient(this,this,this);
 		   mLocationClient.connect();

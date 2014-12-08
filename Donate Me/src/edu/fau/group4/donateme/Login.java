@@ -29,6 +29,8 @@ public class Login extends Activity{
 	@Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+	    View v = this.getWindow().getDecorView();
+	    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		setContentView(R.layout.login);	
 		
 		username = (EditText) findViewById(R.id.username);

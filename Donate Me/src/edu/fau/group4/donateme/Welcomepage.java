@@ -15,6 +15,8 @@ public class Welcomepage extends Activity implements OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+	    View v = this.getWindow().getDecorView();
+	    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		setContentView(R.layout.welcome);
 		// Set up click listeners for all the buttons		
 	    View button1 = findViewById(R.id.loginbutton);

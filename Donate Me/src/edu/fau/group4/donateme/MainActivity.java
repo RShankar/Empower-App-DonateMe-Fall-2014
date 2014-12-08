@@ -10,6 +10,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -30,7 +31,26 @@ public class MainActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_main);	
 		
 	    View button1 = findViewById(R.id.loginbutton);
-	    button1.setOnClickListener(this);   
+	    button1.setOnClickListener(this); 
+	    
+
+	    Intent i = getIntent();
+	    
+	    String s = i.getStringExtra("backColor");
+	    if(s == null) s = "#ffffff";
+	    GlobalLayout.backgroundColor = Color.parseColor(s) | 0xff2E8B57 ;
+	    
+	    float[] fa = i.getFloatArrayExtra("filterDistance");
+	    if(fa != null)
+		    for(int index = 0; index < fa.length; index++)
+		    {
+		    	GlobalLayout.filterDistance.add(fa[index]);
+		    }
+	 
+	    
+
+	    View v = this.getWindow().getDecorView();
+	    v.setBackgroundColor(GlobalLayout.backgroundColor);
 	     
     }  
 
