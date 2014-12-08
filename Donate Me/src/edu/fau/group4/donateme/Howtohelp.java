@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.parse.ParseGeoPoint;
 
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.content.DialogInterface;
@@ -44,22 +45,22 @@ public class Howtohelp extends Activity implements OnClickListener
 	Boolean gpsProvided;
 	String name;
 	String howtohelptxt;
-	Bundle b;
+	//Bundle b;
     @Override
     public void onCreate(Bundle savedInstanceState) 
     {
 		super.onCreate(savedInstanceState);
 		
 	    
-	    b = getIntent().getExtras();
-	    boolean isMonetary = b.getBoolean("isMonetary");
-	    gpsProvided = b.getBoolean("gpsProvided");
-		longitude = b.getDouble("longitude");
-		latitude = b.getDouble("latitude");
-		name = b.getString("name");
-		clat = b.getDouble("currentLat");
-		clong = b.getDouble("currentLong");		
-		howtohelptxt = b.getString("howToHelp");
+		Intent b = getIntent();//.getExtras();
+	    boolean isMonetary = b.getBooleanExtra("isMonetary",false);
+	    gpsProvided = b.getBooleanExtra("gpsProvided", false);
+		longitude = b.getDoubleExtra("longitude", 0.0);
+		latitude = b.getDoubleExtra("latitude", 0.0);
+		name = b.getStringExtra("name");
+		clat = b.getDoubleExtra("currentLat", 0.0);
+		clong = b.getDoubleExtra("currentLong", 0.0);		
+		howtohelptxt = b.getStringExtra("howToHelp");
 	    if(isMonetary)
 	    {
 	    	setContentView(R.layout.howtohelp);
@@ -75,7 +76,7 @@ public class Howtohelp extends Activity implements OnClickListener
 	    	launchPayPalButton.setLayoutParams(params);
 	    	launchPayPalButton.setOnClickListener(this);
 
-	    	//((RelativeLayout) findViewById(R.id.mRlayout1)).addView(launchPayPalButton);
+	    	((RelativeLayout) findViewById(R.id.mRlayout1)).addView(launchPayPalButton);
 			
 			// Set up click listeners for all the buttons	
 	    }
@@ -215,17 +216,30 @@ public class Howtohelp extends Activity implements OnClickListener
 	}
 
 	@Override
-	public void onClick(View v) {
-	// TODO Auto-generated method stub
-	PayPalPayment newPayment = new PayPalPayment();
-	char val[] = { '5', '0' };
-	BigDecimal obj_0 = new BigDecimal(val);
-	newPayment.setSubtotal(obj_0);
-	newPayment.setCurrencyType("USD");
-	newPayment.setRecipient("my@email.com");
-	newPayment.setMerchantName("My Company");
-	Intent paypalIntent = PayPal.getInstance().checkout(newPayment, this);
-	this.startActivityForResult(paypalIntent, 1);
+	public void onClick(View v) 
+	{
+		// TODO Auto-generated method stub
+		PayPalPayment newPayment = new PayPalPayment();
+		EditText et = (EditText) findViewById(R.id.amount);
+		
+		float val;
+		try
+		{
+			val = Float.parseFloat(et.getText().toString());
+			BigDecimal obj_0 = new BigDecimal(val);
+			newPayment.setSubtotal(obj_0);
+			newPayment.setCurrencyType("USD");
+			newPayment.setRecipient("my@email.com");
+			newPayment.setMerchantName(name);
+			Intent paypalIntent = PayPal.getInstance().checkout(newPayment, this);
+			this.startActivityForResult(paypalIntent, 1);
+		}
+		catch(Exception e)
+		{
+			
+			Toast.makeText(getBaseContext(), "you need to enter a value", Toast.LENGTH_SHORT).show();
+		}
+	
 	}
 
 	@SuppressWarnings("unused")

@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mRlayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2E8B57"
-    android:id="@+id/mRlayout1">"
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="500dp"
-        android:layout_height="150dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="14dp"
-        android:src="@drawable/visa_logo" />
+    android:background="#2E8B57" >
 
     <Button
         android:id="@+id/loginbutton"
@@ -28,26 +19,15 @@
         android:textSize="30sp"
         android:visibility="invisible" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="200dp"
-        android:layout_height="150dp"
-        android:layout_below="@+id/welcometxtview"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="138dp"
-        android:background="@drawable/round_corners2"
-        android:text="@string/donate"
-        android:textSize="30sp" />
-
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/welcometxtview"
         android:layout_marginLeft="20dp"
         android:layout_toRightOf="@+id/welcometxtview"
         android:ems="10"
-        android:inputType="textPersonName" >
+        android:inputType="numberDecimal" >
 
         <requestFocus />
     </EditText>
@@ -66,10 +46,17 @@
         android:id="@+id/welcometxtview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView1"
         android:layout_below="@+id/signupsubmit"
         android:layout_marginTop="104dp"
         android:text="@string/random_amount"
         android:textSize="30sp" />
+
+
+	<ImageView
+	    android:id="@+id/imageView1"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentBottom="true"
+	    android:src="@drawable/visa_logo" />
 
 </RelativeLayout>
