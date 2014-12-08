@@ -41,6 +41,8 @@ public class Request extends Activity
 	 Spinner orgtypespinner;
 	 Spinner requesttypespinner;
 	 Bundle b;
+	 EditText howtohelpedit;
+	 String howtohelptxt;
 	  @SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	 public void onCreate(Bundle savedInstanceState)
@@ -52,6 +54,7 @@ public class Request extends Activity
 		  whatfor = (EditText) findViewById(R.id.stateedit);
 		  description = (EditText) findViewById(R.id.editText4);
 		  website = (EditText) findViewById(R.id.editText5);
+		  howtohelpedit = (EditText) findViewById(R.id.howtohelpedit);
 		  b = getIntent().getExtras();
 		  
 		    View add_media = findViewById(R.id.loginbutton);
@@ -68,6 +71,7 @@ public class Request extends Activity
 				b.putString("whatFor", whatfor.getText().toString());
 				b.putString("description", description.getText().toString());
 				b.putString("website", website.getText().toString());
+				b.putString("howToHelp",howtohelpedit.getText().toString());
 				i.putExtras(b);
 				finish();
 				startActivity(i);
@@ -130,7 +134,8 @@ public class Request extends Activity
 		    		String whatfortxt = whatfor.getText().toString();
 		    		String descriptiontxt = description.getText().toString();
 		    		String websitetxt = website.getText().toString();
-		    		if (usernametxt.equals("") || whatfortxt.equals("") || descriptiontxt.equals("") || websitetxt.equals("")) {
+		    		String howtohelptxt = howtohelpedit.getText().toString();
+		    		if (usernametxt.equals("") || whatfortxt.equals("") || descriptiontxt.equals("") || websitetxt.equals("") || howtohelptxt.equals("")) {
 						Toast.makeText(getApplicationContext(),
 								"Please complete the request form",
 								Toast.LENGTH_LONG).show();
@@ -147,6 +152,7 @@ public class Request extends Activity
 						requestData.put("description", descriptiontxt);
 						requestData.put("website", websitetxt);
 						requestData.put("geoPoint",currentUser.get("geoPoint"));
+						requestData.put("howToHelp",howtohelptxt);
 						byte[] imageBytes = (byte[]) b.get("imageData");
 						if(imageBytes.length > 0)
 						{
@@ -178,7 +184,7 @@ public class Request extends Activity
 		    		else
 		    		{
 		    			Toast.makeText(getApplicationContext(),
-								"Please submit a valid url.", Toast.LENGTH_LONG)
+								"Please submit a valid url. E.g. http://google.com", Toast.LENGTH_LONG)
 								.show();
 		    		}
 		    	}}
@@ -192,6 +198,7 @@ public class Request extends Activity
 				whatfor.setText(b.getString("whatFor"));
 				description.setText(b.getString("description"));
 				website.setText(b.getString("website"));
+				howtohelpedit.setText(b.getString("howToHelp"));
 			  }
 	  }
 

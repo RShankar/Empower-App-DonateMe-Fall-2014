@@ -8,8 +8,7 @@
     <TextView
         android:id="@+id/welcometxtview"
         android:layout_width="fill_parent"
-        android:layout_height="300dp"
-        android:layout_above="@+id/logoutbutton"
+        android:layout_height="600dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="35dp"

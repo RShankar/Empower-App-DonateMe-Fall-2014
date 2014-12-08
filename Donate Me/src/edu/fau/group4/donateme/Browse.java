@@ -134,7 +134,7 @@ GooglePlayServicesClient.OnConnectionFailedListener
 			                		   requestsObject.get("description").toString(),
 			                		   requestsObject.get("website").toString(),
 			                		   requestsObject.get("goal").toString(),requestsObject.getObjectId(),
-			                		   geo,distance));
+			                		   geo,distance,requestsObject.get("howToHelp").toString()));
 			                		
 			                }
 			               updateRequestList();

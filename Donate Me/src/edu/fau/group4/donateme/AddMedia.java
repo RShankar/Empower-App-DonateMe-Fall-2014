@@ -27,7 +27,7 @@ public class AddMedia extends Activity {
 	ImageView avatar;
 	Button savebtn;
 	private Bitmap bmp;
-	private static final int SELECT_PICTURE = 1;
+	private static final int SELECT_PICTURE = 42;
 	private String selectedImagePath;
 	ByteArrayOutputStream imageStream = new ByteArrayOutputStream();
 	Bundle b;
@@ -54,24 +54,28 @@ public class AddMedia extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-				startActivityForResult(i, SELECT_PICTURE);
+				Intent i = new Intent();
+				i.setType("image/*");
+				i.setAction(Intent.ACTION_OPEN_DOCUMENT);
+				startActivityForResult(Intent.createChooser(i,
+                        "Select Picture"), SELECT_PICTURE);
 			}
 		});
 	  }
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    if (resultCode == RESULT_OK) {
 	        if (requestCode == SELECT_PICTURE) {
-	            Uri selectedImageUri = data.getData();
+	        	Uri selectedImageUri = data.getData();
 	            if (Build.VERSION.SDK_INT < 19) {
 	                selectedImagePath = getPath(selectedImageUri);
 	                Bitmap bitmap = BitmapFactory.decodeFile(selectedImagePath);
 	              bitmap.compress(Bitmap.CompressFormat.PNG, 100, imageStream);
 	              imageData = imageStream.toByteArray();
-	              if(imageData.length > 1000000)
-	              {
+	              int length = imageData.length;
+	  	            if(length > 10000000)
+		              {
 	            	  Toast.makeText(getApplicationContext(),
-	  						"Image must be smaller than 1mb",
+	  						"Image must be smaller than 10mb",
 	  						Toast.LENGTH_LONG).show();
 	            	  Arrays.fill(imageData, (byte)0);
 	              }
@@ -85,10 +89,11 @@ public class AddMedia extends Activity {
 	                    parcelFileDescriptor.close();
 	                    image.compress(Bitmap.CompressFormat.PNG, 100, imageStream);
 	  	              imageData = imageStream.toByteArray();
-	  	            if(imageData.length > 1000000)
+	  	              int length = imageData.length;
+	  	            if(length > 10000000)
 		              {
 		            	  Toast.makeText(getApplicationContext(),
-		  						"Image must be smaller than 1mb",
+		  						"Image must be smaller than 10mb",
 		  						Toast.LENGTH_LONG).show();
 		            	  Arrays.fill(imageData, (byte)0);
 		              }
