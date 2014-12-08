@@ -32,27 +32,28 @@
 	    
 
        <activity
+            android:screenOrientation="portrait"
             android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>        		
         </activity>
-		<activity android:name=".Welcomepage" />  
-        <activity android:name=".Login" />
-        <activity android:name=".Signup" />
-        <activity android:name=".Settings" />
-        <activity android:name=".Tab" />
-        <activity android:name=".Browse" />
-        <activity android:name=".Request" />
-        <activity android:name=".Howtohelp" />
-        <activity android:name=".HelpOrg" />
-        <activity android:name=".AddMedia" />
-        <activity android:name=".Thanks" 
-                  android:theme="@android:style/Theme.Dialog"/>
-        <activity android:name=".AndroidTabLayoutActivity"/>
+		<activity android:screenOrientation="portrait" android:name=".Welcomepage"  />  
+        <activity android:screenOrientation="portrait" android:name=".Login" />
+        <activity android:screenOrientation="portrait" android:name=".Signup" />
+        <activity android:screenOrientation="portrait" android:name=".Settings" />
+        <activity android:screenOrientation="portrait" android:name=".Tab" />
+        <activity android:screenOrientation="portrait" android:name=".Browse" />
+        <activity android:screenOrientation="portrait" android:name=".Request" />
+        <activity android:screenOrientation="portrait" android:name=".Howtohelp" />
+        <activity android:screenOrientation="portrait" android:name=".HelpOrg" />
+        <activity android:screenOrientation="portrait" android:name=".AddMedia" />
+        <activity android:screenOrientation="portrait" android:name=".Thanks" 
+                  android:theme="@android:style/Theme.Dialog"/>        
         <activity android:name=".Paypal"/>            		
 		<activity
+		 android:screenOrientation="portrait"
    		 android:name="com.paypal.android.MEP.PayPalActivity"
    		 android:configChanges="keyboardHidden|orientation"
     	 android:theme="@android:style/Theme.Translucent.NoTitleBar" />
