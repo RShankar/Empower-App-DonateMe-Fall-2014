@@ -36,11 +36,14 @@ public class Settings extends Activity{
 		  isOrg = currentUser.get("isOrg").toString();
 		  
 		  addressedit = (EditText) findViewById(R.id.addressedit);
-		  addressedit.setText(currentUser.get("address").toString());
+		  
 		  cityedit = (EditText) findViewById(R.id.cityedit);
-		  cityedit.setText(currentUser.get("city").toString());
 		  stateedit = (EditText) findViewById(R.id.stateedit);
+		  if(isOrg.equals("true")){
 		  stateedit.setText(currentUser.get("state").toString());
+		  cityedit.setText(currentUser.get("city").toString());
+		  addressedit.setText(currentUser.get("address").toString());
+		  }
 		  TextView addresstxtview = (TextView) findViewById(R.id.addresstxtview);
 		  TextView citytxtview = (TextView) findViewById(R.id.citytxtview);
 		  TextView statetxtview = (TextView) findViewById(R.id.statetxtview);
