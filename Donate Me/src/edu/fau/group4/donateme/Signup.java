@@ -137,6 +137,9 @@ public class Signup extends Activity{
 				user.setEmail(emailtxt); 
 				user.put("firstName", firstnametxt);
 				user.put("lastName", lastnametxt);
+				user.put("address", "");
+				user.put("city", "");
+				user.put("state", "");
 				if(repeatChkBx.isChecked())
 				{
 					user.put("isOrg", "true");

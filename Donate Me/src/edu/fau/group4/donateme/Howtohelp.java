@@ -45,6 +45,7 @@ public class Howtohelp extends Activity implements OnClickListener
 	Boolean gpsProvided;
 	String name;
 	String howtohelptxt;
+	Bundle b;
 	//Bundle b;
     @Override
     public void onCreate(Bundle savedInstanceState) 
@@ -52,15 +53,15 @@ public class Howtohelp extends Activity implements OnClickListener
 		super.onCreate(savedInstanceState);
 		
 	    
-		Intent b = getIntent();//.getExtras();
-	    boolean isMonetary = b.getBooleanExtra("isMonetary",false);
-	    gpsProvided = b.getBooleanExtra("gpsProvided", false);
-		longitude = b.getDoubleExtra("longitude", 0.0);
-		latitude = b.getDoubleExtra("latitude", 0.0);
-		name = b.getStringExtra("name");
-		clat = b.getDoubleExtra("currentLat", 0.0);
-		clong = b.getDoubleExtra("currentLong", 0.0);		
-		howtohelptxt = b.getStringExtra("howToHelp");
+		 b = getIntent().getExtras();
+		    boolean isMonetary = b.getBoolean("isMonetary");
+		    gpsProvided = b.getBoolean("gpsProvided");
+			longitude = b.getDouble("longitude");
+			latitude = b.getDouble("latitude");
+			name = b.getString("name");
+			clat = b.getDouble("currentLat");
+			clong = b.getDouble("currentLong");		
+			howtohelptxt = b.getString("howToHelp");
 	    if(isMonetary)
 	    {
 	    	setContentView(R.layout.howtohelp);
