@@ -7,14 +7,14 @@
 
     <Button
         android:id="@+id/settingsback"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
         android:layout_marginLeft="19dp"
         android:layout_marginTop="19dp"
         android:background="@drawable/round_corners"
         android:text="@string/back"
         android:onClick="onBack"
-        android:textSize="20sp" />
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/button2"
@@ -31,33 +31,6 @@
         android:textSize="20sp"
         android:visibility="invisible" />
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
-        android:src="@drawable/avatar" />
-
-    <TextView
-        android:id="@+id/lasttxtview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/welcometxtview"
-        android:layout_centerHorizontal="true"
-        android:text="What is your donation for?"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lasttxtview"
-        android:layout_centerHorizontal="true"
-        android:text="A little about the organization:"
-        android:textSize="20sp" />
-
     <TextView
         android:id="@+id/welcometxtview"
         android:layout_width="wrap_content"
@@ -67,24 +40,53 @@
         android:text="@string/organization_name"
         android:textSize="30sp" />
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_below="@+id/settingsback"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:src="@drawable/avatar" />
+
     <Button
         android:id="@+id/button4"
         android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_alignLeft="@+id/BTN_howToHelp"
-        android:layout_below="@+id/textView3"
+        android:layout_height="80dp"
+        android:layout_above="@+id/BTN_howToHelp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="22dp"
         android:background="@drawable/round_corners2"
         android:text="@string/website"
-        android:textSize="20sp" />
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/BTN_howToHelp"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button4"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/round_corners3"
         android:text="@string/how_to_help"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lasttxtview"
+        android:layout_centerHorizontal="true"
+        android:text="A little about the organization:"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/lasttxtview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcometxtview"
+        android:layout_centerHorizontal="true"
+        android:text="What is your donation for?"
         android:textSize="20sp" />
 
 </RelativeLayout>
