@@ -31,6 +31,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.widget.TextView;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -193,7 +194,9 @@ GooglePlayServicesClient.OnConnectionFailedListener
 			            				if(arg1 == null){
 			            					imageArray = imageData;
 			            				}
-			            				double distance = getDistance(currentGeo,geo);
+			            				double distance;
+			            				if(currentGeo != null) distance = getDistance(currentGeo,geo);
+			            				else distance = Double.POSITIVE_INFINITY;
 					                	distance = Math.round(distance*100.0)/100.0;
 					                   requestArray.add(new RequestObject( requestsObject.get("orgName").toString(),
 					                		   requestsObject.get("orgType").toString(),
@@ -228,9 +231,10 @@ GooglePlayServicesClient.OnConnectionFailedListener
          ArrayList<RequestObject> updatedArray = new ArrayList<RequestObject>();
          for(RequestObject req : requestArray)
          {
-         	double orgdistance = req.distance;
-         	String orgtype = req.orgType;
-         	String orgrequest = req.requestType;
+        	 String orgtype = req.orgType;
+        	 String orgrequest = req.requestType;
+         	 if(orgrequest.equals("Money") && currentGeo == null) req.distance = 0.0f;
+         	 double orgdistance = req.distance;
          if(typefilter.contains(orgtype)||typefilter.contains("All Types"))
          {if(requestfilter.contains(orgrequest)|| requestfilter.contains("All Requests"))
          {
@@ -290,7 +294,7 @@ GooglePlayServicesClient.OnConnectionFailedListener
 		  else
 		  {
 			  Toast.makeText(getBaseContext(), "no valid gps", Toast.LENGTH_SHORT).show();
-			  currentGeo = new ParseGeoPoint(0,0);
+			  currentGeo = null;//new ParseGeoPoint(0,0);
 		  }
 		  getRequests();
 	}

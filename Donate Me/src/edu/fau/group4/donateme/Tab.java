@@ -30,25 +30,29 @@ public class Tab extends TabActivity
          String welcomeName = "Welcome ";
          
          private MusicService mp3Service;
-     	private ServiceConnection mp3PlayerServiceConnection = new ServiceConnection() {
+     	private ServiceConnection mp3PlayerServiceConnection = new ServiceConnection() 
+     	{
      	        
-     	        public void onServiceConnected(ComponentName arg0, IBinder service) {
+     	        public void onServiceConnected(ComponentName arg0, IBinder service) 
+     	        {
      	            LocalBinder binder = (LocalBinder) service;
      	        	mp3Service = binder.getService();
      	        	mp3Service.playSong(getBaseContext());
      	        }
      	 
      	        @Override
-     	        public void onServiceDisconnected(ComponentName arg0) {
+     	        public void onServiceDisconnected(ComponentName arg0) 
+     	        {
      	 
      	        }
      	 
-     	    };
-     	    @Override
-     	    protected void onDestroy() {
-     	        unbindService(this.mp3PlayerServiceConnection);
-     	        super.onDestroy();
-     	    }
+ 	    };
+ 	    @Override
+ 	    protected void onDestroy() 
+ 	    {
+ 	        unbindService(this.mp3PlayerServiceConnection);
+ 	        super.onDestroy();
+ 	    }
      	
          
 			@Override
@@ -60,11 +64,6 @@ public class Tab extends TabActivity
         	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
             	    v.setBackgroundColor(GlobalLayout.backgroundColor);
                     setContentView(R.layout.tab);
-                    
-                    startService(new Intent(this, MusicService.class));
-        	        Intent connectionIntent = new Intent(this, MusicService.class);
-        	        bindService(connectionIntent, mp3PlayerServiceConnection,
-        	                Context.BIND_AUTO_CREATE);
                     
                     TextView welcome = (TextView) findViewById(R.id.welcometxtview);
                     currentUser = ParseUser.getCurrentUser();
