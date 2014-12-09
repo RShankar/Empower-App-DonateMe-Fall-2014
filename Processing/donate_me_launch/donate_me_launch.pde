@@ -56,7 +56,7 @@ void setup()
   filterType.add("monetary");
   filterType.add("non-monetary");
   
-  soundEnabled = false;
+  soundEnabled = true;
   
   headerFontSize = "70sp";
   labelFontSize = "30sp";
