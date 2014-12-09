@@ -94,7 +94,7 @@ public class RequestAdapter extends ArrayAdapter<RequestObject> {
     		TextView label5 = new TextView(context);
     		label5.setId(7);
     		
-    		if(request.imageArray != null)
+    		if(request.imageArray.length > 10 )
     		{
     		Bitmap imageBitmap = BitmapFactory.decodeByteArray(request.imageArray, 0, request.imageArray.length);
     		imageBitmap = Bitmap.createScaledBitmap(imageBitmap,300,300,true);

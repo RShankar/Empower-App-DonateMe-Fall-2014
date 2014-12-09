@@ -175,7 +175,7 @@ public class Request extends Activity
 		    		String websitetxt = website.getText().toString();
 		    		String howtohelptxt = howtohelpedit.getText().toString();
 		    		String requesttypetxt = requesttypespinner.getSelectedItem().toString();
-		    		if (usernametxt.equals("") || whatfortxt.equals("") || descriptiontxt.equals("") || websitetxt.equals("") || howtohelptxt.equals("")) {
+		    		if (usernametxt.equals("") || whatfortxt.equals("") || descriptiontxt.equals("") || websitetxt.equals("")  || ( howtohelptxt.equals("") && !requesttypetxt.equals("Money"))) {
 						Toast.makeText(getApplicationContext(),
 								"Please complete the request form",
 								Toast.LENGTH_LONG).show();
@@ -209,12 +209,17 @@ public class Request extends Activity
 						{
 							requestData.put("paypalEmail",currentUser.get("paypalEmail"));
 						}
-						byte[] imageBytes = (byte[]) b.get("imageData");
-						if(imageBytes.length > 0)
+						byte[] imageBytes = null;
+						if(b != null)
 						{
+						imageBytes = (byte[]) b.get("imageData");
+						
+						}if(imageBytes == null)
+						{
+							imageBytes = new byte[] {0};
+						}
 						ParseFile imageFile = new ParseFile("image.png",imageBytes);
 						requestData.put("orgImage",imageFile);
-						}
 						requestData.saveInBackground( new SaveCallback(){
 							public void done(ParseException e) {
 								if (e == null) {

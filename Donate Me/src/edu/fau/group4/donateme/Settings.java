@@ -86,6 +86,7 @@ public class Settings extends Activity{
 		  TextView statetxtview = (TextView) findViewById(R.id.statetxtview);
 		  paypaledit = (EditText) findViewById(R.id.paypalemailedit);
 		  paypal = (TextView) findViewById(R.id.paypaltxtview);
+		  if(currentUser.has("paypalEmail"))paypaledit.setText(currentUser.getInt("paypalEmail"));
 		  Button save = (Button) findViewById(R.id.settingsave);
 		  muteIcon = (ImageView) findViewById(R.id.muteimageview);
 		  muteIcon.setOnClickListener(new OnClickListener() {

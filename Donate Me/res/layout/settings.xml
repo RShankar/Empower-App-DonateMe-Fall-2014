@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:visibility="invisible" >
+    android:layout_height="match_parent" >
 
     <TextView
         android:id="@+id/settingstxtview"
@@ -111,24 +110,28 @@
         android:text="Save"
         android:visibility="invisible" />
 
-    <TextView
-        android:id="@+id/paypaltxtview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/paypalemailedit"
-        android:layout_toRightOf="@+id/addresstxtview"
-        android:text="PayPal Email:"
-        android:textSize="26sp"
-        android:visibility="invisible" />
-
     <EditText
         android:id="@+id/paypalemailedit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/settingsave"
-        android:layout_marginBottom="40dp"
-        android:layout_toLeftOf="@+id/logoutButton"
+        android:layout_marginBottom="51dp"
+        android:layout_toRightOf="@+id/settingstxtview"
         android:ems="10"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:visibility="invisible" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/paypaltxtview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/paypalemailedit"
+        android:layout_toRightOf="@+id/statetxtview"
+        android:text="PayPal Email:"
+        android:textSize="26sp"
+        android:visibility="invisible" />
 
 </RelativeLayout>

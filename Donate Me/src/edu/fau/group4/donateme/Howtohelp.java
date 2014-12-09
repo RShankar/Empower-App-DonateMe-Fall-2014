@@ -28,6 +28,8 @@ import android.widget.TextView;
 import android.content.DialogInterface;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -57,6 +59,10 @@ public class Howtohelp extends Activity implements OnClickListener
 	EditText paypal;
 	double paypalAmount;
 	String paypalEmail;
+
+	private ProgressDialog _progressDialog;
+	private boolean _paypalLibraryInit = false;
+	private boolean _progressDialogRunning = false;
 	final static public int PAYPAL_BUTTON_ID = 10001;
 	private MusicService mp3Service;
 	private ServiceConnection mp3PlayerServiceConnection = new ServiceConnection() {
@@ -99,6 +105,7 @@ public class Howtohelp extends Activity implements OnClickListener
 			clat = b.getDouble("currentLat");
 			clong = b.getDouble("currentLong");		
 			howtohelptxt = b.getString("howToHelp");
+			paypalEmail = b.getString("paypalEmail");
 	    if(isMonetary)
 	    {
 	    	setContentView(R.layout.howtohelp);
@@ -108,7 +115,20 @@ public class Howtohelp extends Activity implements OnClickListener
 	    	ppObj.setFeesPayer(PayPal.FEEPAYER_SENDER);
 	    	paypal = (EditText) findViewById(R.id.amount);
 	    	paypalAmount = Double.parseDouble(paypal.toString());
-	    	showPayPalButton();
+	    	if (_paypalLibraryInit) {
+				showPayPalButton();
+			} else {
+				// Display a progress dialog to the user and start checking for when
+				// the initialization is completed
+				_progressDialog = new ProgressDialog(this);
+				_progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+				_progressDialog.setMessage("Loading PayPal Payment Library");
+				_progressDialog.setCancelable(false);
+				_progressDialog.show();
+				_progressDialogRunning = true;
+				Thread newThread = new Thread(checkforPayPalInitRunnable);
+				newThread.start();
+			}
 	    }
 	    else
 	    {
@@ -125,6 +145,109 @@ public class Howtohelp extends Activity implements OnClickListener
 	    }
     }
    
+    final Runnable checkforPayPalInitRunnable = new Runnable() {
+		public void run() {
+			checkForPayPalLibraryInit();
+		}
+	};
+
+	// This method is called if the Review page is being loaded but the PayPal
+	// Library is not
+	// initialized yet.
+	private void checkForPayPalLibraryInit() {
+		// Loop as long as the library is not initialized
+		
+		while (_paypalLibraryInit == false) {
+			try {
+				// wait 1/2 a second then check again
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// Show an error to the user
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setMessage("Error initializing PayPal Library")
+						.setCancelable(false)
+						.setPositiveButton("OK",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int id) {
+										// Could do anything here to handle the
+										// error
+									}
+								});
+				AlertDialog alert = builder.create();
+				alert.show();
+			}
+		}
+		// If we got here, it means the library is initialized.
+		// So, add the "Pay with PayPal" button to the screen
+		runOnUiThread(showPayPalButtonRunnable);
+	}
+
+	final Runnable showPayPalButtonRunnable = new Runnable() {
+		public void run() {
+			showPayPalButton();
+		}
+	};
+//	  The initLibrary function takes care of all the basic Library
+//	  initialization.
+//	  
+//	  @return The return will be true if the initialization was successful and
+//	          false if
+
+    
+    
+    public void PayPalActivityResult(int requestCode, int resultCode, Intent intent) {
+    	switch (resultCode) {
+    	// The payment succeeded
+    	case Activity.RESULT_OK:
+    	String payKey = intent.getStringExtra(PayPalActivity.EXTRA_PAY_KEY);
+    	this.paymentSucceeded(payKey);
+    	break;
+
+    	// The payment was canceled
+    	case Activity.RESULT_CANCELED:
+    	this.paymentCanceled();
+    	break;
+
+    	// The payment failed, get the error from the EXTRA_ERROR_ID and EXTRA_ERROR_MESSAGE
+    	case PayPalActivity.RESULT_FAILURE:
+    	String errorID = intent.getStringExtra(PayPalActivity.EXTRA_ERROR_ID);
+    	String errorMessage = intent.getStringExtra(PayPalActivity.EXTRA_ERROR_MESSAGE);
+    	this.paymentFailed(errorID, errorMessage);
+    	}
+    	}
+
+	public void paymentFailed(String errorID, String errorMessage) {
+		// We could let the user know the payment failed here
+		loadResultsPage();
+		((TextView) findViewById(R.id.welcometxtview)).setText("Failure!");
+		((TextView) findViewById(R.id.lasttxtview))
+				.setText("We're sorry, but your payment failed.\r\nError: "+errorMessage+"\r\nError ID: "+errorID);
+	}
+
+	public void paymentCanceled() {
+		// We could tell the user that the payment was canceled
+		loadResultsPage();
+		((TextView) findViewById(R.id.welcometxtview)).setText("Canceled.");
+		((TextView) findViewById(R.id.lasttxtview))
+				.setText("Your payment has been canceled.");
+		
+	}
+	
+	public void loadResultsPage() {
+		setContentView(R.layout.thanks);
+
+	}
+
+	public void paymentSucceeded(String payKey) {
+		// We could show the transactionID to the user
+		loadResultsPage();
+		
+		((TextView) findViewById(R.id.welcometxtview)).setText("Success!");
+		
+			((TextView) findViewById(R.id.lasttxtview))
+					.setText("Thanks for your donation!");
+	}
     private void showPayPalButton() {
 
     	// Generate the PayPal checkout button and save it for later use
@@ -147,6 +270,8 @@ public class Howtohelp extends Activity implements OnClickListener
     
     public void PayPalButtonClick(View arg0) {
     	// Create a basic PayPal payment
+    	if(paypalAmount > 0)
+    	{
     	PayPalPayment payment = new PayPalPayment();
 
     	// Set the currency type
@@ -156,7 +281,7 @@ public class Howtohelp extends Activity implements OnClickListener
     	payment.setRecipient(paypalEmail);
 
     	// Set the payment amount, excluding tax and shipping costs
-    	payment.setSubtotal(new BigDecimal(_theSubtotal));
+    	payment.setSubtotal(new BigDecimal(paypalAmount));
 
     	// Set the payment type--his can be PAYMENT_TYPE_GOODS,
     	// PAYMENT_TYPE_SERVICE, PAYMENT_TYPE_PERSONAL, or PAYMENT_TYPE_NONE
@@ -166,9 +291,15 @@ public class Howtohelp extends Activity implements OnClickListener
     	// ArrayList of PayPalInvoiceItem that you can fill out.
     	// These are not required for any transaction.
     	PayPalInvoiceData invoice = new PayPalInvoiceData();
-
     	// Set the tax amount
-    	invoice.setTax(new BigDecimal(_taxAmount));
+    	invoice.setTax(new BigDecimal(0));
+    	}
+    	else
+    	{
+    		Toast.makeText(getApplicationContext(),
+					"Please enter a valid amount", Toast.LENGTH_LONG)
+					.show();
+    	}
     	}
 	public void onBack(View v) 
 	{

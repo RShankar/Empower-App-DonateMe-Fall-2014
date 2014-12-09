@@ -185,7 +185,8 @@ GooglePlayServicesClient.OnConnectionFailedListener
 			                for (final ParseObject requestsObject : objects) {
 			                	final ParseGeoPoint geo = (ParseGeoPoint)requestsObject.get("geoPoint");
 			                	{
-			                	ParseFile imageFile = (ParseFile)requestsObject.get("orgImage");
+			                	
+			                		ParseFile imageFile = (ParseFile)requestsObject.get("orgImage");
 			            		imageFile.getDataInBackground(new GetDataCallback() {
 			            			
 			            			@Override

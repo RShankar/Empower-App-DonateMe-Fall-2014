@@ -26,7 +26,8 @@
         android:layout_marginLeft="20dp"
         android:layout_toRightOf="@+id/welcometxtview"
         android:ems="10"
-        android:inputType="numberDecimal" >
+        android:inputType="numberDecimal"
+        android:text="0.0" >
 
         <requestFocus />
     </EditText>
