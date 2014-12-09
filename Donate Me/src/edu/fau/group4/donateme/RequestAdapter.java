@@ -42,7 +42,6 @@ public class RequestAdapter extends ArrayAdapter<RequestObject> {
     		LayoutInflater inflater = ((Activity) context).getLayoutInflater();
     		row = inflater.inflate(layoutResourceId,parent,false);
     		final RequestObject request = data.get(position);
-    		final String requestString = request.requestType;
     		linearMain = (RelativeLayout) row.findViewById(R.id.linearMain);
     		linearMain.setOnClickListener(new View.OnClickListener() {
 

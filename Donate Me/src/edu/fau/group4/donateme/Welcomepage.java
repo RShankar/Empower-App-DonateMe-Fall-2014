@@ -1,9 +1,5 @@
 package edu.fau.group4.donateme;
 
-
-import com.parse.Parse;
-import com.parse.ParseObject;
-
 import edu.fau.group4.donateme.MusicService.LocalBinder;
 
 import android.app.Activity;
@@ -12,11 +8,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Color;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class Welcomepage extends Activity implements OnClickListener{
 
@@ -50,6 +47,10 @@ public class Welcomepage extends Activity implements OnClickListener{
         bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
 	    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		setContentView(R.layout.welcome);
+		
+		((Button) findViewById(R.id.loginbutton)).setTextSize(GlobalLayout.buttonFontSize);
+		((Button) findViewById(R.id.signupsubmit)).setTextSize(GlobalLayout.buttonFontSize);
+	    ((TextView) findViewById(R.id.welcometxtview)).setTextSize(GlobalLayout.labelFontSize);
 		
 		Intent i = getIntent();
 		
@@ -88,11 +89,5 @@ public class Welcomepage extends Activity implements OnClickListener{
 	         startActivity(i1);
 	         break;	      
 		}
-	}
-
-
-	private Intent intent(Welcomepage welcomepage, Class<Login> class1) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

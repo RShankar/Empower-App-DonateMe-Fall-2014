@@ -13,8 +13,7 @@
         android:layout_marginRight="19dp"
         android:layout_marginTop="19dp"
         android:background="@drawable/round_corners1"
-        android:text="Settings"
-        android:textSize="30sp" />
+        android:text="Settings"/>
 
     <TabHost
         android:id="@android:id/tabhost"
@@ -70,7 +69,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/logoutbutton"
-        android:text="TextView"
-        android:textSize="30sp" />
+        android:text="TextView"/>
 
 </RelativeLayout>

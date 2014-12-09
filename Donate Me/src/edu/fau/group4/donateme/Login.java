@@ -3,7 +3,6 @@ package edu.fau.group4.donateme;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.SignUpCallback;
 
 import edu.fau.group4.donateme.MusicService.LocalBinder;
 
@@ -17,12 +16,7 @@ import android.os.IBinder;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 public class Login extends Activity{

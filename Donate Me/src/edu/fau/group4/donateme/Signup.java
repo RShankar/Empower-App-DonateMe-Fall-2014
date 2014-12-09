@@ -1,6 +1,5 @@
 package edu.fau.group4.donateme;
 
-import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -69,13 +68,18 @@ public class Signup extends Activity{
 	
 	
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) 
+    {
 		super.onCreate(savedInstanceState);
 	    View v = this.getWindow().getDecorView();
 	    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		setContentView(R.layout.signup);
-		  Intent connectionIntent = new Intent(this, MusicService.class);
-	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
+		
+	    ((Button) findViewById(R.id.loginbutton)).setTextSize(GlobalLayout.buttonFontSize);
+	    ((Button) findViewById(R.id.signupsubmit)).setTextSize(GlobalLayout.buttonFontSize);
+	    
+		Intent connectionIntent = new Intent(this, MusicService.class);
+	    bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
 		username = (EditText) findViewById(R.id.username);
 		password = (EditText) findViewById(R.id.password);
 		email = (EditText) findViewById(R.id.emailedit);
@@ -142,7 +146,7 @@ public class Signup extends Activity{
 		            "Research", "For Profit", "Not For Profit"
 		        };
 		    orgtypespinner = (Spinner) findViewById(R.id.orgtypespinner);
-		        ArrayAdapter adapter = new ArrayAdapter(this,
+				ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 		            android.R.layout.simple_spinner_dropdown_item, arraySpinner);
 		        orgtypespinner.setAdapter(adapter);
 		    

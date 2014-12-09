@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 
@@ -47,6 +49,9 @@ public class Thanks extends Activity {
 	    v.setBackgroundColor(GlobalLayout.backgroundColor);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.thanks);
+
+	    ((Button) findViewById(R.id.loginbutton)).setTextSize(GlobalLayout.buttonFontSize);
+	    ((TextView) findViewById(R.id.lasttxtview)).setTextSize(GlobalLayout.labelFontSize);
     }
     
     public void finishThanks(View v) {

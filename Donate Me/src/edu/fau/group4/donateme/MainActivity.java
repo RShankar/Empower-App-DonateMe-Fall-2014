@@ -6,25 +6,18 @@ import java.util.ArrayList;
 import com.parse.ParseAnonymousUtils;
 import com.parse.ParseUser;
 
-import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Color;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.provider.Settings.Global;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 import edu.fau.group4.donateme.MusicService.LocalBinder;
 
 
@@ -115,6 +108,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	    if(s == null) 	GlobalLayout.backgroundColor = getResources().getColor(R.color.back_green) | 0xff000000; //get default value
 	    else 			GlobalLayout.backgroundColor = Color.parseColor(s) | 0xff000000;
 	    
+	    //populate filter distance list
 	    float[] fa = i.getFloatArrayExtra("filterDistance");
 	    GlobalLayout.filterDistance = new ArrayList<Float>();
 	    if(fa != null)
@@ -128,6 +122,22 @@ public class MainActivity extends Activity implements OnClickListener{
 	    	GlobalLayout.filterDistance.add(3.0f);
 	    	GlobalLayout.filterDistance.add(4.0f);
 	    }
+	    
+	    //populate filter type list
+	    String[] sa = i.getStringArrayExtra("filterType");
+	    GlobalLayout.filterType = new ArrayList<String>();
+	    if(sa != null)
+		    for(int index = 0; index < sa.length; index++)
+		    {
+		    	GlobalLayout.filterType.add(sa[index]);
+		    }
+	    else
+	    {
+	    	GlobalLayout.filterType.add("Research");
+	    	GlobalLayout.filterType.add("For Profit");
+	    	GlobalLayout.filterType.add("Not For Profit");
+	    }
+	    
 	    GlobalLayout.labelFontSize = i.getFloatExtra("labelFontSize", 20.0f);
 	    GlobalLayout.headerFontSize = i.getFloatExtra("headFontSize", 70.0f);
 	    GlobalLayout.buttonFontSize = i.getFloatExtra("buttonFontSize", 30.0f);

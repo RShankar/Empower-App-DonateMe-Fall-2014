@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+@SuppressWarnings("deprecation")
 public class Request extends Activity
 {
 	 Spinner type;

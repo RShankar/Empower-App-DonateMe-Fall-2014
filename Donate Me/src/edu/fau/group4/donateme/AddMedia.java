@@ -16,7 +16,6 @@ import android.content.ServiceConnection;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,7 +32,6 @@ public class AddMedia extends Activity {
 
 	ImageView avatar;
 	Button savebtn;
-	private Bitmap bmp;
 	private static final int SELECT_PICTURE = 42;
 	private String selectedImagePath;
 	ByteArrayOutputStream imageStream = new ByteArrayOutputStream();

@@ -1,16 +1,7 @@
 package edu.fau.group4.donateme;
 
-import java.util.List;
 
 import com.google.android.gms.maps.model.LatLng;
-import com.parse.FindCallback;
-import com.parse.GetCallback;
-import com.parse.GetDataCallback;
-import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseGeoPoint;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import edu.fau.group4.donateme.MusicService.LocalBinder;

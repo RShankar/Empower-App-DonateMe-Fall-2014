@@ -5,25 +5,24 @@ import com.parse.ParseUser;
 
 import edu.fau.group4.donateme.MusicService.LocalBinder;
 
-import android.app.Activity;
 import android.app.TabActivity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TabHost;
-import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
+@SuppressWarnings("deprecation")
 public class Tab extends TabActivity
 {
             /** Called when the activity is first created. */
-            @SuppressWarnings("deprecation")
+            
             
             ParseUser currentUser;
        	 String isOrg;
@@ -64,6 +63,9 @@ public class Tab extends TabActivity
         	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
             	    v.setBackgroundColor(GlobalLayout.backgroundColor);
                     setContentView(R.layout.tab);
+                    
+            	    ((Button) findViewById(R.id.logoutbutton)).setTextSize(GlobalLayout.buttonFontSize);
+            	    ((TextView) findViewById(R.id.welcometxtview)).setTextSize(GlobalLayout.labelFontSize);
                     
                     TextView welcome = (TextView) findViewById(R.id.welcometxtview);
                     currentUser = ParseUser.getCurrentUser();

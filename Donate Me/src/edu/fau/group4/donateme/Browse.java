@@ -7,9 +7,7 @@ import java.util.List;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.location.LocationClient;
-import com.google.android.gms.maps.model.LatLng;
 import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
@@ -24,18 +22,12 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.location.Location;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.widget.TextView;
-import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -59,9 +51,9 @@ GooglePlayServicesClient.OnConnectionFailedListener
 	 ArrayAdapter<RequestObject> adapter;
 	 byte[] imageArray;
 	
-	 private String[] state_type = { "All Types", "Research", "For Profit", "Not For Profit"};
+	 private ArrayList<String> state_type = new ArrayList<String>();//{ "All Types", "Research", "For Profit", "Not For Profit"};
 	 private String[] state_request = { "All Requests", "Money","Clothes","Food"};
-	 private ArrayList<String> state_distance = new ArrayList<String>();// = {"Any Distance", "5 Miles", "15 Miles", "50 Miles", "100 Miles"};
+	 private ArrayList<String> state_distance = new ArrayList<String>();
 	 
 	 TextView text_type;
 	 TextView text_distance;
@@ -87,8 +79,6 @@ GooglePlayServicesClient.OnConnectionFailedListener
 		        super.onDestroy();
 		    }
 		
-	 
-	  @SuppressWarnings("rawtypes")
 	@Override
 	 public void onCreate(Bundle savedInstanceState)
 	  {
@@ -111,8 +101,7 @@ GooglePlayServicesClient.OnConnectionFailedListener
 		   {
 			   state_distance.add(GlobalLayout.filterDistance.get(i) + " Miles");
 		   }
-	        @SuppressWarnings("unchecked")
-			ArrayAdapter distanceadapter = new ArrayAdapter(this,
+			ArrayAdapter<String> distanceadapter = new ArrayAdapter<String>(this,
 	            android.R.layout.simple_spinner_dropdown_item, state_distance);
 	        distance.setAdapter(distanceadapter);
 	        distance.setOnItemSelectedListener(new OnItemSelectedListener(){
@@ -130,9 +119,13 @@ GooglePlayServicesClient.OnConnectionFailedListener
         
 	        type = (Spinner) findViewById(R.id.spinner2);
 	        
+	        state_type.add("All Types");
+	        for(int i = 0; i < GlobalLayout.filterType.size(); i++)
+	        {
+	        	state_type.add(GlobalLayout.filterType.get(i));
+	        }
 	        
-	        @SuppressWarnings("unchecked")
-			ArrayAdapter typeadapter = new ArrayAdapter(this,
+			ArrayAdapter<String> typeadapter = new ArrayAdapter<String>(this,
 	            android.R.layout.simple_spinner_dropdown_item, state_type);
 	        type.setAdapter(typeadapter);
 	        type.setOnItemSelectedListener(new OnItemSelectedListener(){
@@ -148,7 +141,7 @@ GooglePlayServicesClient.OnConnectionFailedListener
 				}	
 			 });
 	        request = (Spinner) findViewById(R.id.spinner3);
-	        ArrayAdapter requestadapter = new ArrayAdapter(this,
+	        ArrayAdapter<String> requestadapter = new ArrayAdapter<String>(this,
 	            android.R.layout.simple_spinner_dropdown_item, state_request);
 	        request.setAdapter(requestadapter);
 	        request.setOnItemSelectedListener(new OnItemSelectedListener(){
@@ -170,20 +163,21 @@ GooglePlayServicesClient.OnConnectionFailedListener
 		   
 	  }
 	  double getDistance(ParseGeoPoint currentGeo2, ParseGeoPoint geo)
-		{
-			double R = 6371; // radius of Earth (km)
-			double x1 = currentGeo2.getLatitude() * Math.PI/180.0;
-			double x2 = geo.getLatitude() * Math.PI/180.0;
-			double y1 = currentGeo2.getLongitude() * Math.PI/180.0;
-			double y2 = geo.getLongitude() * Math.PI/180.0;
-			double z1 = x2-x1;
-			double z2 = y2-y1;
+	  {
+			double R = 3963.1676; // radius of Earth (mi)
+			//convert (latitude, longitude) to radians (phi, theta)
+			double phi1 = currentGeo2.getLatitude() * Math.PI/180.0;
+			double phi2 = geo.getLatitude() * Math.PI/180.0;
+			double theta1 = currentGeo2.getLongitude() * Math.PI/180.0;
+			double theta2 = geo.getLongitude() * Math.PI/180.0;
+			double dPhi = phi2-phi1;
+			double dTheta = theta2-theta1;
 
-			double a = Math.sin(z1/2) * Math.sin(z1/2) + Math.cos(x1) * Math.cos(x2) * Math.sin(z2/2) * Math.sin(z2/2);
-			double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+			double halfChordSquare = Math.sin(dPhi/2) * Math.sin(dPhi/2) + Math.cos(phi1) * Math.cos(phi2) * Math.sin(dTheta/2) * Math.sin(dTheta/2);
+			double distAngular = 2 * Math.atan2(Math.sqrt(halfChordSquare), Math.sqrt(1-halfChordSquare)); //angular arc-length between the two points (radians)
 			
-			return R * c;
-		}
+			return R * distAngular;
+	  }
 	  private void getRequests()
 	  {
 		 ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("request");

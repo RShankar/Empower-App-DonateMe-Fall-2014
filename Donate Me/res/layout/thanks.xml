@@ -20,8 +20,7 @@
         android:layout_below="@+id/welcometxtview"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp"
-        android:text="Thank you for your donation!"
-        android:textSize="30sp" />
+        android:text="Thank you for your donation!"/>
 
     <Button
         android:id="@+id/loginbutton"
@@ -32,8 +31,7 @@
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="26dp"
         android:onClick="finishThanks"
-        android:text="Ok"
-        android:textSize="30sp" />
+        android:text="Ok"/>
 
     <ImageView
         android:id="@+id/muteimageview"

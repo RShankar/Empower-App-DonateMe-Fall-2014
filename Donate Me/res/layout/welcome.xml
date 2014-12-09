@@ -14,8 +14,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="30dp"
         android:text="@string/welcome_donate"
-        android:textColor="#FFFFFF"
-        android:textSize="35sp" />
+        android:textColor="#FFFFFF"/>
 
     <Button
         android:id="@+id/signupsubmit"
@@ -25,8 +24,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="27dp"
         android:background="@drawable/round_corners1"
-        android:text="@string/button2_label"
-        android:textSize="30sp" />
+        android:text="@string/button2_label"/>
 
     <Button
         android:id="@+id/loginbutton"
@@ -36,7 +34,6 @@
         android:layout_alignLeft="@+id/signupsubmit"
         android:layout_marginBottom="19dp"
         android:background="@drawable/round_corners"
-        android:text="@string/button1_label"
-        android:textSize="30sp" />
+        android:text="@string/button1_label" />
 
 </RelativeLayout>

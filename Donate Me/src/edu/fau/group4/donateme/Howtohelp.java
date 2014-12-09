@@ -1,7 +1,5 @@
 package edu.fau.group4.donateme;
 
-import java.util.List;
-
 import java.math.BigDecimal;
 
 import com.paypal.android.MEP.CheckoutButton;
@@ -10,7 +8,6 @@ import com.paypal.android.MEP.PayPalActivity;
 import com.paypal.android.MEP.PayPalInvoiceData;
 import com.paypal.android.MEP.PayPalPayment;
 
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
@@ -18,7 +15,6 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.parse.ParseGeoPoint;
 
 import edu.fau.group4.donateme.MusicService.LocalBinder;
 
@@ -35,9 +31,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -113,7 +106,8 @@ public class Howtohelp extends Activity implements OnClickListener
 			latitude = b.getDouble("latitude");
 			name = b.getString("name");
 			clat = b.getDouble("currentLat");
-			clong = b.getDouble("currentLong");		
+			clong = b.getDouble("currentLong");	
+			float distance = b.getFloat("distance", 0.0f);
 			howtohelptxt = b.getString("howToHelp");
 			paypalEmail = b.getString("paypalEmail");
 	    if(isMonetary)
@@ -156,7 +150,7 @@ public class Howtohelp extends Activity implements OnClickListener
 	    	if(gpsProvided)
 	    	{
 		    	LatLng ll = new LatLng(latitude,longitude);		    	
-		    	drawMap(ll,name);
+		    	drawMap(ll,name, distance);
 	    	}
 	    }
     }
@@ -386,7 +380,7 @@ public class Howtohelp extends Activity implements OnClickListener
 		startActivity(i);
 	}
 	
-	private void drawMap(LatLng loc, String name)
+	private void drawMap(LatLng loc, String name, float distance)
 	{
 		
 		if (googleMap == null) 
@@ -408,9 +402,6 @@ public class Howtohelp extends Activity implements OnClickListener
 			        }
 			    });
 								
-				LatLng gps = new LatLng(clat,clong);
-				float distance = (float) getDistance(gps, loc);
-								
 				googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 13.8f));
 				googleMap.addMarker(new MarkerOptions()
 		        	.position(loc)
@@ -426,68 +417,6 @@ public class Howtohelp extends Activity implements OnClickListener
 		}
 	}
 	
-	
-	//gets distance between 2 GPS coordinates
-	double getDistance(LatLng gps1, LatLng gps2)
-	{
-		double R = 6371; // radius of Earth (km)
-		double x1 = gps1.latitude * Math.PI/180.0;
-		double x2 = gps2.latitude * Math.PI/180.0;
-		double y1 = gps1.longitude * Math.PI/180.0;
-		double y2 = gps2.longitude * Math.PI/180.0;
-		double z1 = x2-x1;
-		double z2 = y2-y1;
-
-		double a = Math.sin(z1/2) * Math.sin(z1/2) + Math.cos(x1) * Math.cos(x2) * Math.sin(z2/2) * Math.sin(z2/2);
-		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-		
-		return R * c;
-	}
-	
-	private LatLng getLocation() 
-	{
-	    // Get the location manager
-		double lat,lon;
-	    LocationManager locationManager = (LocationManager) 
-	            getSystemService(LOCATION_SERVICE);
-	    Criteria criteria = new Criteria();
-	    String bestProvider = locationManager.getBestProvider(criteria, false);
-	    Location location = locationManager.getLastKnownLocation(bestProvider);
-	    try 
-	    {
-	        lat = location.getLatitude();
-	        lon = location.getLongitude();
-	    } catch (Exception e) 
-	    {
-	        lat = 0;
-	        lon = 0;
-	    }
-	    return new LatLng(lat,lon);
-	}
-	
-	private LatLng getGPS() 
-	{
-		 LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		 List<String> providers = lm.getProviders(true);
-
-		 Location l = null;
-
-		 for (int i = providers.size()-1; i >= 0; i--) 
-		 {
-			 l = lm.getLastKnownLocation(providers.get(i));
-			 if (l != null) break;
-		 }
-
-		 if (l != null) 
-		 {
-			 return new LatLng(l.getLatitude(), l.getLongitude());
-		 }
-		 else
-		 {
-			 return new LatLng(0,0);
-		 }	 
-	}
-
 	@Override
 	public void onClick(View v) 
 	{
