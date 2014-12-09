@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +34,7 @@ public class Settings extends Activity{
 	String state;
 	ParseUser currentUser;
 	String isOrg;
-	
+	ImageView muteIcon;
 	private MusicService mp3Service;
 	private ServiceConnection mp3PlayerServiceConnection = new ServiceConnection() {
 	        
@@ -81,6 +82,15 @@ public class Settings extends Activity{
 		  TextView citytxtview = (TextView) findViewById(R.id.citytxtview);
 		  TextView statetxtview = (TextView) findViewById(R.id.statetxtview);
 		  Button save = (Button) findViewById(R.id.settingsave);
+		  muteIcon = (ImageView) findViewById(R.id.muteimageview);
+		  muteIcon.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				mp3Service.toggleMuteMedia(getBaseContext());
+				
+			}
+		});
 		  save.setOnClickListener(new OnClickListener(){
 			 public void onClick(View arg0)
 			 {

@@ -35,13 +35,13 @@
         android:id="@+id/welcometxtview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView1"
+        android:layout_below="@+id/muteimageview"
         android:layout_centerHorizontal="true"
         android:text="@string/organization_name"
         android:textSize="30sp" />
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/muteimageview"
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:layout_below="@+id/settingsback"

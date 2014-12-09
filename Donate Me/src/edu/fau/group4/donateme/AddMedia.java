@@ -84,7 +84,7 @@ public class AddMedia extends Activity {
 			startActivity(i);
 			}
 		});
-		  avatar = (ImageView) findViewById(R.id.imageView1);
+		  avatar = (ImageView) findViewById(R.id.muteimageview);
 		  avatar.setOnClickListener(new OnClickListener() {
 			
 			@Override

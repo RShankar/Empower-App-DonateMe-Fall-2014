@@ -97,9 +97,17 @@
         android:id="@+id/logoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="51dp"
+        android:layout_above="@+id/addresstxtview"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="14dp"
         android:text="Logout" />
+
+    <ImageView
+        android:id="@+id/muteimageview"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/settingstxtview"
+        android:layout_centerHorizontal="true"
+        android:src="@android:drawable/ic_lock_silent_mode" />
 
 </RelativeLayout>

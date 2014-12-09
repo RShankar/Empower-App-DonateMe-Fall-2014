@@ -103,7 +103,7 @@ public class HelpOrg extends Activity implements OnClickListener
 		whatview.setText(whatFor);		
 		descview = (TextView) findViewById(R.id.textView3);
 		descview.setText(description);
-		profile = (ImageView) findViewById(R.id.imageView1);
+		profile = (ImageView) findViewById(R.id.muteimageview);
 		orgId = b.getString("orgId");		
 		 View help = findViewById(R.id.BTN_howToHelp);
 		 help.setOnClickListener(this);
