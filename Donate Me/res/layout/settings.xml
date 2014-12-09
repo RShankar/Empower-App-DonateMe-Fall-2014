@@ -84,16 +84,6 @@
         android:visibility="invisible" />
 
     <Button
-        android:id="@+id/settingsave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/stateedit"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:text="Save"
-        android:visibility="invisible" />
-
-    <Button
         android:id="@+id/logoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -109,5 +99,38 @@
         android:layout_below="@+id/settingstxtview"
         android:layout_centerHorizontal="true"
         android:src="@android:drawable/ic_lock_silent_mode" />
+
+    <Button
+        android:id="@+id/settingsave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/stateedit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="109dp"
+        android:text="Save"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/paypalemailedit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/settingsave"
+        android:layout_marginBottom="51dp"
+        android:layout_toRightOf="@+id/settingstxtview"
+        android:ems="10"
+        android:inputType="textEmailAddress" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/paypaltxtview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/paypalemailedit"
+        android:layout_alignBottom="@+id/paypalemailedit"
+        android:layout_alignRight="@+id/addresstxtview"
+        android:layout_marginRight="15dp"
+        android:text="TextView" />
 
 </RelativeLayout>

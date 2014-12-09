@@ -16,7 +16,8 @@ public class RequestObject {
 	double distance;
 	String howToHelp;
 	byte[] imageArray;
-	public RequestObject(String orgName, String orgType, String requestType, String whatFor, String description, String website, String goal, String objectId, ParseGeoPoint geo,double distance,String howToHelp, byte[] imageArray){
+	String paypalEmail;
+	public RequestObject(String orgName, String orgType, String requestType, String whatFor, String description, String website, String goal, String objectId, ParseGeoPoint geo,double distance,String howToHelp, byte[] imageArray, String paypalEmail){
 		super();
 		this.orgName = orgName;
 		this.orgType = orgType;
@@ -30,6 +31,7 @@ public class RequestObject {
 		this.distance = distance;
 		this.howToHelp = howToHelp;
 		this.imageArray = imageArray;
+		this.paypalEmail = paypalEmail;
 	}
 	public String getOrgName(){
 		return orgName;
@@ -67,6 +69,9 @@ public class RequestObject {
 	public byte[] getImageArray(){
 		return imageArray;
 	}
+	public String getPaypalEmail(){
+		return paypalEmail;
+	}
 	public void setOrgName(String orgName){
 		this.orgName = orgName;
 	}
@@ -102,5 +107,8 @@ public class RequestObject {
 	}
 	public void setImageArray(byte[] imageArray){
 		this.imageArray = imageArray;
+	}
+	public void setPaypalEmail(String paypalEmail){
+		this.paypalEmail = paypalEmail;
 	}
 }

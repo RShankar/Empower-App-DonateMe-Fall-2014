@@ -174,24 +174,41 @@ public class Request extends Activity
 		    		String descriptiontxt = description.getText().toString();
 		    		String websitetxt = website.getText().toString();
 		    		String howtohelptxt = howtohelpedit.getText().toString();
+		    		String requesttypetxt = requesttypespinner.getSelectedItem().toString();
 		    		if (usernametxt.equals("") || whatfortxt.equals("") || descriptiontxt.equals("") || websitetxt.equals("") || howtohelptxt.equals("")) {
 						Toast.makeText(getApplicationContext(),
 								"Please complete the request form",
 								Toast.LENGTH_LONG).show();
 
-					} else {
+					}
+		    		
+		    		else {
+						
 						UrlValidator urlValid = new UrlValidator();
-						if(urlValid.isValid(websitetxt)){
+						if(urlValid.isValid(websitetxt))
+						{
+							if(requesttypetxt.equals("Money") && !currentUser.has("paypalEmail"))
+							{
+								Toast.makeText(getApplicationContext(),
+										"To make a monetary request, please add a paypal email in the settings.", Toast.LENGTH_LONG)
+										.show();
+							}
+							else
+							{
 						ParseObject requestData = new ParseObject("request");
 						requestData.put("orgName",usernametxt);
 						requestData.put("orgType",orgtypespinner.getSelectedItem());
-						requestData.put("requestType",requesttypespinner.getSelectedItem());
+						requestData.put("requestType",requesttypetxt);
 						requestData.put("goal",goal.getText().toString());
 						requestData.put("whatFor", whatfortxt);
 						requestData.put("description", descriptiontxt);
 						requestData.put("website", websitetxt);
 						requestData.put("geoPoint",currentUser.get("geoPoint"));
 						requestData.put("howToHelp",howtohelptxt);
+						if(requesttypetxt.equals("Money"))
+						{
+							requestData.put("paypalEmail",currentUser.get("paypalEmail"));
+						}
 						byte[] imageBytes = (byte[]) b.get("imageData");
 						if(imageBytes.length > 0)
 						{
@@ -219,7 +236,7 @@ public class Request extends Activity
 							}
 						});
 					}
-					
+				}
 		    		else
 		    		{
 		    			Toast.makeText(getApplicationContext(),

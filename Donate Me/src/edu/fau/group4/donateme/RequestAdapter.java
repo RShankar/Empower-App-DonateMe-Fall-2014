@@ -68,6 +68,7 @@ public class RequestAdapter extends ArrayAdapter<RequestObject> {
 					b.putString("howToHelp", request.howToHelp);
 					b.putString("requestType", request.requestType);
 					b.putByteArray("imageData", request.imageArray);
+					b.putString(("paypalEmail"), request.paypalEmail);
 					i.putExtras(b);
 					context.startActivity(i);
 					

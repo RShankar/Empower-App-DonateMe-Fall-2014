@@ -198,6 +198,8 @@ GooglePlayServicesClient.OnConnectionFailedListener
 			            				if(currentGeo != null) distance = getDistance(currentGeo,geo);
 			            				else distance = Double.POSITIVE_INFINITY;
 					                	distance = Math.round(distance*100.0)/100.0;
+					                	String paypalEmail = "";
+					                	if(requestsObject.has("paypalEmail")) paypalEmail = requestsObject.get("paypalEmail").toString();
 					                   requestArray.add(new RequestObject( requestsObject.get("orgName").toString(),
 					                		   requestsObject.get("orgType").toString(),
 					                		   requestsObject.get("requestType").toString(),
@@ -205,7 +207,7 @@ GooglePlayServicesClient.OnConnectionFailedListener
 					                		   requestsObject.get("description").toString(),
 					                		   requestsObject.get("website").toString(),
 					                		   requestsObject.get("goal").toString(),requestsObject.getObjectId(),
-					                		   geo,distance,requestsObject.get("howToHelp").toString(),imageArray));
+					                		   geo,distance,requestsObject.get("howToHelp").toString(),imageArray,paypalEmail));
 					                   updateRequestList();
 			            			}
 			            		});

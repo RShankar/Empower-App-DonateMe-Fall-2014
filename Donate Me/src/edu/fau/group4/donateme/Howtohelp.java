@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import com.paypal.android.MEP.CheckoutButton;
 import com.paypal.android.MEP.PayPal;
 import com.paypal.android.MEP.PayPalActivity;
+import com.paypal.android.MEP.PayPalInvoiceData;
 import com.paypal.android.MEP.PayPalPayment;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -36,6 +37,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
@@ -51,7 +53,8 @@ public class Howtohelp extends Activity implements OnClickListener
 	String name;
 	String howtohelptxt;
 	Bundle b;
-	//Bundle b;
+	CheckoutButton launchPayPalButton;
+	final static public int PAYPAL_BUTTON_ID = 10001;
 	private MusicService mp3Service;
 	private ServiceConnection mp3PlayerServiceConnection = new ServiceConnection() {
 	        
@@ -97,20 +100,10 @@ public class Howtohelp extends Activity implements OnClickListener
 	    {
 	    	setContentView(R.layout.howtohelp);
 	    	PayPal ppObj = PayPal.initWithAppID(this.getBaseContext(), "APP-80W284485P519543T", PayPal.ENV_NONE);
-
-	    	CheckoutButton launchPayPalButton = ppObj.getCheckoutButton(this, PayPal.BUTTON_278x43, CheckoutButton.TEXT_PAY);
-	    	RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-
-	    	//params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-	        params.addRule(RelativeLayout.CENTER_HORIZONTAL);
-	    	params.addRule(RelativeLayout.CENTER_VERTICAL);
-
-	    	launchPayPalButton.setLayoutParams(params);
-	    	launchPayPalButton.setOnClickListener(this);
-
-	    	((RelativeLayout) findViewById(R.id.mRlayout1)).addView(launchPayPalButton);
-			
-			// Set up click listeners for all the buttons	
+	    	ppObj.setLanguage("en_US");
+	    	ppObj.setShippingEnabled(false);
+	    	ppObj.setFeesPayer(PayPal.FEEPAYER_SENDER);
+	    	
 	    }
 	    else
 	    {
@@ -126,6 +119,51 @@ public class Howtohelp extends Activity implements OnClickListener
 	    }
     }
    
+    private void showPayPalButton() {
+
+    	// Generate the PayPal checkout button and save it for later use
+    	PayPal pp = PayPal.getInstance();
+    	launchPayPalButton = pp.getCheckoutButton(this, PayPal.BUTTON_278x43, CheckoutButton.TEXT_PAY);
+
+    	// The OnClick listener for the checkout button
+    	launchPayPalButton.setOnClickListener(this);
+
+    	// Add the listener to the layout
+    	RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams (LayoutParams.WRAP_CONTENT,
+    	LayoutParams.WRAP_CONTENT);
+    	params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+    	params.bottomMargin = 10;
+    	launchPayPalButton.setLayoutParams(params);
+    	launchPayPalButton.setId(PAYPAL_BUTTON_ID);
+    	((RelativeLayout) findViewById(R.id.mRlayout1)).addView(launchPayPalButton);
+    	((RelativeLayout) findViewById(R.id.mRlayout1)).setGravity(Gravity.CENTER_HORIZONTAL);
+    	}
+    
+    public void PayPalButtonClick(View arg0, String email) {
+    	// Create a basic PayPal payment
+    	PayPalPayment payment = new PayPalPayment();
+
+    	// Set the currency type
+    	payment.setCurrencyType("USD");
+
+    	// Set the recipient for the payment (can be a phone number)
+    	payment.setRecipient("ppalav_1285013097_biz@yahoo.com");
+
+    	// Set the payment amount, excluding tax and shipping costs
+    	payment.setSubtotal(new BigDecimal(_theSubtotal));
+
+    	// Set the payment type--his can be PAYMENT_TYPE_GOODS,
+    	// PAYMENT_TYPE_SERVICE, PAYMENT_TYPE_PERSONAL, or PAYMENT_TYPE_NONE
+    	payment.setPaymentType(PayPal.PAYMENT_TYPE_GOODS);
+
+    	// PayPalInvoiceData can contain tax and shipping amounts, and an
+    	// ArrayList of PayPalInvoiceItem that you can fill out.
+    	// These are not required for any transaction.
+    	PayPalInvoiceData invoice = new PayPalInvoiceData();
+
+    	// Set the tax amount
+    	invoice.setTax(new BigDecimal(_taxAmount));
+    	}
 	public void onBack(View v) 
 	{
 
