@@ -11,6 +11,7 @@ public class MusicService extends Service {
     public final IBinder localBinder = new LocalBinder();
     private MediaPlayer mplayer;
     private boolean created = false;
+    private boolean isMuted = false;
     @Override
     public IBinder onBind(Intent intent) {
         return localBinder;
@@ -26,11 +27,31 @@ public class MusicService extends Service {
     public void playSong(Context c) {
         if(!created){
             this.mplayer = MediaPlayer.create(c, R.raw.metalica);
+            this.mplayer.setLooping(true);
             created = true;
         }
             this.mplayer.start();
          
     }
+    public void toggleMuteMedia(Context c){
+    	if(isMuted)
+    	{
+    		this.mplayer.setVolume(1, 1);
+    		isMuted = false;
+    	}
+    	else
+    	{
+    		this.mplayer.setVolume(0, 0);
+    		isMuted = true;
+    	}
+    	
+    }
+    
+    public boolean getMuteStatus(){
+    	
+    	return isMuted;
+    }
+    
  
     public void pauseSong(Context c) {
         this.mplayer.pause();
