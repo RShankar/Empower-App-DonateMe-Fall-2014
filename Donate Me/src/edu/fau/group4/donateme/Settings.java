@@ -19,7 +19,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,9 +33,8 @@ public class Settings extends Activity{
 	String state;
 	ParseUser currentUser;
 	String isOrg;
-	ImageView muteIcon;
-	private MusicService mp3Service;
 	
+	private MusicService mp3Service;
 	private ServiceConnection mp3PlayerServiceConnection = new ServiceConnection() {
 	        
 	        public void onServiceConnected(ComponentName arg0, IBinder service) {
@@ -74,15 +72,6 @@ public class Settings extends Activity{
 		  
 		  cityedit = (EditText) findViewById(R.id.cityedit);
 		  stateedit = (EditText) findViewById(R.id.stateedit);
-		  muteIcon = (ImageView) findViewById(R.id.muteimageview);
-		  muteIcon.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				mp3Service.toggleMuteMedia(getBaseContext());
-				
-			}
-		});
 		  if(isOrg.equals("true")){
 		  stateedit.setText(currentUser.get("state").toString());
 		  cityedit.setText(currentUser.get("city").toString());
