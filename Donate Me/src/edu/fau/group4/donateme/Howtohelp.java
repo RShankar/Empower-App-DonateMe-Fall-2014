@@ -23,6 +23,7 @@ import com.parse.ParseGeoPoint;
 import edu.fau.group4.donateme.MusicService.LocalBinder;
 
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.content.DialogInterface;
@@ -37,6 +38,8 @@ import android.content.ServiceConnection;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.Gravity;
@@ -59,7 +62,7 @@ public class Howtohelp extends Activity implements OnClickListener
 	EditText paypal;
 	double paypalAmount;
 	String paypalEmail;
-
+	ImageView paymentimageview;
 	private ProgressDialog _progressDialog;
 	private boolean _paypalLibraryInit = false;
 	private boolean _progressDialogRunning = false;
@@ -85,7 +88,14 @@ public class Howtohelp extends Activity implements OnClickListener
 	        super.onDestroy();
 	    }
 	
-	
+	    public boolean isOnline() {
+			ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+			NetworkInfo netInfo = cm.getActiveNetworkInfo();
+			if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+				return true;
+			}
+			return false;
+		}
 	
     @Override
     public void onCreate(Bundle savedInstanceState) 
@@ -109,12 +119,18 @@ public class Howtohelp extends Activity implements OnClickListener
 	    if(isMonetary)
 	    {
 	    	setContentView(R.layout.howtohelp);
-	    	PayPal ppObj = PayPal.initWithAppID(this.getBaseContext(), "APP-80W284485P519543T", PayPal.ENV_NONE);
-	    	ppObj.setLanguage("en_US");
-	    	ppObj.setShippingEnabled(false);
-	    	ppObj.setFeesPayer(PayPal.FEEPAYER_SENDER);
+	    	paymentimageview = (ImageView) findViewById(R.id.muteimageview);
+	    	if (this.isOnline()) {
+				Thread libraryInitializationThread = new Thread() {
+					public void run() {
+						initLibrary();
+					}
+				};
+
+				libraryInitializationThread.start();
+			}
 	    	paypal = (EditText) findViewById(R.id.amount);
-	    	paypalAmount = Double.parseDouble(paypal.toString());
+	    	
 	    	if (_paypalLibraryInit) {
 				showPayPalButton();
 			} else {
@@ -145,6 +161,40 @@ public class Howtohelp extends Activity implements OnClickListener
 	    }
     }
    
+    public void initLibrary() {
+		PayPal pp = PayPal.getInstance();
+		// If the library is already initialized, then we don't need to
+		// initialize it again.
+		if (pp == null) {
+			// This is the main initialization call that takes in your Context,
+			// the Application ID, and the server you would like to connect to.
+			
+			pp = PayPal.initWithAppID(this, "APP-80W284485P519543T",
+					PayPal.ENV_NONE);
+
+			// -- These are required settings.
+			pp.setLanguage("en_US"); // Sets the language for the library.
+			// --
+
+			// -- These are a few of the optional settings.
+			// Sets the fees payer. If there are fees for the transaction, this
+			// person will pay for them. Possible values are FEEPAYER_SENDER,
+			// FEEPAYER_PRIMARYRECEIVER, FEEPAYER_EACHRECEIVER, and
+			// FEEPAYER_SECONDARYONLY.
+			pp.setFeesPayer(PayPal.FEEPAYER_EACHRECEIVER);
+			// Set to true if the transaction will require shipping.
+			pp.setShippingEnabled(true);
+			// Dynamic Amount Calculation allows you to set tax and shipping
+			// amounts based on the user's shipping address. Shipping must be
+			// enabled for Dynamic Amount Calculation. This also requires you to
+			// create a class that implements PaymentAdjuster and Serializable.
+			pp.setDynamicAmountCalculationEnabled(false);
+			// --
+			_paypalLibraryInit = true;
+		}
+	}
+    
+    
     final Runnable checkforPayPalInitRunnable = new Runnable() {
 		public void run() {
 			checkForPayPalLibraryInit();
@@ -251,6 +301,7 @@ public class Howtohelp extends Activity implements OnClickListener
     private void showPayPalButton() {
 
     	// Generate the PayPal checkout button and save it for later use
+    	removePayPalButton();
     	PayPal pp = PayPal.getInstance();
     	launchPayPalButton = pp.getCheckoutButton(this, PayPal.BUTTON_278x43, CheckoutButton.TEXT_PAY);
 
@@ -260,16 +311,31 @@ public class Howtohelp extends Activity implements OnClickListener
     	// Add the listener to the layout
     	RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams (LayoutParams.WRAP_CONTENT,
     	LayoutParams.WRAP_CONTENT);
-    	params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-    	params.bottomMargin = 10;
+    	params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+    	params.addRule(RelativeLayout.CENTER_VERTICAL);
+    	params.addRule(RelativeLayout.ABOVE,paymentimageview.getId());
+    	params.bottomMargin = 50;
     	launchPayPalButton.setLayoutParams(params);
     	launchPayPalButton.setId(PAYPAL_BUTTON_ID);
     	((RelativeLayout) findViewById(R.id.mRlayout1)).addView(launchPayPalButton);
     	((RelativeLayout) findViewById(R.id.mRlayout1)).setGravity(Gravity.CENTER_HORIZONTAL);
+    	if (_progressDialogRunning) {
+			_progressDialog.dismiss();
+			_progressDialogRunning = false;
+		}
     	}
+    private void removePayPalButton() {
+		// Avoid an exception for setting a parent more than once
+		if (launchPayPalButton != null) {
+			((RelativeLayout) findViewById(R.id.mRlayout1))
+					.removeView(launchPayPalButton);
+		}
+	}
+    
     
     public void PayPalButtonClick(View arg0) {
     	// Create a basic PayPal payment
+    	paypalAmount = Double.parseDouble(paypal.getText().toString());
     	if(paypalAmount > 0)
     	{
     	PayPalPayment payment = new PayPalPayment();
@@ -296,7 +362,7 @@ public class Howtohelp extends Activity implements OnClickListener
     	}
     	else
     	{
-    		Toast.makeText(getApplicationContext(),
+    		Toast.makeText(Howtohelp.this,
 					"Please enter a valid amount", Toast.LENGTH_LONG)
 					.show();
     	}
