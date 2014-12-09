@@ -17,13 +17,19 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseException;
 
+import edu.fau.group4.donateme.MusicService.LocalBinder;
+
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.widget.TextView;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -58,6 +64,29 @@ GooglePlayServicesClient.OnConnectionFailedListener
 	 
 	 TextView text_type;
 	 TextView text_distance;
+	 
+	 private MusicService mp3Service;
+		private ServiceConnection mp3PlayerServiceConnection = new ServiceConnection() {
+		        
+		        public void onServiceConnected(ComponentName arg0, IBinder service) {
+		            LocalBinder binder = (LocalBinder) service;
+		        	mp3Service = binder.getService();
+		        	mp3Service.playSong(getBaseContext());
+		        }
+		 
+		        @Override
+		        public void onServiceDisconnected(ComponentName arg0) {
+		 
+		        }
+		 
+		    };
+		    @Override
+		    protected void onDestroy() {
+		        unbindService(this.mp3PlayerServiceConnection);
+		        super.onDestroy();
+		    }
+		
+	 
 	  @Override
 	 public void onCreate(Bundle savedInstanceState)
 	  {
@@ -65,6 +94,11 @@ GooglePlayServicesClient.OnConnectionFailedListener
 		    View v = this.getWindow().getDecorView();
 		    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		  setContentView(R.layout.browse);
+		  
+		  startService(new Intent(this, MusicService.class));
+		  Intent connectionIntent = new Intent(this, MusicService.class);
+	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
+		  
 		  mLocationClient = new LocationClient(this,this,this);
 		   mLocationClient.connect();
 		 

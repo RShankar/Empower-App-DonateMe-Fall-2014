@@ -13,12 +13,18 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import edu.fau.group4.donateme.MusicService.LocalBinder;
+
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -45,10 +51,37 @@ public class HelpOrg extends Activity implements OnClickListener
 	String orgType;
 	String requestType;
 	byte[] imageData;
+	private MusicService mp3Service;
+	private ServiceConnection mp3PlayerServiceConnection = new ServiceConnection() {
+	        
+	        public void onServiceConnected(ComponentName arg0, IBinder service) {
+	            LocalBinder binder = (LocalBinder) service;
+	        	mp3Service = binder.getService();
+	        	mp3Service.playSong(getBaseContext());
+	        }
+	 
+	        @Override
+	        public void onServiceDisconnected(ComponentName arg0) {
+	 
+	        }
+	 
+	    };
+	    @Override
+	    protected void onDestroy() {
+	        unbindService(this.mp3PlayerServiceConnection);
+	        super.onDestroy();
+	    }
+	
+	
+	
+	
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	    View v = this.getWindow().getDecorView();
+	    Intent connectionIntent = new Intent(this, MusicService.class);
+        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
 	    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		setContentView(R.layout.orgpage);
 		Bundle b = getIntent().getExtras();

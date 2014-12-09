@@ -5,9 +5,15 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
+import edu.fau.group4.donateme.MusicService.LocalBinder;
+
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -38,12 +44,38 @@ public class Signup extends Activity{
 	EditText orgnameedit;
 	Spinner orgtypespinner;
 	private String[] arraySpinner;
+	
+	private MusicService mp3Service;
+	private ServiceConnection mp3PlayerServiceConnection = new ServiceConnection() {
+	        
+	        public void onServiceConnected(ComponentName arg0, IBinder service) {
+	            LocalBinder binder = (LocalBinder) service;
+	        	mp3Service = binder.getService();
+	        	mp3Service.playSong(getBaseContext());
+	        }
+	 
+	        @Override
+	        public void onServiceDisconnected(ComponentName arg0) {
+	 
+	        }
+	 
+	    };
+	    @Override
+	    protected void onDestroy() {
+	        unbindService(this.mp3PlayerServiceConnection);
+	        super.onDestroy();
+	    }
+	
+	
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	    View v = this.getWindow().getDecorView();
 	    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		setContentView(R.layout.signup);
+		  Intent connectionIntent = new Intent(this, MusicService.class);
+	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
 		username = (EditText) findViewById(R.id.username);
 		password = (EditText) findViewById(R.id.password);
 		email = (EditText) findViewById(R.id.emailedit);

@@ -6,14 +6,21 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 
+import edu.fau.group4.donateme.MusicService.LocalBinder;
+
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.view.View;
@@ -32,12 +39,38 @@ public class AddMedia extends Activity {
 	ByteArrayOutputStream imageStream = new ByteArrayOutputStream();
 	Bundle b;
 	byte[] imageData;
+	
+	
+	private MusicService mp3Service;
+	private ServiceConnection mp3PlayerServiceConnection = new ServiceConnection() {
+	        
+	        public void onServiceConnected(ComponentName arg0, IBinder service) {
+	            LocalBinder binder = (LocalBinder) service;
+	        	mp3Service = binder.getService();
+	        	mp3Service.playSong(getBaseContext());
+	        }
+	 
+	        @Override
+	        public void onServiceDisconnected(ComponentName arg0) {
+	 
+	        }
+	 
+	    };
+	    @Override
+	    protected void onDestroy() {
+	        unbindService(this.mp3PlayerServiceConnection);
+	        super.onDestroy();
+	    }
+	
+	
 	public void onCreate(Bundle savedInstanceState)
 	  {
 		  super.onCreate(savedInstanceState);
 		    View v = this.getWindow().getDecorView();
 		    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		  setContentView(R.layout.addmedia);
+		  Intent connectionIntent = new Intent(this, MusicService.class);
+	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
 		  b = getIntent().getExtras();
 		  savebtn = (Button) findViewById(R.id.savemedia);
 		  savebtn.setOnClickListener(new OnClickListener() {
