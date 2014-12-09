@@ -37,6 +37,12 @@ public class MusicService extends Service
         	case 2:
         		this.mplayer = MediaPlayer.create(c, R.raw.metalica);    
         		break;
+        	case 3:
+        		this.mplayer = MediaPlayer.create(c, R.raw.calm1);    
+        		break;
+        	case 4:
+        		this.mplayer = MediaPlayer.create(c, R.raw.calm2);    
+        		break;
         	default:
         		this.mplayer = MediaPlayer.create(c, R.raw.test);    
     		

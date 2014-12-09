@@ -45,7 +45,7 @@ void setup()
   filterType.add("non-monetary");
   
   soundEnabled = true;
-  songSelect = 2;
+  songSelect = 3;
   
   headerFontSize = "70sp";
   labelFontSize = "30sp";
