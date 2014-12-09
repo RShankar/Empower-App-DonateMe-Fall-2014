@@ -67,7 +67,11 @@ public class Settings extends Activity{
 		    Intent connectionIntent = new Intent(this, MusicService.class);
 	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
 		  setContentView(R.layout.settings);
-		  
+
+		    ((Button) findViewById(R.id.settingsback)).setTextSize(GlobalLayout.buttonFontSize);
+		    ((Button) findViewById(R.id.logoutButton)).setTextSize(GlobalLayout.buttonFontSize);
+		    ((Button) findViewById(R.id.settingsave)).setTextSize(GlobalLayout.buttonFontSize);		    
+		    ((TextView) findViewById(R.id.settingstxtview)).setTextSize(GlobalLayout.labelFontSize);
 		  currentUser = ParseUser.getCurrentUser();
 		  isOrg = currentUser.get("isOrg").toString();
 		  
@@ -88,8 +92,8 @@ public class Settings extends Activity{
 		  if(currentUser.has("paypalEmail"))paypaledit.setText(currentUser.getInt("paypalEmail"));
 		  Button save = (Button) findViewById(R.id.settingsave);
 		  muteIcon = (ImageView) findViewById(R.id.muteimageview);
-		  muteIcon.setOnClickListener(new OnClickListener() {
-			
+		  muteIcon.setOnClickListener(new OnClickListener() 
+		  {			
 			@Override
 			public void onClick(View v) {
 				mp3Service.toggleMuteMedia(getBaseContext());

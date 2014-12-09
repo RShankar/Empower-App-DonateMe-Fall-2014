@@ -23,6 +23,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -62,7 +63,8 @@ public class Request extends Activity
 		        }
 		 
 		        @Override
-		        public void onServiceDisconnected(ComponentName arg0) {
+		        public void onServiceDisconnected(ComponentName arg0) 
+		        {
 		 
 		        }
 		 
@@ -84,6 +86,12 @@ public class Request extends Activity
 		    Intent connectionIntent = new Intent(this, MusicService.class);
 	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
 		  setContentView(R.layout.request);
+		  
+
+		    ((Button) findViewById(R.id.addMediaButton)).setTextSize(GlobalLayout.buttonFontSize);
+		    ((Button) findViewById(R.id.signupSubmit)).setTextSize(GlobalLayout.buttonFontSize);
+		    ((TextView) findViewById(R.id.welcometxtview)).setTextSize(GlobalLayout.headerFontSize);
+		  
 		  currentUser = ParseUser.getCurrentUser();
 		  username = (EditText) findViewById(R.id.username);
 		  whatfor = (EditText) findViewById(R.id.stateedit);

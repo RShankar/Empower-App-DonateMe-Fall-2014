@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Login extends Activity{
@@ -54,6 +55,10 @@ public class Login extends Activity{
 	    View v = this.getWindow().getDecorView();
 	    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		setContentView(R.layout.login);	
+
+	    ((Button) findViewById(R.id.loginButton)).setTextSize(GlobalLayout.buttonFontSize);
+	    ((Button) findViewById(R.id.backButton)).setTextSize(GlobalLayout.buttonFontSize);
+	    ((TextView) findViewById(R.id.welcometxtview)).setTextSize(GlobalLayout.headerFontSize);
 		
 		username = (EditText) findViewById(R.id.username);
 		password = (EditText) findViewById(R.id.password);
