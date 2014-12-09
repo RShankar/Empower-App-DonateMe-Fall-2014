@@ -7,7 +7,8 @@ import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
 
-public class MusicService extends Service {
+public class MusicService extends Service 
+{
     public final IBinder localBinder = new LocalBinder();
     private MediaPlayer mplayer;
     private boolean created = false;
@@ -24,35 +25,48 @@ public class MusicService extends Service {
         }
     }
  
-    public void playSong(Context c) {
-        if(!created){
+    public void playSong(Context c) 
+    {
+        if(!created)
+        {
             this.mplayer = MediaPlayer.create(c, R.raw.metalica);         
-    this.mplayer.setLooping(true);
-    created = true;
-}
-    this.mplayer.start();
+            this.mplayer.setLooping(true);
+            created = true;
+        }
+        this.mplayer.start();
  
-}
-public void toggleMuteMedia(Context c){
-if(isMuted)
-{
-	this.mplayer.setVolume(1, 1);
-	isMuted = false;
-}
-else
-{
-	this.mplayer.setVolume(0, 0);
-	isMuted = true;
-}
-
-}
-
-public boolean getMuteStatus(){
-
-return isMuted;
-}
-    public void pauseSong(Context c) {
-        this.mplayer.pause();
     }
+    
+    
+	public void toggleMuteMedia(Context c)
+	{
+		if(isMuted)
+		{
+			this.mplayer.setVolume(1, 1);
+			isMuted = false;
+		}
+		else
+		{
+			this.mplayer.setVolume(0, 0);
+			isMuted = true;
+		}
+	
+	}
+	
+	public void mute(Context c)
+	{
+		this.mplayer.setVolume(0, 0);
+		isMuted = true;
+	}
+
+	public boolean getMuteStatus()
+	{
+		return isMuted;
+	}
+	
+	public void pauseSong(Context c) 
+	{
+		this.mplayer.pause();
+	}
 }
  

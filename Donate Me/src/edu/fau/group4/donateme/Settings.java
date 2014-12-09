@@ -44,6 +44,7 @@ public class Settings extends Activity{
 	            LocalBinder binder = (LocalBinder) service;
 	        	mp3Service = binder.getService();
 	        	mp3Service.playSong(getBaseContext());
+	        	if(!GlobalLayout.soundEnabled) mp3Service.mute(getBaseContext());
 	        }
 	 
 	        @Override

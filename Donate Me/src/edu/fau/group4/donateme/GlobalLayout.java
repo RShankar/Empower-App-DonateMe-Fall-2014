@@ -15,5 +15,6 @@ public class GlobalLayout
 	static float buttonFontSize;
 	static String buttonFontStyle;
 	static ArrayList<Float> filterDistance;
-	static ArrayList<String> filterType;	
+	static ArrayList<String> filterType;
+	static boolean soundEnabled;
 }

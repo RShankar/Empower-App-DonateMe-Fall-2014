@@ -43,13 +43,15 @@ public class HelpOrg extends Activity implements OnClickListener
 	String requestType;
 	byte[] imageData;
 	private MusicService mp3Service;
-	private ServiceConnection mp3PlayerServiceConnection = new ServiceConnection() {
+	private ServiceConnection mp3PlayerServiceConnection = new ServiceConnection() 
+	{
 	        
 	        public void onServiceConnected(ComponentName arg0, IBinder service) {
 	            LocalBinder binder = (LocalBinder) service;
 	        	mp3Service = binder.getService();
 	        	mp3Service.playSong(getBaseContext());
-	        }
+	        	if(!GlobalLayout.soundEnabled) mp3Service.mute(getBaseContext());
+	}
 	 
 	        @Override
 	        public void onServiceDisconnected(ComponentName arg0) {

@@ -65,6 +65,7 @@ GooglePlayServicesClient.OnConnectionFailedListener
 		            LocalBinder binder = (LocalBinder) service;
 		        	mp3Service = binder.getService();
 		        	mp3Service.playSong(getBaseContext());
+		        	if(!GlobalLayout.soundEnabled) mp3Service.mute(getBaseContext());
 		        }
 		 
 		        @Override
@@ -86,6 +87,8 @@ GooglePlayServicesClient.OnConnectionFailedListener
 		    View v = this.getWindow().getDecorView();
 		    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		  setContentView(R.layout.browse);
+		  
+		  
 		  
 		  startService(new Intent(this, MusicService.class));
 		  Intent connectionIntent = new Intent(this, MusicService.class);
@@ -293,6 +296,11 @@ GooglePlayServicesClient.OnConnectionFailedListener
 	@Override
 	public void onDisconnected() {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public void randomActOfKindness(View v)
+	{
 		
 	}
 		

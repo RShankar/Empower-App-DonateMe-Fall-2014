@@ -19,6 +19,7 @@ String labelFontStyle;
 String buttonFontColor;
 String buttonFontSize;
 String buttonFontStyle;
+boolean soundEnabled;
 List<Float> filterDistance = new ArrayList<Float>();
 List<String> filterType = new ArrayList<String>();
 List<String> filterRequest;
@@ -55,6 +56,8 @@ void setup()
   filterType.add("monetary");
   filterType.add("non-monetary");
   
+  soundEnabled = false;
+  
   headerFontSize = "70sp";
   labelFontSize = "30sp";
   buttonFontSize = "30sp";
@@ -78,6 +81,7 @@ void startActivity()
     i.putExtra("buttonFontColor", buttonFontColor);
     i.putExtra("buttonFontSize", buttonFontSize);
     i.putExtra("buttonFontStyle", buttonFontStyle);
+    i.putExtra("soundEnabled", soundEnabled);
     i.putExtra("filterDistance", filterDistance.toArray());
     i.putExtra("filterType", filterType.toArray());
     

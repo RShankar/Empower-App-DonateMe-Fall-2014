@@ -27,12 +27,15 @@ import edu.fau.group4.donateme.MusicService.LocalBinder;
 public class MainActivity extends Activity implements OnClickListener{
 	 
 	private MusicService mp3Service;
-	private ServiceConnection mp3PlayerServiceConnection = new ServiceConnection() {
+	private ServiceConnection mp3PlayerServiceConnection = new ServiceConnection() 
+	{
 	        
-	        public void onServiceConnected(ComponentName arg0, IBinder service) {
+	        public void onServiceConnected(ComponentName arg0, IBinder service) 
+	        {
 	            LocalBinder binder = (LocalBinder) service;
 	        	mp3Service = binder.getService();
 	        	mp3Service.playSong(getBaseContext());
+	        	if(!GlobalLayout.soundEnabled) mp3Service.mute(getBaseContext());
 	        }
 	 
 	        @Override
@@ -40,7 +43,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	 
 	        }
 	 
-	    };
+	};
 	    @Override
 	    protected void onDestroy() {
 	        unbindService(this.mp3PlayerServiceConnection);
@@ -153,6 +156,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	    GlobalLayout.labelFontSize = i.getFloatExtra("labelFontSize", 20.0f);
 	    GlobalLayout.headerFontSize = i.getFloatExtra("headFontSize", 70.0f);
 	    GlobalLayout.buttonFontSize = i.getFloatExtra("buttonFontSize", 30.0f);
+	    GlobalLayout.soundEnabled = i.getBooleanExtra("soundEnabled",  false);
 	    //i.get
 	}
 	  
