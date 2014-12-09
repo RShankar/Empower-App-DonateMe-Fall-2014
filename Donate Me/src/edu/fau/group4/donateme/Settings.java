@@ -29,6 +29,9 @@ public class Settings extends Activity{
 	EditText addressedit;
 	EditText cityedit;
 	EditText stateedit;
+	EditText paypaledit;
+	TextView paypal;
+	String paypalEmail;
 	String address;
 	String city;
 	String state;
@@ -81,6 +84,8 @@ public class Settings extends Activity{
 		  TextView addresstxtview = (TextView) findViewById(R.id.addresstxtview);
 		  TextView citytxtview = (TextView) findViewById(R.id.citytxtview);
 		  TextView statetxtview = (TextView) findViewById(R.id.statetxtview);
+		  paypaledit = (EditText) findViewById(R.id.paypalemailedit);
+		  paypal = (TextView) findViewById(R.id.paypaltxtview);
 		  Button save = (Button) findViewById(R.id.settingsave);
 		  muteIcon = (ImageView) findViewById(R.id.muteimageview);
 		  muteIcon.setOnClickListener(new OnClickListener() {
@@ -114,7 +119,10 @@ public class Settings extends Activity{
 				 currentUser.put("city",city);
 				 currentUser.put("state", state);
 				 ParseGeoPoint geo = new ParseGeoPoint(p1.getLatitudeE6()/1E6,p1.getLongitudeE6()/1E6);
+				 paypalEmail = paypaledit.toString();
+				 if(!paypalEmail.equals(""))currentUser.put("paypalEmail", paypalEmail);
 				 currentUser.put("geoPoint",geo);
+				 
 				 currentUser.saveInBackground( new SaveCallback(){
 						public void done(ParseException e) {
 							if (e == null) {
@@ -154,6 +162,8 @@ public class Settings extends Activity{
 			  citytxtview.setVisibility(View.VISIBLE);
 			  statetxtview.setVisibility(View.VISIBLE);
 			  save.setVisibility(View.VISIBLE);
+			  paypal.setVisibility(View.VISIBLE);
+			  paypaledit.setVisibility(View.VISIBLE);
 		  }
 		  else
 		  {
@@ -164,6 +174,8 @@ public class Settings extends Activity{
 			  citytxtview.setVisibility(View.INVISIBLE);
 			  statetxtview.setVisibility(View.INVISIBLE);
 			  save.setVisibility(View.INVISIBLE);
+			  paypal.setVisibility(View.INVISIBLE);
+			  paypaledit.setVisibility(View.INVISIBLE);
 		  }
 		  Button bt = (Button) findViewById(R.id.settingsback);
 		  bt.setOnClickListener(new OnClickListener(){

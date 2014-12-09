@@ -54,6 +54,9 @@ public class Howtohelp extends Activity implements OnClickListener
 	String howtohelptxt;
 	Bundle b;
 	CheckoutButton launchPayPalButton;
+	EditText paypal;
+	double paypalAmount;
+	String paypalEmail;
 	final static public int PAYPAL_BUTTON_ID = 10001;
 	private MusicService mp3Service;
 	private ServiceConnection mp3PlayerServiceConnection = new ServiceConnection() {
@@ -103,7 +106,9 @@ public class Howtohelp extends Activity implements OnClickListener
 	    	ppObj.setLanguage("en_US");
 	    	ppObj.setShippingEnabled(false);
 	    	ppObj.setFeesPayer(PayPal.FEEPAYER_SENDER);
-	    	
+	    	paypal = (EditText) findViewById(R.id.amount);
+	    	paypalAmount = Double.parseDouble(paypal.toString());
+	    	showPayPalButton();
 	    }
 	    else
 	    {
@@ -111,6 +116,7 @@ public class Howtohelp extends Activity implements OnClickListener
 	    	setContentView(R.layout.non_monetary);
 	    	TextView welcome = (TextView) findViewById(R.id.welcometxtview);
 	    	welcome.setText(howtohelptxt);
+	    	
 	    	if(gpsProvided)
 	    	{
 		    	LatLng ll = new LatLng(latitude,longitude);		    	
@@ -139,7 +145,7 @@ public class Howtohelp extends Activity implements OnClickListener
     	((RelativeLayout) findViewById(R.id.mRlayout1)).setGravity(Gravity.CENTER_HORIZONTAL);
     	}
     
-    public void PayPalButtonClick(View arg0, String email) {
+    public void PayPalButtonClick(View arg0) {
     	// Create a basic PayPal payment
     	PayPalPayment payment = new PayPalPayment();
 
@@ -147,7 +153,7 @@ public class Howtohelp extends Activity implements OnClickListener
     	payment.setCurrencyType("USD");
 
     	// Set the recipient for the payment (can be a phone number)
-    	payment.setRecipient("ppalav_1285013097_biz@yahoo.com");
+    	payment.setRecipient(paypalEmail);
 
     	// Set the payment amount, excluding tax and shipping costs
     	payment.setSubtotal(new BigDecimal(_theSubtotal));
