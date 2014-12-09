@@ -23,7 +23,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/welcometxtview"
-        android:layout_marginLeft="20dp"
         android:layout_toRightOf="@+id/welcometxtview"
         android:ems="10"
         android:inputType="numberDecimal"
@@ -49,15 +48,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/signupsubmit"
         android:layout_marginTop="104dp"
-        android:text="@string/random_amount"
+        android:text="Amount to Donate:"
         android:textSize="30sp" />
-
 
 	<ImageView
 	    android:id="@+id/muteimageview"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentBottom="true"
+	    android:layout_alignParentLeft="true"
 	    android:src="@drawable/visa_logo" />
 
 </RelativeLayout>
