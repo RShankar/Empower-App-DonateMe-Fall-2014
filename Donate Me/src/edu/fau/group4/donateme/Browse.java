@@ -251,8 +251,14 @@ GooglePlayServicesClient.OnConnectionFailedListener
 	public void onConnected(Bundle connectionHint) {
 		// TODO Auto-generated method stub
 		  mCurrentLocation = mLocationClient.getLastLocation();
-		   currentGeo = new ParseGeoPoint(mCurrentLocation.getLatitude(),mCurrentLocation.getLongitude());
-		   getRequests();
+		  if(mCurrentLocation != null)
+			  currentGeo = new ParseGeoPoint(mCurrentLocation.getLatitude(),mCurrentLocation.getLongitude());
+		  else
+		  {
+			  Toast.makeText(getBaseContext(), "no valid gps", Toast.LENGTH_SHORT).show();
+			  currentGeo = new ParseGeoPoint(0,0);
+		  }
+		  getRequests();
 	}
 
 	@Override

@@ -2,6 +2,9 @@ import android.os.Environment;
 import android.content.Context;
 import android.content.Intent;
 import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 //globals
 String backgroundColor;
@@ -18,6 +21,10 @@ List<String> filterGoal;
 
 void setup()
 {
+  
+  String filepath = "/sdcard/Image/ic_launcher.jpg";
+  File imagefile = new File(filepath);
+
   backgroundColor = "#00ff00";
   
   filterDistance.add(5.0f);
@@ -28,6 +35,12 @@ void setup()
   filterType.add("reaserch");
   filterType.add("monetary");
   filterType.add("non-monetary");
+  
+  headerFontColor = "#ffffff";
+  headerFontSize = "20sp";
+  
+  labelFontColor = "#000000";
+  labelFontSize = "16sp";
     
   startActivity();
 }

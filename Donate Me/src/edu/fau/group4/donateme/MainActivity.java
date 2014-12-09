@@ -43,8 +43,8 @@ public class MainActivity extends Activity implements OnClickListener{
 	    Intent i = getIntent();
 	    
 	    String s = i.getStringExtra("backColor");
-	    if(s == null) s = "#2E8B57";
-	    GlobalLayout.backgroundColor = Color.parseColor(s) | 0xff000000 ;
+	    if(s == null) 	GlobalLayout.backgroundColor = getResources().getColor(R.color.back_green) | 0xff000000; //get default value
+	    else 			GlobalLayout.backgroundColor = Color.parseColor(s) | 0xff000000;
 	    
 	    float[] fa = i.getFloatArrayExtra("filterDistance");
 	    if(fa != null)
