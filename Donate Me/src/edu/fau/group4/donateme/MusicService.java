@@ -37,6 +37,9 @@ public class MusicService extends Service
         	case 2:
         		this.mplayer = MediaPlayer.create(c, R.raw.metalica);    
         		break;
+        	default:
+        		this.mplayer = MediaPlayer.create(c, R.raw.test);    
+    		
         	}
                  
             this.mplayer.setLooping(true);
