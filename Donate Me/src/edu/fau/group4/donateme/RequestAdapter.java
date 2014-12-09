@@ -10,17 +10,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 
@@ -61,8 +56,16 @@ public class RequestAdapter extends ArrayAdapter<RequestObject> {
 					b.putString("website", request.website);
 					b.putDouble("dlat", request.geo.getLatitude());
 					b.putDouble("dlong", request.geo.getLongitude());
-					b.putDouble("clat", geo.getLatitude());
-					b.putDouble("clong", geo.getLongitude());
+					if(geo != null)
+					{
+						b.putDouble("clat", geo.getLatitude());
+						b.putDouble("clong", geo.getLongitude());
+					}
+					else
+					{
+						b.putDouble("clat", 0.0);
+						b.putDouble("clong", 0.0);
+					}
 					b.putString("orgId", request.objectId);
 					b.putString("orgType", request.orgType);
 					b.putString("howToHelp", request.howToHelp);

@@ -61,7 +61,7 @@ GooglePlayServicesClient.OnConnectionFailedListener
 	
 	 private String[] state_type = { "All Types", "Research", "For Profit", "Not For Profit"};
 	 private String[] state_request = { "All Requests", "Money","Clothes","Food"};
-	 private String[] state_distance = {"Any Distance", "5 Miles", "15 Miles", "50 Miles", "100 Miles"};
+	 private ArrayList<String> state_distance = new ArrayList<String>();// = {"Any Distance", "5 Miles", "15 Miles", "50 Miles", "100 Miles"};
 	 
 	 TextView text_type;
 	 TextView text_distance;
@@ -88,7 +88,8 @@ GooglePlayServicesClient.OnConnectionFailedListener
 		    }
 		
 	 
-	  @Override
+	  @SuppressWarnings("rawtypes")
+	@Override
 	 public void onCreate(Bundle savedInstanceState)
 	  {
 		  super.onCreate(savedInstanceState);
@@ -104,7 +105,14 @@ GooglePlayServicesClient.OnConnectionFailedListener
 		   mLocationClient.connect();
 		 
 		   distance = (Spinner) findViewById(R.id.spinner1);
-	        ArrayAdapter distanceadapter = new ArrayAdapter(this,
+		   
+		   state_distance.add("Any Distance");
+		   for(int i = 0; i < GlobalLayout.filterDistance.size(); i++)
+		   {
+			   state_distance.add(GlobalLayout.filterDistance.get(i) + " Miles");
+		   }
+	        @SuppressWarnings("unchecked")
+			ArrayAdapter distanceadapter = new ArrayAdapter(this,
 	            android.R.layout.simple_spinner_dropdown_item, state_distance);
 	        distance.setAdapter(distanceadapter);
 	        distance.setOnItemSelectedListener(new OnItemSelectedListener(){
@@ -121,7 +129,10 @@ GooglePlayServicesClient.OnConnectionFailedListener
 			 });
         
 	        type = (Spinner) findViewById(R.id.spinner2);
-	        ArrayAdapter typeadapter = new ArrayAdapter(this,
+	        
+	        
+	        @SuppressWarnings("unchecked")
+			ArrayAdapter typeadapter = new ArrayAdapter(this,
 	            android.R.layout.simple_spinner_dropdown_item, state_type);
 	        type.setAdapter(typeadapter);
 	        type.setOnItemSelectedListener(new OnItemSelectedListener(){
@@ -238,48 +249,31 @@ GooglePlayServicesClient.OnConnectionFailedListener
         	 String orgrequest = req.requestType;
          	 if(orgrequest.equals("Money") && currentGeo == null) req.distance = 0.0f;
          	 double orgdistance = req.distance;
-         if(typefilter.contains(orgtype)||typefilter.contains("All Types"))
-         {if(requestfilter.contains(orgrequest)|| requestfilter.contains("All Requests"))
-         {
-     		if(distancefilter.contains("Any Distance")){
-     			updatedArray.add(req);
-     		}
-     		else if(distancefilter.contains("5 Miles"))
-     		{
-     			if(orgdistance < 5)
-     			{
-     				updatedArray.add(req);
-     			}
-     		}
-     		else if(distancefilter.contains("15 Miles"))
-     		{
-     			if(orgdistance < 15)
-     			{
-     				updatedArray.add(req);
-     			}
-     		}
-     		else if(distancefilter.contains("50 Miles"))
-     		{
-     			if(orgdistance < 50)
-     			{
-     				updatedArray.add(req);
-     			}
-     		}
-     		else if(distancefilter.contains("100 Miles"))
-     		{
-     			if(orgdistance < 100)
-     			{
-     				updatedArray.add(req);
-     			}
-     		}
-     		}
-         }
+	         if(typefilter.contains(orgtype)||typefilter.contains("All Types"))
+	         {
+	        	 if(requestfilter.contains(orgrequest)|| requestfilter.contains("All Requests"))
+	 
+		         {
+	        		 if(distancefilter.contains("Any Distance"))
+	        		 {
+	 	     			updatedArray.add(req);
+	        		 }
+	        		 else //check the filter list
+	        		 {
+			        	 for(int i = 0; i < GlobalLayout.filterDistance.size(); i++)
+			        	 {
+			        		 if(distancefilter.contains(GlobalLayout.filterDistance.get(i) + " Miles") && orgdistance < GlobalLayout.filterDistance.get(i))
+			        			 updatedArray.add(req);
+			        	 }
+	        		 }
+		         }
+	         }
          }
          Collections.sort(updatedArray, new CustomComparator());
          adapter = new RequestAdapter(thisContext,R.layout.list,updatedArray,currentGeo);			                
-	 	lv.setAdapter(adapter);
-	 	adapter.notifyDataSetChanged();
-	 }
+         lv.setAdapter(adapter);
+         adapter.notifyDataSetChanged();
+	}
 	  
 
 	@Override

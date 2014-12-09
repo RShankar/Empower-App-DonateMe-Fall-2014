@@ -1,6 +1,8 @@
 package edu.fau.group4.donateme;
 
 
+import java.util.ArrayList;
+
 import com.parse.ParseAnonymousUtils;
 import com.parse.ParseUser;
 
@@ -20,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import edu.fau.group4.donateme.MusicService.LocalBinder;
@@ -50,37 +53,22 @@ public class MainActivity extends Activity implements OnClickListener{
 	
 	
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) 
+    {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);	
-		 startService(new Intent(this, MusicService.class));
-	        Intent connectionIntent = new Intent(this, MusicService.class);
-	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
-	        
-	 
-		
-	    View button1 = findViewById(R.id.loginbutton);
+		setGlobalLayout();
+		startService(new Intent(this, MusicService.class));
+	    Intent connectionIntent = new Intent(this, MusicService.class);
+	    bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
+	       
+	    View button1 = findViewById(R.id.loginButton);
 	    button1.setOnClickListener(this); 
 	    
-
-	    Intent i = getIntent();
-	    
-	    String s = i.getStringExtra("backColor");
-	    if(s == null) 	GlobalLayout.backgroundColor = getResources().getColor(R.color.back_green) | 0xff000000; //get default value
-	    else 			GlobalLayout.backgroundColor = Color.parseColor(s) | 0xff000000;
-	    
-	    float[] fa = i.getFloatArrayExtra("filterDistance");
-	    if(fa != null)
-		    for(int index = 0; index < fa.length; index++)
-		    {
-		    	GlobalLayout.filterDistance.add(fa[index]);
-		    }
-	 
-	    
-
 	    View v = this.getWindow().getDecorView();
 	    v.setBackgroundColor(GlobalLayout.backgroundColor);
-	     
+	    ((Button) findViewById(R.id.loginButton)).setTextSize(GlobalLayout.buttonFontSize);
+	    ((TextView) findViewById(R.id.welcometxtview)).setTextSize(GlobalLayout.headerFontSize);
     } 
     
     
@@ -89,7 +77,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	public void onClick(View v) {	
 		
 		switch (v.getId()) {
-	      case R.id.loginbutton:
+	      case R.id.loginButton:
 	    	 	         
 	    	  Intent intent;
 	  		if (ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
@@ -117,6 +105,32 @@ public class MainActivity extends Activity implements OnClickListener{
 	  		}
 	         break;	          
 		}
+	}
+	
+	private void setGlobalLayout()
+	{
+		Intent i = getIntent();
+	    
+	    String s = i.getStringExtra("backColor");
+	    if(s == null) 	GlobalLayout.backgroundColor = getResources().getColor(R.color.back_green) | 0xff000000; //get default value
+	    else 			GlobalLayout.backgroundColor = Color.parseColor(s) | 0xff000000;
+	    
+	    float[] fa = i.getFloatArrayExtra("filterDistance");
+	    GlobalLayout.filterDistance = new ArrayList<Float>();
+	    if(fa != null)
+		    for(int index = 0; index < fa.length; index++)
+		    {
+		    	GlobalLayout.filterDistance.add(fa[index]);
+		    }
+	    else
+	    {
+	    	GlobalLayout.filterDistance.add(1.0f);
+	    	GlobalLayout.filterDistance.add(3.0f);
+	    	GlobalLayout.filterDistance.add(4.0f);
+	    }
+	    GlobalLayout.labelFontSize = i.getFloatExtra("labelFontSize", 20.0f);
+	    GlobalLayout.headerFontSize = i.getFloatExtra("headFontSize", 70.0f);
+	    GlobalLayout.buttonFontSize = i.getFloatExtra("buttonFontSize", 30.0f);
 	}
 	  
    

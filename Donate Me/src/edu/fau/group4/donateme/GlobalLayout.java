@@ -6,11 +6,14 @@ public class GlobalLayout
 {
 	static int backgroundColor;
 	static String headerFontColor;
-	static String headerFontSize;
+	static float headerFontSize;
 	static String headerFontStyle;
 	static String labelFontColor;
-	static String labelFontSize;
+	static float labelFontSize;
 	static String labelFontStyle;
+	static String buttonFontColor;
+	static float buttonFontSize;
+	static String buttonFontStyle;
 	static ArrayList<Float> filterDistance;
 	static ArrayList<String> filterType;	
 }

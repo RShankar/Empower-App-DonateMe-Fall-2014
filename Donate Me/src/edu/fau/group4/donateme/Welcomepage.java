@@ -11,6 +11,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -49,6 +50,20 @@ public class Welcomepage extends Activity implements OnClickListener{
         bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
 	    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		setContentView(R.layout.welcome);
+		
+		Intent i = getIntent();
+		
+		String s = i.getStringExtra("backColor");
+	    if(s == null) 	GlobalLayout.backgroundColor = getResources().getColor(R.color.back_green) | 0xff000000; //get default value
+	    else 			GlobalLayout.backgroundColor = Color.parseColor(s) | 0xff000000;
+	    
+	    float[] fa = i.getFloatArrayExtra("filterDistance");
+	    if(fa != null)
+		    for(int index = 0; index < fa.length; index++)
+		    {
+		    	GlobalLayout.filterDistance.add(fa[index]);
+		    }
+	    GlobalLayout.buttonFontSize = i.getFloatExtra("buttonFontSize", 20);
 
 		
 	        
