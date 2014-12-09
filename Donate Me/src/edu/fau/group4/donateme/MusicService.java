@@ -29,7 +29,16 @@ public class MusicService extends Service
     {
         if(!created)
         {
-            this.mplayer = MediaPlayer.create(c, R.raw.test);         
+        	switch(GlobalLayout.songSelect)
+        	{
+        	case 1:
+        		this.mplayer = MediaPlayer.create(c, R.raw.test);    
+        		break;
+        	case 2:
+        		this.mplayer = MediaPlayer.create(c, R.raw.metalica);    
+        		break;
+        	}
+                 
             this.mplayer.setLooping(true);
             created = true;
         }

@@ -157,6 +157,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	    GlobalLayout.headerFontSize = i.getFloatExtra("headFontSize", 70.0f);
 	    GlobalLayout.buttonFontSize = i.getFloatExtra("buttonFontSize", 30.0f);
 	    GlobalLayout.soundEnabled = i.getBooleanExtra("soundEnabled",  false);
+	    GlobalLayout.songSelect = i.getIntExtra("songSelect", 1);
 	    //i.get
 	}
 	  

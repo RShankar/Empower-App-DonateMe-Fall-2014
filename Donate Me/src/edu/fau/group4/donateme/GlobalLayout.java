@@ -17,4 +17,5 @@ public class GlobalLayout
 	static ArrayList<Float> filterDistance;
 	static ArrayList<String> filterType;
 	static boolean soundEnabled;
+	static int songSelect;
 }

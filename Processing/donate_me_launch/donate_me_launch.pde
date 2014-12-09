@@ -20,6 +20,7 @@ String buttonFontColor;
 String buttonFontSize;
 String buttonFontStyle;
 boolean soundEnabled;
+int songSelect;
 List<Float> filterDistance = new ArrayList<Float>();
 List<String> filterType = new ArrayList<String>();
 List<String> filterRequest;
@@ -28,22 +29,7 @@ Bitmap image;
 
 void setup()
 {
-  
-  /*String filepath = "/sdcard/Image/ic_launcher.jpg";
-  File imagefile = new File(filepath);
-  
-  Uri contentUri = data.getData();          
-  String[] proj = { MediaStore.Images.Media.DATA };         
-  Cursor cursor = managedQuery(contentUri, proj, null, null, null);         
-  int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);         
-  cursor.moveToFirst();         
-  String tmppath = cursor.getString(column_index);           
-  image = BitmapFactory.decodeFile(tmppath);*/
-  
-  /*Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-  ByteArrayOutputStream stream = new ByteArrayOutputStream();
-  bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-  byte[] byteArray = stream.toByteArray();*/
+ 
 
   backgroundColor = "#00ff00";
   
@@ -52,11 +38,14 @@ void setup()
   filterDistance.add(20.0f);
   filterDistance.add(50.0f);
   
+  songSelect = 1; //out of 5
+  
   filterType.add("reaserch");
   filterType.add("monetary");
   filterType.add("non-monetary");
   
   soundEnabled = true;
+  songSelect = 2;
   
   headerFontSize = "70sp";
   labelFontSize = "30sp";
@@ -82,6 +71,7 @@ void startActivity()
     i.putExtra("buttonFontSize", buttonFontSize);
     i.putExtra("buttonFontStyle", buttonFontStyle);
     i.putExtra("soundEnabled", soundEnabled);
+    i.putExtra("songSelect", songSelect);
     i.putExtra("filterDistance", filterDistance.toArray());
     i.putExtra("filterType", filterType.toArray());
     
