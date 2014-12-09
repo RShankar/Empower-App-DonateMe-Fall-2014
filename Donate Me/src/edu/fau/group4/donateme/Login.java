@@ -66,28 +66,32 @@ public class Login extends Activity{
 		// Set up click listeners for all the buttons	    
 		Button loginbutton = (Button) findViewById(R.id.loginbutton);
     
-		loginbutton.setOnClickListener(new OnClickListener() {
+		loginbutton.setOnClickListener(new OnClickListener() 
+		{
 			 
-			public void onClick(View arg0) {
+			public void onClick(View arg0) 
+			{
 				// Retrieve the text entered from the EditText
 				usernametxt = username.getText().toString();
 				passwordtxt = password.getText().toString();
  
 				// Send data to Parse.com for verification
-				ParseUser.logInInBackground(usernametxt, passwordtxt,
-						new LogInCallback() {
-							public void done(ParseUser user, ParseException e) {
-								if (user != null) {
+				ParseUser.logInInBackground(usernametxt, passwordtxt, new LogInCallback() 
+				{
+							public void done(ParseUser user, ParseException e) 
+							{
+								if (user != null) 
+								{
 									// If user exist and authenticated, send user to Welcome.class
-									Intent intent = new Intent(
-											Login.this,
-											Tab.class);
+									Intent intent = new Intent(Login.this, Tab.class);
 									startActivity(intent);
 									Toast.makeText(getApplicationContext(),
 											"Successfully Logged in",
 											Toast.LENGTH_LONG).show();
 									finish();
-								} else {
+								} 
+								else 
+								{
 									Toast.makeText(
 											getApplicationContext(),
 											"You have entered an invalid username or password.",

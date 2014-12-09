@@ -11,12 +11,15 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import edu.fau.group4.donateme.MusicService.LocalBinder;
 
@@ -58,10 +61,19 @@ public class MainActivity extends Activity implements OnClickListener{
 	    View button1 = findViewById(R.id.loginButton);
 	    button1.setOnClickListener(this); 
 	    
+	    
 	    View v = this.getWindow().getDecorView();
 	    v.setBackgroundColor(GlobalLayout.backgroundColor);
 	    ((Button) findViewById(R.id.loginButton)).setTextSize(GlobalLayout.buttonFontSize);
 	    ((TextView) findViewById(R.id.welcometxtview)).setTextSize(GlobalLayout.headerFontSize);
+	    
+	    
+	   /* Bundle extras = getIntent();
+	    byte[] byteArray = extras.getByteArray("picture",null);
+	    
+	    Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+	    ImageView image = (ImageView) findViewById(R.id.imageview);
+	    image.setImageBitmap(bmp);*/
     } 
     
     
@@ -137,10 +149,11 @@ public class MainActivity extends Activity implements OnClickListener{
 	    	GlobalLayout.filterType.add("For Profit");
 	    	GlobalLayout.filterType.add("Not For Profit");
 	    }
-	    
+	  //  Bitmap bm = ;
 	    GlobalLayout.labelFontSize = i.getFloatExtra("labelFontSize", 20.0f);
 	    GlobalLayout.headerFontSize = i.getFloatExtra("headFontSize", 70.0f);
 	    GlobalLayout.buttonFontSize = i.getFloatExtra("buttonFontSize", 30.0f);
+	    //i.get
 	}
 	  
    

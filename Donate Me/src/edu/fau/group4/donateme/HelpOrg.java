@@ -98,9 +98,9 @@ public class HelpOrg extends Activity implements OnClickListener
 		orgId = b.getString("orgId");		
 		 View help = findViewById(R.id.BTN_howToHelp);
 		 help.setOnClickListener(this);
-		 View websiteButton = findViewById(R.id.button4);
+		 View websiteButton = findViewById(R.id.websiteButton);
 		 websiteButton.setOnClickListener(this);
-		 View back = findViewById(R.id.settingsback);
+		 View back = findViewById(R.id.settingsBack);
 		 back.setOnClickListener(this);
 		 Bitmap imageBitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
 		 profile.setImageBitmap(imageBitmap);
@@ -140,7 +140,7 @@ public class HelpOrg extends Activity implements OnClickListener
 				i.putExtras(b);
 			    startActivity(i);
 				break;
-			case R.id.button4:
+			case R.id.websiteButton:
 				String url = website;
 				i = new Intent(Intent.ACTION_VIEW);
 				i.setData(Uri.parse(url));

@@ -243,12 +243,12 @@ GooglePlayServicesClient.OnConnectionFailedListener
         	 String orgrequest = req.requestType;
          	 if(orgrequest.equals("Money") && currentGeo == null) req.distance = 0.0f;
          	 double orgdistance = req.distance;
-	         if(typefilter.contains(orgtype)||typefilter.contains("All Types"))
+	         if(typefilter.equals(orgtype)||typefilter.equals("All Types"))
 	         {
-	        	 if(requestfilter.contains(orgrequest)|| requestfilter.contains("All Requests"))
+	        	 if(requestfilter.equals(orgrequest)|| requestfilter.equals("All Requests"))
 	 
 		         {
-	        		 if(distancefilter.contains("Any Distance"))
+	        		 if(distancefilter.equals("Any Distance"))
 	        		 {
 	 	     			updatedArray.add(req);
 	        		 }

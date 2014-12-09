@@ -5,6 +5,8 @@ import java.util.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import android.graphics.Bitmap;
+import android.net.Uri;
 
 //globals
 String backgroundColor;
@@ -14,16 +16,33 @@ String headerFontStyle;
 String labelFontColor;
 String labelFontSize;
 String labelFontStyle;
+String buttonFontColor;
+String buttonFontSize;
+String buttonFontStyle;
 List<Float> filterDistance = new ArrayList<Float>();
 List<String> filterType = new ArrayList<String>();
 List<String> filterRequest;
 List<String> filterGoal;
+Bitmap image;
 
 void setup()
 {
   
-  String filepath = "/sdcard/Image/ic_launcher.jpg";
+  /*String filepath = "/sdcard/Image/ic_launcher.jpg";
   File imagefile = new File(filepath);
+  
+  Uri contentUri = data.getData();          
+  String[] proj = { MediaStore.Images.Media.DATA };         
+  Cursor cursor = managedQuery(contentUri, proj, null, null, null);         
+  int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);         
+  cursor.moveToFirst();         
+  String tmppath = cursor.getString(column_index);           
+  image = BitmapFactory.decodeFile(tmppath);*/
+  
+  /*Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+  ByteArrayOutputStream stream = new ByteArrayOutputStream();
+  bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+  byte[] byteArray = stream.toByteArray();*/
 
   backgroundColor = "#00ff00";
   
@@ -36,11 +55,9 @@ void setup()
   filterType.add("monetary");
   filterType.add("non-monetary");
   
-  headerFontColor = "#ffffff";
-  headerFontSize = "20sp";
-  
-  labelFontColor = "#000000";
-  labelFontSize = "16sp";
+  headerFontSize = "70sp";
+  labelFontSize = "30sp";
+  buttonFontSize = "30sp";
     
   startActivity();
 }
@@ -58,6 +75,9 @@ void startActivity()
     i.putExtra("labelFontColor", labelFontColor);
     i.putExtra("labelFontSize", labelFontSize);
     i.putExtra("labelFontStyle", labelFontStyle);
+    i.putExtra("buttonFontColor", buttonFontColor);
+    i.putExtra("buttonFontSize", buttonFontSize);
+    i.putExtra("buttonFontStyle", buttonFontStyle);
     i.putExtra("filterDistance", filterDistance.toArray());
     i.putExtra("filterType", filterType.toArray());
     
