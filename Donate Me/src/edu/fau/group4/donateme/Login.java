@@ -59,7 +59,7 @@ public class Login extends Activity{
 
 	    ((Button) findViewById(R.id.loginButton)).setTextSize(GlobalLayout.buttonFontSize);
 	    ((Button) findViewById(R.id.backButton)).setTextSize(GlobalLayout.buttonFontSize);
-	    ((TextView) findViewById(R.id.welcometxtview)).setTextSize(GlobalLayout.headerFontSize);
+	    ((TextView) findViewById(R.id.welcometxtview)).setTextSize(GlobalLayout.LabelFontSize);
 		
 		username = (EditText) findViewById(R.id.username);
 		password = (EditText) findViewById(R.id.password);

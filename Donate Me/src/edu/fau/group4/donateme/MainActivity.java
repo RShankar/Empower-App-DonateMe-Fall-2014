@@ -153,7 +153,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	    	GlobalLayout.filterType.add("Not For Profit");
 	    }
 	  //  Bitmap bm = ;
-	    GlobalLayout.labelFontSize = i.getFloatExtra("labelFontSize", 20.0f);
+	    GlobalLayout.labelFontSize = i.getFloatExtra("labelFontSize", 30.0f);
 	    GlobalLayout.headerFontSize = i.getFloatExtra("headFontSize", 70.0f);
 	    GlobalLayout.buttonFontSize = i.getFloatExtra("buttonFontSize", 30.0f);
 	    GlobalLayout.soundEnabled = i.getBooleanExtra("soundEnabled",  false);
