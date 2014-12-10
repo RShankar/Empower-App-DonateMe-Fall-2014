@@ -23,28 +23,6 @@
         android:background="@drawable/round_corners"
         android:text="@string/back" />
 
-    <TextView
-        android:id="@+id/addresstxtview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/settingsback"
-        android:layout_marginTop="132dp"
-        android:text="Address:"
-        android:textSize="26sp"
-        android:visibility="invisible" />
-
-    <EditText
-        android:id="@+id/addressedit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/addresstxtview"
-        android:layout_alignBottom="@+id/addresstxtview"
-        android:layout_alignParentRight="true"
-        android:ems="10"
-        android:inputType="textPostalAddress|textCapWords|textNoSuggestions"
-        android:visibility="invisible" />
-
     <EditText
         android:id="@+id/cityedit"
         android:layout_width="wrap_content"
@@ -53,7 +31,8 @@
         android:layout_below="@+id/addressedit"
         android:ems="10"
         android:inputType="textPostalAddress|textCapWords|textNoSuggestions"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+         />
 
     <EditText
         android:id="@+id/stateedit"
@@ -63,34 +42,13 @@
         android:layout_below="@+id/cityedit"
         android:ems="10"
         android:inputType="textPostalAddress|textCapWords|textNoSuggestions"
-        android:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/citytxtview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/cityedit"
-        android:text="City:"
-        android:textSize="26sp"
-        android:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/statetxtview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/stateedit"
-        android:layout_alignBottom="@+id/stateedit"
-        android:layout_alignParentLeft="true"
-        android:text="State:"
-        android:textSize="26sp"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+         />
 
     <Button
         android:id="@+id/logoutButton"
         android:layout_width="120dp"
-        android:layout_height="80dp"
-        android:layout_above="@+id/addresstxtview"
+        android:layout_height="80dp"        
         android:layout_alignParentRight="true"
         android:layout_marginRight="19dp"
         android:layout_marginTop="19dp"
@@ -107,34 +65,74 @@
 
     <Button
         android:id="@+id/settingsave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/stateedit"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="109dp"
+        android:layout_marginBottom="49dp"
+        android:background="@drawable/round_corners1"
         android:text="Save"
         android:visibility="invisible" />
 
-    <EditText
-        android:id="@+id/paypalemailedit"
+    <TextView
+        android:id="@+id/addresstxtview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/settingsave"
-        android:layout_marginBottom="51dp"
-        android:layout_toRightOf="@+id/settingstxtview"
+        android:layout_below="@+id/muteimageview"
+        android:layout_marginTop="93dp"
+        android:layout_toRightOf="@+id/settingsback"
+        android:text="Address:"
+        android:textSize="26sp" 
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/citytxtview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/stateedit"
+        android:layout_alignRight="@+id/addresstxtview"
+        android:text="City:"
+        android:textSize="26sp" 
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/statetxtview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/stateedit"
+        android:layout_toLeftOf="@+id/settingstxtview"
+        android:text="State:"
+        android:textSize="26sp" 
+        android:visibility="invisible"/>
+
+    <EditText
+        android:id="@+id/addressedit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/addresstxtview"
+        android:layout_alignLeft="@+id/muteimageview"
         android:ems="10"
-        android:inputType="textEmailAddress"
-        android:visibility="invisible" >       
-    </EditText>
+        android:inputType="textPostalAddress|textCapWords|textNoSuggestions"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/paypaltxtview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/paypalemailedit"
-        android:layout_toRightOf="@+id/statetxtview"
+        android:layout_toLeftOf="@+id/paypalemailedit"
         android:text="PayPal Email:"
         android:textSize="26sp"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/paypalemailedit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/stateedit"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:inputType="textEmailAddress"
         android:visibility="invisible" />
 
 </RelativeLayout>

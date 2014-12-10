@@ -3,68 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <ImageView
-        android:id="@+id/muteimageview"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="37dp"
-        android:src="@drawable/avatar" />
-
     <Button
         android:id="@+id/savemedia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:text="Save" />
+        android:text="Save" 
+        android:background="@drawable/round_corners1"
+        android:textSize="30sp"/>
 
-    <TextView
-        android:id="@+id/videotxtview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/muteimageview"
-        android:layout_marginTop="44dp"
-        android:text="YouTube Url:"
-        android:textSize="30sp" />
-
-    <EditText
-        android:id="@+id/howtohelpedit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/videotxtview"
-        android:ems="10" />
+    <ImageView
+        android:id="@+id/muteimageview"
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="58dp"
+        android:src="@drawable/avatar" />
 
     <TextView
         android:id="@+id/profiletxtview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/muteimageview"
         android:layout_below="@+id/muteimageview"
-        android:text="Upload a picture" />
-
-    <TextView
-        android:id="@+id/audiotxtview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView2"
-        android:layout_alignParentLeft="true"
-        android:text="Upload some audio"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:text="Upload a picture"
         android:textSize="30sp" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/howtohelpedit"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="48dp"
-        android:src="@android:drawable/ic_lock_silent_mode_off" />
 
 </RelativeLayout>
