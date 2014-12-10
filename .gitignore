@@ -8,6 +8,7 @@
 Donate Me/bin/
 tmp/
 Donate Me/gen/
+project.properties
 *.tmp
 *.bak
 *.swp
