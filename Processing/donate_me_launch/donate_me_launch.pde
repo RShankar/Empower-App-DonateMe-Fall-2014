@@ -32,8 +32,8 @@ void setup()
 {
  
 
-  backgroundColor = "#00ff00";
-  backgroundEndGradient = "#0000ff";
+  backgroundColor = "#000000";
+  backgroundEndGradient = "#777777";
   
   filterDistance.add(5.0f);
   filterDistance.add(10.0f);

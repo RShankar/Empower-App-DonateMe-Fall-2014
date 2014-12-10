@@ -170,7 +170,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	    if(s == null) 	end = 0xffffff | 0xff000000; //get default value
 	    else 			end = Color.parseColor(s) | 0xff000000;
 	    	
-	     
+	    GlobalLayout.backgroundColor = 0xff000000 | getResources().getColor(R.color.back_green);
 	    
 	    GlobalLayout.gradient = new GradientDrawable(
 	            GradientDrawable.Orientation.TOP_BOTTOM,
