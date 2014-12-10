@@ -447,27 +447,17 @@ public class Howtohelp extends Activity implements OnClickListener
 
 	@SuppressWarnings("unused")
 	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-	switch (resultCode) {
-	case Activity.RESULT_OK:
-	// The payment succeeded
-	String payKey = data.getStringExtra(PayPalActivity.EXTRA_PAY_KEY);
-	
-	// Tell the user their payment succeeded
-	break;
-	case Activity.RESULT_CANCELED:
-	// The payment was canceled
-	// Tell the user their payment was canceled
-	break;
-	case PayPalActivity.RESULT_FAILURE:
-	// The payment failed -- we get the error from the EXTRA_ERROR_ID
-	// and EXTRA_ERROR_MESSAGE
-	String errorID = data.getStringExtra(PayPalActivity.EXTRA_ERROR_ID);
-	String errorMessage = data.getStringExtra(PayPalActivity.EXTRA_ERROR_MESSAGE);
-	// Tell the user their payment was failed.
-	               break;
-	       }
-	   }
+public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		
+		if (requestCode == 2) {
+			PayPalActivityResult(requestCode, resultCode, intent);
+		} 
+		 else {
+			super.onActivityResult(requestCode, resultCode, intent);
+		}
+		
+	}
+
 
 	public void onClick(DialogInterface dialog, int which) {
 		// TODO Auto-generated method stub
