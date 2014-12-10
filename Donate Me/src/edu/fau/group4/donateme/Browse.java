@@ -7,7 +7,6 @@ import java.util.List;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.location.LocationClient;
-import com.google.android.gms.maps.model.LatLng;
 import com.parse.FindCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseFile;
@@ -24,14 +23,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.widget.TextView;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -49,6 +49,7 @@ GooglePlayServicesClient.OnConnectionFailedListener
 	 Location mCurrentLocation;
 	 ParseGeoPoint currentGeo;
 	 LocationClient mLocationClient;
+	 Button rakbutton;
 	 ArrayList<RequestObject> requestArray = new ArrayList<RequestObject>();
 	 ArrayAdapter<RequestObject> adapter;
 	 byte[] imageArray;
@@ -90,8 +91,15 @@ GooglePlayServicesClient.OnConnectionFailedListener
 		    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		  setContentView(R.layout.browse);
 		  
-		  
-		  
+		  rakbutton = (Button) findViewById(R.id.signupsubmit);
+		  rakbutton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		  startService(new Intent(this, MusicService.class));
 		  Intent connectionIntent = new Intent(this, MusicService.class);
 	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
@@ -207,7 +215,7 @@ GooglePlayServicesClient.OnConnectionFailedListener
 			            				}
 			            				double distance;
 			            				if(currentGeo != null) distance = getDistance(currentGeo,geo);
-			            				else distance = Float.POSITIVE_INFINITY;/////////////////////////////////////////////////////////////////////////
+			            				else distance = Double.POSITIVE_INFINITY;
 					                	distance = Math.round(distance*100.0)/100.0;
 					                	String paypalEmail = "";
 					                	if(requestsObject.has("paypalEmail")) paypalEmail = requestsObject.get("paypalEmail").toString();
@@ -248,12 +256,12 @@ GooglePlayServicesClient.OnConnectionFailedListener
         	 String orgrequest = req.requestType;
          	 if(orgrequest.equals("Money") && currentGeo == null) req.distance = 0.0f;
          	 double orgdistance = req.distance;
-	         if(typefilter.equals(orgtype)||typefilter.contains("All"))
+	         if(typefilter.equals(orgtype)||typefilter.equals("All Types"))
 	         {
-	        	 if(requestfilter.equals(orgrequest)|| requestfilter.contains("All Requests"))
+	        	 if(requestfilter.equals(orgrequest)|| requestfilter.equals("All Requests"))
 	 
 		         {
-	        		 if(distancefilter.contains("Any Distance"))
+	        		 if(distancefilter.equals("Any Distance"))
 	        		 {
 	 	     			updatedArray.add(req);
 	        		 }
@@ -300,7 +308,6 @@ GooglePlayServicesClient.OnConnectionFailedListener
 		// TODO Auto-generated method stub
 		
 	}
-	
 	
 	public void randomActOfKindness(View v)
 	{
