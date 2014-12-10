@@ -111,6 +111,14 @@
 	    android:textSize="30sp"
 	    android:visibility="invisible" />
 
+	<Spinner
+	    android:id="@+id/orgtypespinner"
+	    android:layout_width="220dp"
+	    android:layout_height="50dp"
+	    android:layout_alignParentRight="true"
+	    android:layout_below="@+id/isorgcheckbox"
+	    android:visibility="invisible" />
+
 	<CheckBox
 	    android:id="@+id/isorgcheckbox"
 	    android:layout_width="wrap_content"
@@ -184,13 +192,5 @@
 	    android:layout_toRightOf="@+id/emailtxtview"
 	    android:ems="10"
 	    android:inputType="textPersonName" />
-
-	<Spinner
-	    android:id="@+id/orgtypespinner"
-	    android:layout_width="220dp"
-	    android:layout_height="50dp"
-	    android:layout_alignLeft="@+id/orgname"
-	    android:layout_below="@+id/isorgcheckbox"
-	    android:visibility="invisible" />
 
 </RelativeLayout>
