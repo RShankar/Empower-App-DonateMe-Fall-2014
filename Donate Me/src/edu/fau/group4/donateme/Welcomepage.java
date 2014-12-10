@@ -46,8 +46,8 @@ public class Welcomepage extends Activity implements OnClickListener{
 	    View v = this.getWindow().getDecorView();
 	    Intent connectionIntent = new Intent(this, MusicService.class);
         bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
-	    v.setBackgroundColor(GlobalLayout.backgroundColor);
-		setContentView(R.layout.welcome);
+	    v.setBackgroundDrawable(GlobalLayout.gradient);
+	    setContentView(R.layout.welcome);
 		
 		((Button) findViewById(R.id.loginbutton)).setTextSize(GlobalLayout.buttonFontSize);
 		((Button) findViewById(R.id.signupsubmit)).setTextSize(GlobalLayout.buttonFontSize);
@@ -55,9 +55,7 @@ public class Welcomepage extends Activity implements OnClickListener{
 		
 		Intent i = getIntent();
 		
-		String s = i.getStringExtra("backColor");
-	    if(s == null) 	GlobalLayout.backgroundColor = getResources().getColor(R.color.back_green) | 0xff000000; //get default value
-	    else 			GlobalLayout.backgroundColor = Color.parseColor(s) | 0xff000000;
+		
 	    
 	    float[] fa = i.getFloatArrayExtra("filterDistance");
 	    if(fa != null)

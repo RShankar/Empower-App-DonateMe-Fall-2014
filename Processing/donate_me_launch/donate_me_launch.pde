@@ -10,6 +10,7 @@ import android.net.Uri;
 
 //globals
 String backgroundColor;
+String backgroundEndGradient;
 String headerFontColor;
 String headerFontSize;
 String headerFontStyle;
@@ -32,6 +33,7 @@ void setup()
  
 
   backgroundColor = "#00ff00";
+  backgroundEndGradient = "#0000ff";
   
   filterDistance.add(5.0f);
   filterDistance.add(10.0f);
@@ -61,6 +63,7 @@ void startActivity()
   {
     Intent i = getPackageManager().getLaunchIntentForPackage("edu.fau.group4.donateme");
     i.putExtra("backColor", backgroundColor);
+    i.putExtra("endGradient", backgroundEndGradient);
     i.putExtra("headFontColor", headerFontColor);
     i.putExtra("headFontSize", headerFontSize);
     i.putExtra("headFontStyle", headerFontStyle);

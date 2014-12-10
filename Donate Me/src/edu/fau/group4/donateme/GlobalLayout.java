@@ -2,6 +2,8 @@ package edu.fau.group4.donateme;
 
 import java.util.ArrayList;
 
+import android.graphics.drawable.GradientDrawable;
+
 public class GlobalLayout 
 {
 	static int backgroundColor;
@@ -18,4 +20,5 @@ public class GlobalLayout
 	static ArrayList<String> filterType;
 	static boolean soundEnabled;
 	static int songSelect;
+	static GradientDrawable gradient;
 }

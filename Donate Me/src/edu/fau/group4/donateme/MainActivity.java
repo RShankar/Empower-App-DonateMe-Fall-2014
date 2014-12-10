@@ -14,6 +14,7 @@ import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
@@ -51,7 +52,8 @@ public class MainActivity extends Activity implements OnClickListener{
 	    }
 	
 	
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void onCreate(Bundle savedInstanceState) 
     {
 		super.onCreate(savedInstanceState);
@@ -66,7 +68,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	    
 	    
 	    View v = this.getWindow().getDecorView();
-	    v.setBackgroundColor(GlobalLayout.backgroundColor);
+	    v.setBackgroundDrawable(GlobalLayout.gradient);
 	    ((Button) findViewById(R.id.loginButton)).setTextSize(GlobalLayout.buttonFontSize);
 	    ((TextView) findViewById(R.id.welcometxtview)).setTextSize(GlobalLayout.headerFontSize);
 	    
@@ -119,9 +121,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	{
 		Intent i = getIntent();
 	    
-	    String s = i.getStringExtra("backColor");
-	    if(s == null) 	GlobalLayout.backgroundColor = getResources().getColor(R.color.back_green) | 0xff000000; //get default value
-	    else 			GlobalLayout.backgroundColor = Color.parseColor(s) | 0xff000000;
+	   
 	    
 	    //populate filter distance list
 	    float[] fa = i.getFloatArrayExtra("filterDistance");
@@ -158,6 +158,23 @@ public class MainActivity extends Activity implements OnClickListener{
 	    GlobalLayout.buttonFontSize = i.getFloatExtra("buttonFontSize", 30.0f);
 	    GlobalLayout.soundEnabled = i.getBooleanExtra("soundEnabled",  false);
 	    GlobalLayout.songSelect = i.getIntExtra("songSelect", 1);
+	    
+	    
+	    int start,end;
+	    String s = i.getStringExtra("backColor");
+	    if(s == null) 	start = getResources().getColor(R.color.back_green) | 0xff000000; //get default value
+	    else 			start = Color.parseColor(s) | 0xff000000;
+	    
+	    s = i.getStringExtra("endGradient");
+	   
+	    if(s == null) 	end = 0xffffff | 0xff000000; //get default value
+	    else 			end = Color.parseColor(s) | 0xff000000;
+	    	
+	     
+	    
+	    GlobalLayout.gradient = new GradientDrawable(
+	            GradientDrawable.Orientation.TOP_BOTTOM,
+	            new int[] {start ,end});
 	    //i.get
 	}
 	  
