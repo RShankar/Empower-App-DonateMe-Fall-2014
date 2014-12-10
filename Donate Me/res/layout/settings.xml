@@ -131,8 +131,12 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/stateedit"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="35dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:visibility="invisible" />
+        android:visibility="invisible" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>

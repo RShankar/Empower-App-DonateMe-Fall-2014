@@ -35,7 +35,8 @@
         android:layout_height="80dp"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/button2"
-        android:background="@drawable/round_corners"
+        android:background="@drawable/round_corners"        
+        android:layout_marginBottom="43dp"
         android:text="@string/back"
         android:onClick="onBack"
         android:textSize="30sp" />
@@ -45,11 +46,12 @@
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/settingsback"
+        android:layout_below="@+id/settingsback"       
+        android:layout_marginBottom="43dp"
+        android:layout_marginLeft="30dp"
         android:text="@string/non_monetary"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_toRightOf="@+id/textview1"
-        android:textColor="#ffffff"
+        android:layout_toRightOf="@+id/textView1"        
         android:textSize="20sp" />
 
     <TextView
@@ -57,9 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/welcometxtview"
         android:layout_marginLeft="21dp"
-        android:layout_marginTop="43dp"
         android:layout_below="@+id/settingsback"
         android:text="How to help:"
 		android:textSize="20sp"/>
