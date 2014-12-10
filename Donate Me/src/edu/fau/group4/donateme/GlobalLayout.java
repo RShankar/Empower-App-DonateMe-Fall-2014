@@ -18,6 +18,7 @@ public class GlobalLayout
 	static String buttonFontStyle;
 	static ArrayList<Float> filterDistance;
 	static ArrayList<String> filterType;
+	static ArrayList<String> filterRequest;
 	static boolean soundEnabled;
 	static int songSelect;
 	static GradientDrawable gradient;

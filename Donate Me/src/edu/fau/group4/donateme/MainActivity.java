@@ -58,6 +58,7 @@ public class MainActivity extends Activity implements OnClickListener{
     {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);	
+		
 		setGlobalLayout();
 		startService(new Intent(this, MusicService.class));
 	    Intent connectionIntent = new Intent(this, MusicService.class);
@@ -120,10 +121,12 @@ public class MainActivity extends Activity implements OnClickListener{
 	private void setGlobalLayout()
 	{
 		Intent i = getIntent();
+		
 	    
 	   
 	    
 	    //populate filter distance list
+
 	    float[] fa = i.getFloatArrayExtra("filterDistance");
 	    GlobalLayout.filterDistance = new ArrayList<Float>();
 	    if(fa != null)
@@ -152,6 +155,21 @@ public class MainActivity extends Activity implements OnClickListener{
 	    	GlobalLayout.filterType.add("For Profit");
 	    	GlobalLayout.filterType.add("Not For Profit");
 	    }
+	    
+	    sa = i.getStringArrayExtra("filterRequest");
+	    GlobalLayout.filterRequest = new ArrayList<String>();
+	    if(sa != null)
+		    for(int index = 0; index < sa.length; index++)
+		    {
+		    	GlobalLayout.filterRequest.add(sa[index]);
+		    }
+	    else
+	    {
+	    	GlobalLayout.filterRequest.add("Money");
+	    	GlobalLayout.filterRequest.add("Food");
+	    	GlobalLayout.filterRequest.add("Clothes");
+	    }
+	    
 	  //  Bitmap bm = ;
 	    GlobalLayout.labelFontSize = i.getFloatExtra("labelFontSize", 30.0f);
 	    GlobalLayout.headerFontSize = i.getFloatExtra("headFontSize", 70.0f);
