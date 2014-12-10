@@ -90,7 +90,7 @@ public class Settings extends Activity{
 		  TextView statetxtview = (TextView) findViewById(R.id.statetxtview);
 		  paypaledit = (EditText) findViewById(R.id.paypalemailedit);
 		  paypal = (TextView) findViewById(R.id.paypaltxtview);
-		  if(currentUser.has("paypalEmail"))paypaledit.setText(currentUser.getInt("paypalEmail"));
+		  if(currentUser.has("paypalEmail"))paypaledit.setText(currentUser.get("paypalEmail").toString());
 		  Button save = (Button) findViewById(R.id.settingsave);
 		  muteIcon = (ImageView) findViewById(R.id.muteimageview);
 		  muteIcon.setOnClickListener(new OnClickListener() 
@@ -124,7 +124,7 @@ public class Settings extends Activity{
 				 currentUser.put("city",city);
 				 currentUser.put("state", state);
 				 ParseGeoPoint geo = new ParseGeoPoint(p1.getLatitudeE6()/1E6,p1.getLongitudeE6()/1E6);
-				 paypalEmail = paypaledit.toString();
+				 paypalEmail = paypaledit.getText().toString();
 				 if(!paypalEmail.equals(""))currentUser.put("paypalEmail", paypalEmail);
 				 currentUser.put("geoPoint",geo);
 				 

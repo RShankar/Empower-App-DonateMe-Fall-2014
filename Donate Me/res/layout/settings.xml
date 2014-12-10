@@ -119,9 +119,7 @@
         android:layout_toRightOf="@+id/settingstxtview"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:visibility="invisible" >
-
-        <requestFocus />
+        android:visibility="invisible" >       
     </EditText>
 
     <TextView

@@ -102,7 +102,7 @@ public class Request extends Activity
 		  howtohelptxtview = (TextView) findViewById(R.id.howtohelptxtview);
 		  b = getIntent().getExtras();
 		  
-		    View add_media = findViewById(R.id.loginbutton);
+		    View add_media = findViewById(R.id.addMediaButton);
 		    add_media.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -123,7 +123,7 @@ public class Request extends Activity
 					
 				}
 			});
-		    View submit = findViewById(R.id.signupsubmit);
+		    View submit = findViewById(R.id.signupSubmit);
 		    //submit.setOnClickListener(this);
 		    goallabel = (TextView) findViewById(R.id.textView4);
 		    goal = (EditText) findViewById(R.id.password);
