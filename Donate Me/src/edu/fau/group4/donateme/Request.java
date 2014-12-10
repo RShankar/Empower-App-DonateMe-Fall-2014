@@ -91,7 +91,7 @@ public class Request extends Activity
 
 		    ((Button) findViewById(R.id.addMediaButton)).setTextSize(GlobalLayout.buttonFontSize);
 		    ((Button) findViewById(R.id.signupSubmit)).setTextSize(GlobalLayout.buttonFontSize);
-		    ((TextView) findViewById(R.id.welcometxtview)).setTextSize(GlobalLayout.headerFontSize);
+		    ((TextView) findViewById(R.id.welcometxtview)).setTextSize(GlobalLayout.labelFontSize);
 		  
 		  currentUser = ParseUser.getCurrentUser();
 		  username = (EditText) findViewById(R.id.username);
