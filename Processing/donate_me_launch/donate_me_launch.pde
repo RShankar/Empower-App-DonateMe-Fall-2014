@@ -36,7 +36,7 @@ String[] filterRequestArray;
 
 void setup()
 {
-  backgroundColor = "#000000";
+  backgroundColor = "#aaaaaa";
   backgroundEndGradient = "#777777";
   
   filterDistance.add(1.0f);
@@ -46,7 +46,7 @@ void setup()
   filterDistance.add(20.0f);
   filterDistance.add(50.0f);
   
-  songSelect = 1; //out of 5
+  songSelect = 1; //out of 4
   
   filterType.add("reaserch");
   filterType.add("monetary");
@@ -56,6 +56,7 @@ void setup()
   filterRequest.add("Food");
   filterRequest.add("Clothes");
   filterRequest.add("Labor");
+  filterRequest.add("stuff");
   
   soundEnabled = true;
   songSelect = 3;
@@ -89,7 +90,6 @@ void setup()
   startActivity();
 }
 
-
 void startActivity()
 {
   //println(array.length);
@@ -117,7 +117,7 @@ void startActivity()
     
     startActivity(i);
   }
-  catch(Exception ex)
+  catch(Exception e)
   {
     System.out.println("could not find package");
   }
