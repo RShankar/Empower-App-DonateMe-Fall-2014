@@ -9,6 +9,7 @@ import java.util.Arrays;
 import edu.fau.group4.donateme.MusicService.LocalBinder;
 
 import android.app.Activity;
+import android.app.ActionBar.Tab;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -58,7 +59,7 @@ public class AddMedia extends Activity {
 	    @Override
 	    protected void onDestroy() {
 	        unbindService(this.mp3PlayerServiceConnection);
-	        super.onDestroy();
+	        super.onDestroy();		
 	    }
 	
 	
@@ -142,6 +143,7 @@ public class AddMedia extends Activity {
 	        }
 	    }
 	}
+	
 	public String getPath(Uri uri) {
         if( uri == null ) {
             return null;
