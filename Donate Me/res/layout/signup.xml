@@ -13,18 +13,6 @@
         android:text="@string/back"/>
 
 	<EditText
-	    android:id="@+id/username"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignBottom="@+id/usernametxtview"
-	    android:layout_alignLeft="@+id/orgtypespinner"
-	    android:ems="10"
-	    android:inputType="textPersonName" >
-
-	    <requestFocus />
-	</EditText>
-
-	<EditText
 	    android:id="@+id/password"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
@@ -123,14 +111,6 @@
 	    android:textSize="30sp"
 	    android:visibility="invisible" />
 
-	<Spinner
-	    android:id="@+id/orgtypespinner"
-	    android:layout_width="220dp"
-	    android:layout_height="50dp"
-	    android:layout_alignParentRight="true"
-	    android:layout_below="@+id/isorgcheckbox"
-	    android:visibility="invisible" />
-
 	<CheckBox
 	    android:id="@+id/isorgcheckbox"
 	    android:layout_width="wrap_content"
@@ -194,5 +174,23 @@
 	    android:layout_marginTop="30dp"
 	    android:text="First Name:"
 	    android:textSize="30sp" />
+
+	<EditText
+	    android:id="@+id/username"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBaseline="@+id/usernametxtview"
+	    android:layout_alignBottom="@+id/usernametxtview"
+	    android:layout_toRightOf="@+id/emailtxtview"
+	    android:ems="10"
+	    android:inputType="textPersonName" />
+
+	<Spinner
+	    android:id="@+id/orgtypespinner"
+	    android:layout_width="220dp"
+	    android:layout_height="50dp"
+	    android:layout_alignLeft="@+id/orgname"
+	    android:layout_below="@+id/isorgcheckbox"
+	    android:visibility="invisible" />
 
 </RelativeLayout>

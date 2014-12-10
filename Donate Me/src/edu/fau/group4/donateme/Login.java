@@ -65,7 +65,7 @@ public class Login extends Activity{
 		password = (EditText) findViewById(R.id.password);
 
 		// Set up click listeners for all the buttons	    
-		Button loginbutton = (Button) findViewById(R.id.loginbutton);
+		Button loginbutton = (Button) findViewById(R.id.loginButton);
     
 		loginbutton.setOnClickListener(new OnClickListener() 
 		{
@@ -104,7 +104,7 @@ public class Login extends Activity{
 		});
 		
 	    
-	    View back = findViewById(R.id.signupsubmit);
+	    View back = findViewById(R.id.backButton);
 	    back.setOnClickListener(new OnClickListener()
 	    {
 	    	public void onClick(View arg0)
