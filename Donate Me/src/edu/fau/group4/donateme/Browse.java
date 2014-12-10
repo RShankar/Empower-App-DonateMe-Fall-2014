@@ -27,9 +27,11 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.widget.TextView;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -47,6 +49,7 @@ GooglePlayServicesClient.OnConnectionFailedListener
 	 Location mCurrentLocation;
 	 ParseGeoPoint currentGeo;
 	 LocationClient mLocationClient;
+	 Button rakbutton;
 	 ArrayList<RequestObject> requestArray = new ArrayList<RequestObject>();
 	 ArrayAdapter<RequestObject> adapter;
 	 byte[] imageArray;
@@ -88,8 +91,15 @@ GooglePlayServicesClient.OnConnectionFailedListener
 		    v.setBackgroundColor(GlobalLayout.backgroundColor);
 		  setContentView(R.layout.browse);
 		  
-		  
-		  
+		  rakbutton = (Button) findViewById(R.id.signupsubmit);
+		  rakbutton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		  startService(new Intent(this, MusicService.class));
 		  Intent connectionIntent = new Intent(this, MusicService.class);
 	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
