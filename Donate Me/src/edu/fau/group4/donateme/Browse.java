@@ -3,6 +3,7 @@ package edu.fau.group4.donateme;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
@@ -103,7 +104,59 @@ GooglePlayServicesClient.OnConnectionFailedListener
 		  startService(new Intent(this, MusicService.class));
 		  Intent connectionIntent = new Intent(this, MusicService.class);
 	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
-		  
+		  rakbutton = (Button) findViewById(R.id.signupsubmit);
+		  rakbutton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ArrayList<RequestObject> reqarr = new ArrayList<RequestObject>();
+				for(RequestObject req : requestArray)
+		         {
+					if(req.requestType.equals("Money")) reqarr.add(req);
+		         }
+				if(!reqarr.isEmpty())
+				{
+					Random rng = new Random();
+					int index = rng.nextInt(reqarr.size());
+					RequestObject requestrak = reqarr.get(index);
+					
+					Intent i = new Intent(Browse.this,HelpOrg.class);
+					Bundle b = new Bundle();
+					b.putString("orgName",requestrak.orgName);
+					b.putString("whatFor", requestrak.whatFor);
+					b.putString("description", requestrak.description);
+					b.putString("website", requestrak.website);
+					b.putDouble("dlat", requestrak.geo.getLatitude());
+					b.putDouble("dlong", requestrak.geo.getLongitude());
+					if(currentGeo != null)
+					{
+						b.putDouble("clat", currentGeo.getLatitude());
+						b.putDouble("clong", currentGeo.getLongitude());
+					}
+					else
+					{
+						b.putDouble("clat", 0.0);
+						b.putDouble("clong", 0.0);
+					}
+					b.putString("orgId", requestrak.objectId);
+					b.putString("orgType", requestrak.orgType);
+					b.putString("howToHelp", requestrak.howToHelp);
+					b.putString("requestType", requestrak.requestType);
+					b.putByteArray("imageData", requestrak.imageArray);
+					b.putString(("paypalEmail"), requestrak.paypalEmail);
+					i.putExtras(b);
+					startActivity(i);
+				}
+				else
+				{
+					Toast.makeText(Browse.this,"Sorry, there are no monetary requests available.",Toast.LENGTH_LONG).show();
+				}
+					
+				
+				
+			}
+		});
 		  mLocationClient = new LocationClient(this,this,this);
 		   mLocationClient.connect();
 		 
@@ -244,12 +297,13 @@ GooglePlayServicesClient.OnConnectionFailedListener
 			        }
 		  });
 	  }
+	  ArrayList<RequestObject> updatedArray;
 	 public void updateRequestList()
 	 {
 		 String typefilter = type.getSelectedItem().toString();
          String distancefilter = distance.getSelectedItem().toString();
          String requestfilter = request.getSelectedItem().toString();
-         ArrayList<RequestObject> updatedArray = new ArrayList<RequestObject>();
+         updatedArray = new ArrayList<RequestObject>();
          for(RequestObject req : requestArray)
          {
         	 String orgtype = req.orgType;
