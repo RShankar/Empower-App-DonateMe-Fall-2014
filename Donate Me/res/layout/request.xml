@@ -75,8 +75,9 @@
         android:layout_alignLeft="@+id/textView7"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
         android:background="@drawable/round_corners"
-        android:text="Add Media"/>
+        android:text="Add Media" />
 
     <TextView
         android:id="@+id/welcometxtview"
@@ -178,6 +179,7 @@
         android:layout_alignBaseline="@+id/addMediaButton"
         android:layout_alignBottom="@+id/addMediaButton"
         android:layout_alignRight="@+id/editText4"
+        android:layout_marginRight="15dp"
         android:background="@drawable/round_corners1"
         android:text="@string/submit" />
 
