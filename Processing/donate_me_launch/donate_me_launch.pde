@@ -27,7 +27,6 @@ int songSelect;
 List<Float> filterDistance = new ArrayList<Float>();
 List<String> filterType = new ArrayList<String>();
 List<String> filterRequest = new ArrayList<String>();
-List<String> filterRequest;
 List<String> filterGoal;
 Bitmap image;
 
@@ -113,7 +112,7 @@ void startActivity()
     b.putInt("songSelect", songSelect);
     b.putFloatArray("filterDistance", array);
     b.putStringArray("filterType", filterTypeArray);
-    b.putStringArray("filterRequestArray", filterRequestArray);
+    b.putStringArray("filterRequest", filterRequestArray);
     i.putExtras(b);
     
     startActivity(i);

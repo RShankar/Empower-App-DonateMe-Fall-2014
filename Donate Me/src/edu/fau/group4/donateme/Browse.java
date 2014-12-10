@@ -56,7 +56,9 @@ GooglePlayServicesClient.OnConnectionFailedListener
 	 byte[] imageArray;
 	
 	 private ArrayList<String> state_type = new ArrayList<String>();//{ "All Types", "Research", "For Profit", "Not For Profit"};
-	 private String[] state_request = { "All Requests", "Money","Clothes","Food"};
+	 private ArrayList<String> state_request = new ArrayList<String>();//{ "All Requests", "Money","Clothes","Food"};
+
+	// private String[] state_request = { "All Requests", "Money","Clothes","Food"};
 	 private ArrayList<String> state_distance = new ArrayList<String>();
 	 
 	 TextView text_type;
@@ -209,6 +211,12 @@ GooglePlayServicesClient.OnConnectionFailedListener
 				}	
 			 });
 	        request = (Spinner) findViewById(R.id.spinner3);
+	        
+	        state_request.add("All Requests");
+	        for(int i = 0; i < GlobalLayout.filterRequest.size(); i++)
+	        {
+	        	state_request.add(GlobalLayout.filterRequest.get(i));
+	        }
 	        ArrayAdapter<String> requestadapter = new ArrayAdapter<String>(this,
 	            android.R.layout.simple_spinner_dropdown_item, state_request);
 	        request.setAdapter(requestadapter);
