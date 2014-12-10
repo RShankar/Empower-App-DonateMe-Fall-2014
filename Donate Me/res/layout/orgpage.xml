@@ -31,13 +31,22 @@
         android:textSize="20sp"
         android:visibility="invisible" />
 
+    <TextView
+        android:id="@+id/welcometxtview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/muteimageview"
+        android:layout_centerHorizontal="true"
+        android:text="@string/organization_name"
+        android:textSize="30sp" />
+
     <ImageView
         android:id="@+id/muteimageview"
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:layout_below="@+id/settingsback"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp" />
+        android:layout_marginTop="36dp"/>
 
     <Button
         android:id="@+id/websiteButton"
@@ -62,62 +71,21 @@
         android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/lasttxtview"
-        android:layout_toLeftOf="@+id/lasttxtview"
-        android:text="What is this donation for:"
-        android:textSize="20sp" />
+        android:layout_below="@+id/lasttxtview"
+        android:layout_centerHorizontal="true"
+        android:text="A little about the organization:"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/lasttxtview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/muteimageview"
         android:layout_below="@+id/welcometxtview"
-        android:layout_marginRight="27dp"
-        android:layout_marginTop="31dp"
+        android:layout_centerHorizontal="true"
         android:text="What is your donation for?"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/muteimageview"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="38dp"
-        android:text="A little about the organization:"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView3"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_alignLeft="@+id/settingsBack"
-        android:text="About the organization:"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/lasttxtview"
-        android:layout_toLeftOf="@+id/textView3"
-        android:text="Organization name:"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/welcometxtview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/muteimageview"
-        android:layout_marginTop="13dp"
-        android:layout_toRightOf="@+id/textView1"
-        android:text="@string/organization_name"
         android:textSize="30sp" />
 
 </RelativeLayout>
