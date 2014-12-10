@@ -75,7 +75,7 @@ public class HelpOrg extends Activity implements OnClickListener
 	    View v = this.getWindow().getDecorView();
 	    Intent connectionIntent = new Intent(this, MusicService.class);
         bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
-	    v.setBackgroundColor(GlobalLayout.backgroundColor);
+        v.setBackgroundDrawable(GlobalLayout.gradient);
 		setContentView(R.layout.orgpage);
 		Bundle b = getIntent().getExtras();
 		orgName = b.getString("orgName");

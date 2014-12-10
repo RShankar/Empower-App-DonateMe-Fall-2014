@@ -73,7 +73,7 @@ public class Signup extends Activity{
     {
 		super.onCreate(savedInstanceState);
 	    View v = this.getWindow().getDecorView();
-	    v.setBackgroundColor(GlobalLayout.backgroundColor);
+	    v.setBackgroundDrawable(GlobalLayout.gradient);
 		setContentView(R.layout.signup);
 		
 	    ((Button) findViewById(R.id.loginbutton)).setTextSize(GlobalLayout.buttonFontSize);

@@ -54,7 +54,7 @@ public class Login extends Activity{
 		  Intent connectionIntent = new Intent(this, MusicService.class);
 	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
 	    View v = this.getWindow().getDecorView();
-	    v.setBackgroundColor(GlobalLayout.backgroundColor);
+	    v.setBackgroundDrawable(GlobalLayout.gradient);
 		setContentView(R.layout.login);	
 
 	    ((Button) findViewById(R.id.loginButton)).setTextSize(GlobalLayout.buttonFontSize);

@@ -83,7 +83,7 @@ public class Request extends Activity
 	  {
 		  super.onCreate(savedInstanceState);
 		    View v = this.getWindow().getDecorView();
-		    v.setBackgroundColor(GlobalLayout.backgroundColor);
+		    v.setBackgroundDrawable(GlobalLayout.gradient);
 		    Intent connectionIntent = new Intent(this, MusicService.class);
 	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
 		  setContentView(R.layout.request);

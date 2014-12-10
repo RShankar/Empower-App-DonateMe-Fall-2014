@@ -89,7 +89,7 @@ GooglePlayServicesClient.OnConnectionFailedListener
 	  {
 		  super.onCreate(savedInstanceState);
 		    View v = this.getWindow().getDecorView();
-		    v.setBackgroundColor(GlobalLayout.backgroundColor);
+		    v.setBackgroundDrawable(GlobalLayout.gradient);
 		  setContentView(R.layout.browse);
 		  
 		  rakbutton = (Button) findViewById(R.id.signupsubmit);

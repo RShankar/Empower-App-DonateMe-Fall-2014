@@ -47,7 +47,7 @@ public class Thanks extends Activity {
         Intent connectionIntent = new Intent(this, MusicService.class);
         bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
 	    View v = this.getWindow().getDecorView();
-	    v.setBackgroundColor(GlobalLayout.backgroundColor);
+	    v.setBackgroundDrawable(GlobalLayout.gradient);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.thanks);
 

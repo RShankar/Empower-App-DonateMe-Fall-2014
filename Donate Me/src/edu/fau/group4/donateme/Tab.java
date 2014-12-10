@@ -62,7 +62,7 @@ public class Tab extends TabActivity
             	    View v = this.getWindow().getDecorView();
             	    Intent connectionIntent = new Intent(this, MusicService.class);
         	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
-            	    v.setBackgroundColor(GlobalLayout.backgroundColor);
+        	        v.setBackgroundDrawable(GlobalLayout.gradient);
                     setContentView(R.layout.tab);
                     
             	    ((Button) findViewById(R.id.logoutbutton)).setTextSize(GlobalLayout.buttonFontSize);
