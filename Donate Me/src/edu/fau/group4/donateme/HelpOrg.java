@@ -148,7 +148,7 @@ public class HelpOrg extends Activity implements OnClickListener
 				i.setData(Uri.parse(url));
 				startActivity(i);
 				break;
-			case R.id.settingsback:
+			case R.id.settingsBack:
 				finish();
 				break;
 		}
