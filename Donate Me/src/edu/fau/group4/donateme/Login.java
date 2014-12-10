@@ -51,11 +51,12 @@ public class Login extends Activity{
 	@Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.login);	
 		  Intent connectionIntent = new Intent(this, MusicService.class);
 	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
 	    View v = this.getWindow().getDecorView();
 	    v.setBackgroundDrawable(GlobalLayout.gradient);
-		setContentView(R.layout.login);	
 
 	    ((Button) findViewById(R.id.loginButton)).setTextSize(GlobalLayout.buttonFontSize);
 	    ((Button) findViewById(R.id.backButton)).setTextSize(GlobalLayout.buttonFontSize);

@@ -88,9 +88,10 @@ GooglePlayServicesClient.OnConnectionFailedListener
 	 public void onCreate(Bundle savedInstanceState)
 	  {
 		  super.onCreate(savedInstanceState);
+
+		  setContentView(R.layout.browse);
 		    View v = this.getWindow().getDecorView();
 		    v.setBackgroundDrawable(GlobalLayout.gradient);
-		  setContentView(R.layout.browse);
 		  
 		  rakbutton = (Button) findViewById(R.id.signupsubmit);
 		  rakbutton.setOnClickListener(new OnClickListener() {

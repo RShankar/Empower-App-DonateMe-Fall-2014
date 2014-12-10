@@ -44,12 +44,13 @@ public class Thanks extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.thanks);
         Intent connectionIntent = new Intent(this, MusicService.class);
         bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
 	    View v = this.getWindow().getDecorView();
 	    v.setBackgroundDrawable(GlobalLayout.gradient);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.thanks);
 
 	    ((Button) findViewById(R.id.loginbutton)).setTextSize(GlobalLayout.buttonFontSize);
 	    ((TextView) findViewById(R.id.lasttxtview)).setTextSize(GlobalLayout.labelFontSize);

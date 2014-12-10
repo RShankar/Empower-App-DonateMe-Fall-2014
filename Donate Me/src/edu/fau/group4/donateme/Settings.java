@@ -62,12 +62,12 @@ public class Settings extends Activity{
 	
 	 public void onCreate(Bundle savedInstanceState)
 	  {
-		  super.onCreate(savedInstanceState);
+		  	super.onCreate(savedInstanceState);
+	        setContentView(R.layout.settings);
 		    View v = this.getWindow().getDecorView();
 		    v.setBackgroundDrawable(GlobalLayout.gradient);
 		    Intent connectionIntent = new Intent(this, MusicService.class);
 	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
-		  setContentView(R.layout.settings);
 
 		    ((Button) findViewById(R.id.settingsback)).setTextSize(GlobalLayout.buttonFontSize);
 		    ((Button) findViewById(R.id.logoutButton)).setTextSize(GlobalLayout.buttonFontSize);

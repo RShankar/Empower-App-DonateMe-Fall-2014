@@ -43,11 +43,12 @@ public class Welcomepage extends Activity implements OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+	    setContentView(R.layout.welcome);
 	    View v = this.getWindow().getDecorView();
 	    Intent connectionIntent = new Intent(this, MusicService.class);
         bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
 	    v.setBackgroundDrawable(GlobalLayout.gradient);
-	    setContentView(R.layout.welcome);
 		
 		((Button) findViewById(R.id.loginbutton)).setTextSize(GlobalLayout.buttonFontSize);
 		((Button) findViewById(R.id.signupsubmit)).setTextSize(GlobalLayout.buttonFontSize);

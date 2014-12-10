@@ -59,11 +59,12 @@ public class Tab extends TabActivity
             public void onCreate(Bundle savedInstanceState)
             {
                     super.onCreate(savedInstanceState);
+                    setContentView(R.layout.tab);
             	    View v = this.getWindow().getDecorView();
             	    Intent connectionIntent = new Intent(this, MusicService.class);
         	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
         	        v.setBackgroundDrawable(GlobalLayout.gradient);
-                    setContentView(R.layout.tab);
+                   
                     
             	    ((Button) findViewById(R.id.logoutbutton)).setTextSize(GlobalLayout.buttonFontSize);
             	    ((TextView) findViewById(R.id.welcometxtview)).setTextSize(GlobalLayout.labelFontSize);

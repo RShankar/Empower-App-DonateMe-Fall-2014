@@ -82,11 +82,12 @@ public class Request extends Activity
 	 public void onCreate(Bundle savedInstanceState)
 	  {
 		  super.onCreate(savedInstanceState);
+
+		  setContentView(R.layout.request);
 		    View v = this.getWindow().getDecorView();
 		    v.setBackgroundDrawable(GlobalLayout.gradient);
 		    Intent connectionIntent = new Intent(this, MusicService.class);
 	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
-		  setContentView(R.layout.request);
 		  
 
 		    ((Button) findViewById(R.id.addMediaButton)).setTextSize(GlobalLayout.buttonFontSize);

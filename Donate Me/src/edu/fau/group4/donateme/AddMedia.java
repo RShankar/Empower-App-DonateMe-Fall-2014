@@ -66,9 +66,10 @@ public class AddMedia extends Activity {
 	public void onCreate(Bundle savedInstanceState)
 	  {
 		  super.onCreate(savedInstanceState);
+
+		  setContentView(R.layout.addmedia);
 		    View v = this.getWindow().getDecorView();
 		    v.setBackgroundDrawable(GlobalLayout.gradient);
-		  setContentView(R.layout.addmedia);
 		  Intent connectionIntent = new Intent(this, MusicService.class);
 	        bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
 		  b = getIntent().getExtras();

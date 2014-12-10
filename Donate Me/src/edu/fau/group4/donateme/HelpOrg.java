@@ -72,11 +72,12 @@ public class HelpOrg extends Activity implements OnClickListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.orgpage);
 	    View v = this.getWindow().getDecorView();
 	    Intent connectionIntent = new Intent(this, MusicService.class);
         bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
         v.setBackgroundDrawable(GlobalLayout.gradient);
-		setContentView(R.layout.orgpage);
 		Bundle b = getIntent().getExtras();
 		orgName = b.getString("orgName");
 		whatFor = b.getString("whatFor");

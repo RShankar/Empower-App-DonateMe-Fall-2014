@@ -95,8 +95,7 @@ public class Howtohelp extends Activity implements OnClickListener
     public void onCreate(Bundle savedInstanceState) 
     {
 		super.onCreate(savedInstanceState);
-	    View v = this.getWindow().getDecorView();
-	    v.setBackgroundDrawable(GlobalLayout.gradient);
+	   
 	    Intent connectionIntent = new Intent(this, MusicService.class);
         bindService(connectionIntent, mp3PlayerServiceConnection ,Context.BIND_AUTO_CREATE);
 	    
@@ -154,6 +153,8 @@ public class Howtohelp extends Activity implements OnClickListener
 		    	drawMap(ll,name, distance);
 	    	}
 	    }
+	    View v = this.getWindow().getDecorView();
+	    v.setBackgroundDrawable(GlobalLayout.gradient);
     }
    
     public void initLibrary() {
