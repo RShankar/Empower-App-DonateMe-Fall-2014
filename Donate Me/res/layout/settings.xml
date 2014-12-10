@@ -14,11 +14,14 @@
 
     <Button
         android:id="@+id/settingsback"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="Back" />
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/round_corners"
+        android:text="@string/back" />
 
     <TextView
         android:id="@+id/addresstxtview"
@@ -85,11 +88,13 @@
 
     <Button
         android:id="@+id/logoutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
         android:layout_above="@+id/addresstxtview"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="14dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/round_corners2"
         android:text="Logout" />
 
     <ImageView
